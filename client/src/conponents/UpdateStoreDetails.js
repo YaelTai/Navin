@@ -1,13 +1,45 @@
 import React, {useState}from 'react'
 import { Dropdown } from 'primereact/dropdown';
+import { MultiSelect } from 'primereact/multiselect';
+import { InputNumber } from 'primereact/inputnumber';
+import { Button } from 'primereact/button';
+import '../MultiSelectDemo.css';
 import 'primereact/resources/themes/lara-light-indigo/theme.css';   // theme
 import 'primereact/resources/primereact.css';                       // core css
 import 'primeicons/primeicons.css';  
-import { Checkbox } from "primereact/checkbox";
+import 'primereact/resources/themes/saga-blue/theme.css';
+//import 'primeflex/primeflex.css';
+import '..//index.css';
+import ReactDOM from 'react-dom';
+import  { Component } from 'react';
+
+let countryTemplate=(option)=> {
+    return (
+        <div className="country-item">
+            {/* <img alt={option.name} src="showcase/demo/images/flag_placeholder.png" onError={(e) => e.target.src='https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png'} className={`flag flag-${option.code.toLowerCase()}`} /> */}
+            <div>{option.name}</div>
+        </div>
+    );
+}
+let selectedCountriesTemplate=(option)=> {
+    if (option) {
+        return (
+            <div className="country-item country-item-value">
+                {/* <img alt={option.name} src="showcase/demo/images/flag_placeholder.png" onError={(e) => e.target.src='https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png'} className={`flag flag-${option.code.toLowerCase()}`} /> */}
+                <div>{option.name}</div>
+            </div>
+        );
+    }
+
+    return "Select Countries";
+}
 
 const UpdateStoreDetails=()=>{
  
     const [selectedStore, setSelectedStore] = useState(null);
+    const [selectedCategories, setselectedCategories] = useState(null);
+    const [ownerId, setownerId] = useState(null);
+
     const stores = [
         { name: 'New York'},
         { name: 'Rome' },
@@ -15,45 +47,42 @@ const UpdateStoreDetails=()=>{
         { name: 'Istanbul' },
         { name: 'Paris'}
     ];
-    const categories = [
-        { name: 'Accounting', key: 'A' },
-        { name: 'Marketing', key: 'M' },
-        { name: 'Production', key: 'P' },
-        { name: 'Research', key: 'R' }
+
+
+   const categories = [
+        {name: 'shoes', code: ''},
+        {name: 'cloting', code: 'BR'},
+        {name: 'China', code: 'CN'},
+        {name: 'Egypt', code: 'EG'},
+        {name: 'France', code: 'FR'},
+        {name: 'Germany', code: 'DE'},
+        {name: 'India', code: 'IN'},
+        {name: 'Japan', code: 'JP'},
+        {name: 'Spain', code: 'ES'},
+        {name: 'United States', code: 'US'}
     ];
-    const [selectedCategories, setSelectedCategories] = useState([categories[1]]);
+    // countryTemplate = countryTemplate.bind(this);
+    //    selectedCountriesTemplate = selectedCountriesTemplate.bind(this);
 
-    const onCategoryChange = (e) => {
-        let _selectedCategories = [...selectedCategories];
-
-        if (e.checked)
-            _selectedCategories.push(e.value);
-        else
-            _selectedCategories = _selectedCategories.filter(category => category.key !== e.value.key);
-
-        setSelectedCategories(_selectedCategories);
-    };
     return (
         
         
-        <div className="card flex justify-content-center" style={{"textAlign":"center","marginTop":'5%'}}>
-            <h1 >עדכון פרטי חנות</h1>
-            <Dropdown value={selectedStore} onChange={(e) => setSelectedStore(e.value)} options={stores} optionLabel="name" 
-                placeholder="בחר חנות שברצונך לעדכן" className="w-full md:w-14rem" />
-            <h2 >:עדכון הקטגוריות הנמכרות בחנות</h2>
-            <div className="flex flex-column gap-3">
-                {categories.map((category) => {
-                    return (
-                        <div key={category.key} className="flex align-items-center">
-                            <Checkbox inputId={category.key} name="category" value={category} onChange={onCategoryChange} checked={selectedCategories.some((item) => item.key === category.key)} />
-                            <label htmlFor={category.key} className="ml-2">
-                                {category.name}
-                            </label>
-                        </div>
-                    );
-                })}
-            </div>
+        <div className="card flex justify-content-center" style={{"marginTop":'5%'}}>
+            <h1 >Update store details </h1>
+            <label style={{"marginRight":'1%'}} >Choose the store which you want to update</label>
+            <Dropdown value={selectedStore} onChange={(e) => setSelectedStore( e.value)} options={stores} optionLabel="name" 
+                placeholder="your stores" className="w-full md:w-14rem" /><br/>
+            <br/><br/><br/>
+         <label style={{"marginRight":'1%'}} >update your store's categories</label>
+      
+            <MultiSelect value={selectedCategories} options={categories}  onChange={ (e) => setselectedCategories( e.value )} optionLabel="name" placeholder="Select Categories" filter className="multiselect-custom"
+                        itemTemplate={countryTemplate} selectedItemTemplate={selectedCountriesTemplate} />
+        <br/><br/><br/>
+        <label style={{"marginRight":'1%'}}>update owner id</label> 
+        <InputNumber id="withoutgrouping" placeholder='214121865' onValueChange={(e) => setownerId(e.value)} mode="decimal" useGrouping={false} /> <br/><br/><br/>
+        <Button label="Submit" icon="pi pi-check" />
         </div>
+        
     )
          
 }
