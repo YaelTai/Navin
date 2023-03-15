@@ -15,11 +15,11 @@ const OwnerHome=()=>{
  
           return (
         <div  >
-            <h1>ברוך הבא משה</h1>
-            <Button label="העלאת פרסומת" style={btn} /><br/><br/>
-            <Button label="תשלום עבור פרסומת שאושרה" style={btn}/><br/><br/>
-            <Button label="עדכון פרטים אישיים" style={btn}/><br/><br/>
-            <Button label=" עדכון פרטי חנות" style={btn}/><br/>
+            <h1>welcome owner!</h1>
+            <Button label="Load Advertisment" style={btn} /><br/><br/>
+            <Button label="Pay For Approved Ad" style={btn}/><br/><br/>
+            <Button label="Update Personal details" style={btn}/><br/><br/>
+            <Button label="Update Store Details" style={btn}/><br/>
         </div>
         )  
 }

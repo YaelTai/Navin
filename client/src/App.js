@@ -1,5 +1,6 @@
 import LogIn from "./conponents/LogIn";
 import OwnerHome from "./conponents/OwnerHome";
+import Payment from "./conponents/Payment";
 import UpdateStoreDetails from "./conponents/UpdateStoreDetails";
 
 
@@ -7,8 +8,12 @@ import UpdateStoreDetails from "./conponents/UpdateStoreDetails";
 function App() {
   return (
    <div >
-    {/* <OwnerHome/> */}
-      <LogIn/>
+    {/* <OwnerHome/> */ } {/* <UpdateStoreDetails/> */}
+    {/* perfect */}
+    
+      {/* <LogIn/> */}
+      {/* not so good in big screen */}
+      <Payment/>
   </div>)
 }
 

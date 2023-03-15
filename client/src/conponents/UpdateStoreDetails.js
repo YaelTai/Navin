@@ -9,7 +9,7 @@ import 'primereact/resources/primereact.css';                       // core css
 import 'primeicons/primeicons.css';  
 import 'primereact/resources/themes/saga-blue/theme.css';
 //import 'primeflex/primeflex.css';
-import '..//index.css';
+// import '..//index.css';
 import ReactDOM from 'react-dom';
 import  { Component } from 'react';
 
@@ -67,12 +67,12 @@ const UpdateStoreDetails=()=>{
     return (
         
         
-        <div className="card flex justify-content-center" style={{"marginTop":'5%'}}>
+        <div style={{"marginTop":'5%'}} >
             <h1 >Update store details </h1>
-            <label style={{"marginRight":'1%'}} >Choose the store which you want to update</label>
-            <Dropdown value={selectedStore} onChange={(e) => setSelectedStore( e.value)} options={stores} optionLabel="name" 
-                placeholder="your stores" className="w-full md:w-14rem" /><br/>
-            <br/><br/><br/>
+            <label style={{"marginRight":'1%'}} >Choose the store which you want to update</label><br/><br/>
+            <Dropdown  value={selectedStore} onChange={(e) => setSelectedStore( e.value)} options={stores} optionLabel="name" 
+                placeholder="your stores" className="w-full md:w-14rem" style={{"width":"20%"}}/><br/>
+            <br/><br/>
          <label style={{"marginRight":'1%'}} >update your store's categories</label>
       
             <MultiSelect value={selectedCategories} options={categories}  onChange={ (e) => setselectedCategories( e.value )} optionLabel="name" placeholder="Select Categories" filter className="multiselect-custom"
@@ -86,10 +86,6 @@ const UpdateStoreDetails=()=>{
     )
          
 }
-
-
-
-    
 
  
 export default UpdateStoreDetails
