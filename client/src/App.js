@@ -1,4 +1,5 @@
-import LogIn from "./conponents/LogIn";
+import LogIn from "./conponents/LogIn"
+
 import OwnerHome from "./conponents/OwnerHome";
 import Payment from "./conponents/Payment";
 import UpdateStoreDetails from "./conponents/UpdateStoreDetails";
@@ -11,9 +12,9 @@ function App() {
     {/* <OwnerHome/> */ } {/* <UpdateStoreDetails/> */}
     {/* perfect */}
     
-      <LogIn/>
+      {/* <LogIn/> */}
       {/* not so good in big screen */}
-      {/* <Payment/> */}
+      <Payment/>
   </div>)
 }
 
