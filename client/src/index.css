@@ -33,3 +33,9 @@ code {
 .multiselect-demo .multiselect-custom .country-item-value img.flag {
   width: 17px;
 }
+.card {
+  background: var(--surface-card);
+  padding: 2rem;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+}
