@@ -8,7 +8,7 @@ import Axios from 'axios'
 
 
 const LogIn=()=>{
-    Axios.get('https://catfact.ninja/fact').then(res=>{
+    Axios.get('localhost:3001/api/manager/priceList').then(res=>{
 alert(res.data)
 })
     const [userName, setUserName] = useState(null);
