@@ -1,5 +1,5 @@
 const express = require("express");
-const VisitorController= require("../../controllers/visitorController");
+const VisitorController= require("../controllers/visitorController");
 
 
 

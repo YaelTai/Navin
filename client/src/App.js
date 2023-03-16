@@ -11,9 +11,9 @@ function App() {
     {/* <OwnerHome/> */ } {/* <UpdateStoreDetails/> */}
     {/* perfect */}
     
-      {/* <LogIn/> */}
+      <LogIn/>
       {/* not so good in big screen */}
-      <Payment/>
+      {/* <Payment/> */}
   </div>)
 }
 

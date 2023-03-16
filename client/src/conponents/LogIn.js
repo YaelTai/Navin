@@ -4,8 +4,13 @@ import { InputText } from 'primereact/inputtext';
 import { Button } from 'primereact/button';
 import { Password } from 'primereact/password';
 import 'primeflex/primeflex.css';  
+import Axios from 'axios'
+
+
 const LogIn=()=>{
-    
+    Axios.get('https://catfact.ninja/fact').then(res=>{
+alert(res.data)
+})
     const [userName, setUserName] = useState(null);
     const [password, setPassword] = useState(null);
     return <>
