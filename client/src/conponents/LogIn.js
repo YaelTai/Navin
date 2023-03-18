@@ -7,7 +7,7 @@ const LogIn=()=>{
    
     return <>
     <div class="login-box">
-  <h2>Login</h2>
+  <h2 style={{"color":"black"}}>Login</h2>
   <form>
     <div class="user-box">
       <input type="text" name="" required=""/>

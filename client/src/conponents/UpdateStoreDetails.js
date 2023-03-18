@@ -4,10 +4,10 @@ import { MultiSelect } from 'primereact/multiselect';
 import { InputNumber } from 'primereact/inputnumber';
 import { Button } from 'primereact/button';
 import '../MultiSelectDemo.css';
-import 'primereact/resources/themes/lara-light-indigo/theme.css';   // theme
-import 'primereact/resources/primereact.css';                       // core css
-import 'primeicons/primeicons.css';  
-import 'primereact/resources/themes/saga-blue/theme.css';
+// import 'primereact/resources/themes/lara-light-indigo/theme.css';   // theme
+// import 'primereact/resources/primereact.css';                       // core css
+// import 'primeicons/primeicons.css';  
+// import 'primereact/resources/themes/saga-blue/theme.css';
 //import 'primeflex/primeflex.css';
 // import '..//index.css';
 import ReactDOM from 'react-dom';
