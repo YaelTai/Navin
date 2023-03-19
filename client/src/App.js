@@ -2,8 +2,14 @@ import LogIn from "./conponents/LogIn"
 import AddStore from "./conponents/addStore"
 import OwnerHome from "./conponents/OwnerHome";
 import ManagerHome from "./conponents/ManagerHome";
+<<<<<<< HEAD
 import UploadAd from "./conponents/UploadAd";
 import Payment from "./conponents/Payment";
+=======
+import PriceList from "./conponents/priceList"
+import UserHome from "./conponents/user_home"
+// #import Payment from "./conponents/
+>>>>>>> b784f3c21f3d80219e376727c65ca9286917e6df
 import UpdateStoreDetails from "./conponents/UpdateStoreDetails";
 import UpdatePersonalsDetail from "./conponents/UpdatePersonalDetails"
 
@@ -30,15 +36,31 @@ function App() {
       <UpdateCategories/>
        {/* <UploadAd/> <UpdateStoreDetails/>*/}
       {/* perfect */}
+<UserHome/>
 
     
       {/* <UpdateStoreDetails/> <LogIn/> not so good in big screen */}
       {/*  <Payment/> <AddStore/> <ManagerHome />  */}
+     {/* <PriceList/> */}
+      {/*  <LogIn/> not so good in big screen */}
+      {/* <UpdateStoreDetails/> <Payment/> <AddStore/> <ManagerHome /> <UpdateStoreDetails/> */}
        
       
       
  
       
+
+      {/* <LogIn/> */}
+      {/* not so good in big screen */}
+    
+      {/* <AddStore/> */}
+{/* 
+      <ManagerHome /> */}
+      {/* <UpdateStoreDetails/>  */ 
+      }
+      {/* <InddorMap /> */}
+      {/* <Example/> */}
+
       
     </div>)
 }
