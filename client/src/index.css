@@ -12,6 +12,9 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+.lable{
+  margin-right: 1%;
+}
 .multiselect-demo .p-multiselect {
   min-width: 15rem;
 }
@@ -38,6 +41,7 @@ code {
   padding: 2rem;
   border-radius: 10px;
   margin-bottom: 1rem;
-  background-color: rgb(201, 199, 199);
+  background-color: rgb(236, 243, 247);
+ 
   margin: 5%;
 }
