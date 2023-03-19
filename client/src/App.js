@@ -31,10 +31,11 @@ function App() {
       {/* <Payment/> */}
       {/* <AddStore/> */}
 
-      {/* <ManagerHome />
-      <UpdateStoreDetails/>  */}
+      <ManagerHome />
+      {/* <UpdateStoreDetails/>  */ 
+      }
       {/* <InddorMap /> */}
-      <Example/>
+      {/* <Example/> */}
       
     </div>)
 }
