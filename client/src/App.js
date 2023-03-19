@@ -2,8 +2,9 @@ import LogIn from "./conponents/LogIn"
 import AddStore from "./conponents/addStore"
 import OwnerHome from "./conponents/OwnerHome";
 import ManagerHome from "./conponents/ManagerHome";
-
-import Payment from "./conponents/Payment";
+import PriceList from "./conponents/priceList"
+import UserHome from "./conponents/user_home"
+// #import Payment from "./conponents/
 import UpdateStoreDetails from "./conponents/UpdateStoreDetails";
 
 //theme
@@ -22,14 +23,14 @@ import "./index.css"
 
 function App() {
   return (
-    <div className="card" >
+    <div >
         {/* <Payment/>  */}
-      <OwnerHome/> 
+      {/* <OwnerHome/>  */}
        
       {/* perfect */}
+<UserHome/>
 
-<<<<<<< HEAD
-     
+     {/* <PriceList/> */}
       {/*  <LogIn/> not so good in big screen */}
       {/* <UpdateStoreDetails/> <Payment/> <AddStore/> <ManagerHome /> <UpdateStoreDetails/> */}
        
@@ -37,18 +38,18 @@ function App() {
       
  
       
-=======
+
       {/* <LogIn/> */}
       {/* not so good in big screen */}
-      {/* <Payment/> */}
+    
       {/* <AddStore/> */}
-
-      <ManagerHome />
+{/* 
+      <ManagerHome /> */}
       {/* <UpdateStoreDetails/>  */ 
       }
       {/* <InddorMap /> */}
       {/* <Example/> */}
->>>>>>> 973ceee021d32eb5db771f368cbb59e80c5d5ac8
+
       
     </div>)
 }
