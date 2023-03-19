@@ -28,6 +28,7 @@ function App() {
        
       {/* perfect */}
 
+<<<<<<< HEAD
      
       {/*  <LogIn/> not so good in big screen */}
       {/* <UpdateStoreDetails/> <Payment/> <AddStore/> <ManagerHome /> <UpdateStoreDetails/> */}
@@ -36,6 +37,18 @@ function App() {
       
  
       
+=======
+      {/* <LogIn/> */}
+      {/* not so good in big screen */}
+      {/* <Payment/> */}
+      {/* <AddStore/> */}
+
+      <ManagerHome />
+      {/* <UpdateStoreDetails/>  */ 
+      }
+      {/* <InddorMap /> */}
+      {/* <Example/> */}
+>>>>>>> 973ceee021d32eb5db771f368cbb59e80c5d5ac8
       
     </div>)
 }
