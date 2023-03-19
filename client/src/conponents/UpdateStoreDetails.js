@@ -13,7 +13,7 @@ import '../MultiSelectDemo.css';
 import ReactDOM from 'react-dom';
 import  { Component } from 'react';
 
-let countryTemplate=(option)=> {
+let categoriesTemplate=(option)=> {
     return (
         <div className="country-item">
             {/* <img alt={option.name} src="showcase/demo/images/flag_placeholder.png" onError={(e) => e.target.src='https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png'} className={`flag flag-${option.code.toLowerCase()}`} /> */}
@@ -21,7 +21,7 @@ let countryTemplate=(option)=> {
         </div>
     );
 }
-let selectedCountriesTemplate=(option)=> {
+let selectedCategoriesTemplate=(option)=> {
     if (option) {
         return (
             <div className="country-item country-item-value">
@@ -31,7 +31,7 @@ let selectedCountriesTemplate=(option)=> {
         );
     }
 
-    return "Select Countries";
+    return "Select Categories";
 }
 
 const UpdateStoreDetails=()=>{
@@ -76,7 +76,7 @@ const UpdateStoreDetails=()=>{
          <label style={{"marginRight":'1%'}} >update your store's categories</label>
       
             <MultiSelect value={selectedCategories} options={categories}  onChange={ (e) => setselectedCategories( e.value )} optionLabel="name" placeholder="Select Categories" filter className="multiselect-custom"
-                        itemTemplate={countryTemplate} selectedItemTemplate={selectedCountriesTemplate} />
+                        itemTemplate={categoriesTemplate} selectedItemTemplate={selectedCategoriesTemplate} />
         <br/><br/><br/>
         <label style={{"marginRight":'1%'}}>update owner id</label> 
         <InputNumber id="withoutgrouping" placeholder='214121865' onValueChange={(e) => setownerId(e.value)} mode="decimal" useGrouping={false} /> <br/><br/><br/>
