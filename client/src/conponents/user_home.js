@@ -19,19 +19,7 @@ const UserHome = () => {
 
         </div>
     );
-    useEffect(() => {
-        console.log("hiii");
-
-        <>
-            <h4>you are near:  XXXX
-            </h4>
-            <span className="p-buttonset">
-                <Button label="Save" icon="pi pi-check" />
-                <span>    </span>
-                <Button label="Cancel" icon="pi pi-times" />
-            </span></>
-
-    }, [image,flag])
+   
     return (
         <Card title="Welcome!" footer={footer} header={header} className="md:w-25rem" style={{ "margin": "2%", "width": "95%", "height": "95%" }}>
             <p className="m-0">
@@ -46,6 +34,15 @@ const UserHome = () => {
                     setImage(camera.current.takePhoto())
 
                 }} />
+                  {!image ?    <></>: <>
+            <h4>you are near:  XXXX
+            </h4>
+            <span className="p-buttonset">
+                <Button label="Save" icon="pi pi-check" />
+                <span>    </span>
+                <Button label="Cancel" icon="pi pi-times" />
+            </span></> 
+                   }
             </p>
         </Card>
 
