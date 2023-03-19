@@ -2,10 +2,12 @@ import LogIn from "./conponents/LogIn"
 import AddStore from "./conponents/addStore"
 import OwnerHome from "./conponents/OwnerHome";
 import ManagerHome from "./conponents/ManagerHome";
-
+import UploadAd from "./conponents/UploadAd";
 import Payment from "./conponents/Payment";
 import UpdateStoreDetails from "./conponents/UpdateStoreDetails";
+import UpdatePersonalsDetail from "./conponents/UpdatePersonalDetails"
 
+import UpdateCategories from "./conponents/Updatecategories";
 //theme
 import "primereact/resources/themes/lara-light-indigo/theme.css";     
     
@@ -20,35 +22,23 @@ import 'primeicons/primeicons.css';
 import 'primereact/resources/themes/saga-blue/theme.css';
 import "./index.css"
 
+
 function App() {
   return (
     <div className="card" >
-        {/* <Payment/>  */}
-      <OwnerHome/> 
-       
+        {/* <Payment/> <OwnerHome/> < UpdatePersonalsDetail/>  */}
+      <UpdateCategories/>
+       {/* <UploadAd/> <UpdateStoreDetails/>*/}
       {/* perfect */}
 
-<<<<<<< HEAD
-     
-      {/*  <LogIn/> not so good in big screen */}
-      {/* <UpdateStoreDetails/> <Payment/> <AddStore/> <ManagerHome /> <UpdateStoreDetails/> */}
+    
+      {/* <UpdateStoreDetails/> <LogIn/> not so good in big screen */}
+      {/*  <Payment/> <AddStore/> <ManagerHome />  */}
        
       
       
  
       
-=======
-      {/* <LogIn/> */}
-      {/* not so good in big screen */}
-      {/* <Payment/> */}
-      {/* <AddStore/> */}
-
-      <ManagerHome />
-      {/* <UpdateStoreDetails/>  */ 
-      }
-      {/* <InddorMap /> */}
-      {/* <Example/> */}
->>>>>>> 973ceee021d32eb5db771f368cbb59e80c5d5ac8
       
     </div>)
 }
