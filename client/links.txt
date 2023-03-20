@@ -1,1 +1,4 @@
 https://reactrouter.com/en/main/start/tutorial  //navigation
+
+
+npm install --legacy-peer-deps

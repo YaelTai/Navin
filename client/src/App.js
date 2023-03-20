@@ -1,4 +1,5 @@
 import LogIn from "./conponents/LogIn"
+import Register from "./conponents/Rejister/Register"
 import AddStore from "./conponents/addStore"
 import OwnerHome from "./conponents/OwnerHome";
 import ManagerHome from "./conponents/ManagerHome";
@@ -9,56 +10,23 @@ import UserHome from "./conponents/user_home"
 import UpdateStoreDetails from "./conponents/UpdateStoreDetails";
 import UpdatePersonalsDetail from "./conponents/UpdatePersonalDetails"
 import UpdateCategories from "./conponents/Updatecategories";
-import "primereact/resources/themes/lara-light-indigo/theme.css";     
+import ChooseStores from   "./conponents/ChooseStores"
 import "primereact/resources/primereact.min.css";
-import "primeicons/primeicons.css";   
-import 'primereact/resources/themes/lara-light-indigo/theme.css';   // theme
-import 'primereact/resources/primereact.css';                       // core css
-import 'primeicons/primeicons.css';  
+import "primeicons/primeicons.css";
+import 'primereact/resources/themes/lara-light-indigo/theme.css';   
+import 'primereact/resources/primereact.css';                       
 import 'primereact/resources/themes/saga-blue/theme.css';
+
 import "./index.css"
 
 
 
 function App() {
   return (<>
-   <UserHome/>
-
-        {/* <Payment/> <OwnerHome/> <UpdateStoreDetails/> */}
-      {/* <UpdateCategories/> */}
-       {/* <UploadAd/> < UpdatePersonalsDetail/> <UpdateStoreDetails/>*/}
-      {/* perfect */}
 
 
-      </>)}
-      {/*  <UserHome/><LogIn/> not so good in big screen */}
-      {/*  <Payment/> <AddStore/> <ManagerHome />  */}
-     {/* <PriceList/> */}
-      {/*  <LogIn/> not so good in big screen */}
-      {/* <UpdateStoreDetails/> <Payment/>  <ManagerHome /> <UpdateStoreDetails/> */}
-       
-      
-      
- 
-      
 
-      {/* <LogIn/> */}
-      {/* not so good in big screen */}
-    
-      {/* <AddStore/> */}
-{/* 
-      <ManagerHome /> */}
-      {/* <UpdateStoreDetails/>  */ 
-      }
-      {/* <InddorMap /> */}
-      {/* <Example/> */}
-
-      
-
-  
-
+  </>)
+}
 
 export default App;
-
-
-
