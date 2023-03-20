@@ -1,4 +1,5 @@
 import Register from "./conponents/Register/Register"
+import ToolBar  from "./conponents/visitotToolBar/toolBar"
 import AddStore from "./conponents/addStore"
 import OwnerHome from "./conponents/OwnerHome";
 import ManagerHome from "./conponents/ManagerHome";
@@ -24,7 +25,7 @@ import "./index.css"
 function App() {
 
   return (<>
-        <Register/>    
+        <ToolBar/>    
 
       </>
 )}
