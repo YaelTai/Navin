@@ -16,7 +16,7 @@ import UpdatePersonalsDetail from "./conponents/UpdatePersonalDetails"
 import UpdateCategories from "./conponents/Updatecategories";
 //theme
 import "primereact/resources/themes/lara-light-indigo/theme.css";     
-    
+import { Card } from 'primereact/card';    
 //core
 import "primereact/resources/primereact.min.css";
 
@@ -28,18 +28,29 @@ import 'primeicons/primeicons.css';
 import 'primereact/resources/themes/saga-blue/theme.css';
 import "./index.css"
 
+const header = (
+  <img alt="Card" src="https://primefaces.org/cdn/primereact/images/usercard.png" style={{ "width": "98%", "height": "50px" }} />
+);
+const footer = (
+  <div className="flex flex-wrap justify-content-end gap-2">
+
+  </div>
+);
 
 function App() {
   return (
-    <div className="card" >
+    <Card title="Welcome!" footer={footer} header={header} className="md:w-25rem" style={{ "margin": "2%", "width": "95%", "height": "95%" }}>
+            <p className="m-0">
+
         {/* <Payment/> <OwnerHome/> < UpdatePersonalsDetail/>  */}
       {/* <UpdateCategories/> */}
        {/* <UploadAd/> <UpdateStoreDetails/>*/}
       {/* perfect */}
-<UserHome/>
+<UpdateStoreDetails/>
 
-    
-      {/* <UpdateStoreDetails/> <LogIn/> not so good in big screen */}
+      </p>
+        </Card>)}
+      {/*  <UserHome/><LogIn/> not so good in big screen */}
       {/*  <Payment/> <AddStore/> <ManagerHome />  */}
      {/* <PriceList/> */}
       {/*  <LogIn/> not so good in big screen */}
@@ -62,8 +73,9 @@ function App() {
       {/* <Example/> */}
 
       
-    </div>)
-}
+
+  
+
 
 export default App;
 
