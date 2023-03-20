@@ -9,6 +9,15 @@ import '../index.css'
 import { Card } from 'primereact/card';
 import './LogIn.css'
 import { useGetAxiosApi } from '../hooks/useGetAxiosApi';
+const header = (
+  
+    <img alt="Card" src="https://primefaces.org/cdn/primereact/images/usercard.png" style={{ "width": "98%", "height": "50px" }} />
+  );
+  const footer = (
+    <div className="flex flex-wrap justify-content-end gap-2">
+  
+    </div>
+  );
 const AddStore = () => {
 
 
@@ -30,50 +39,46 @@ const AddStore = () => {
     const [ownerName, setownerName] = useState(null);
     const [password, setPassword] = useState(null);
     return <>
-
-
-        <div className="flex flex-column md:flex-row">
-            <div class="login-box">
-                <div className="w-full md:w-5 flex flex-column align-items-s justify-content-center gap-3 py-5">
-
-                    <h1>Add new store</h1>
-                    <div className="flex flex-wrap justify-content-center align-items-center gap-2">
+    
+    <Card title="Add New Store" footer={footer} header={header} className="md:w-25rem" style={{ "margin": "2%", "width": "95%", "height": "98%" ,"position":'fixed',"textAlign":"center"}}>
+            <p className="m-0">
 
                         <label htmlFor="ownerName" className="w-6rem">
                             Owner Name
-                        </label>
-                        <br /><br />
-                        <InputText id="email" type="text" onValueChange={(e) => setownerName(e.value)} />
-                    </div>
-                    <div className="flex flex-wrap justify-content-center align-items-center gap-2">
+                        </label> <br/>
+                      
+                        <InputText id="email" type="text" onValueChange={(e) => setownerName(e.value)} /><br/><br/>
+                    
+                   
                         <label htmlFor="password" className="w-6rem">
                             Password
                         </label>
-                        <br /><br />
-                        <Password value={password} onChange={(e) => setPassword(e.target.value)} toggleMask />
+                        <br/>
+                        <Password value={password} onChange={(e) => setPassword(e.target.value)} toggleMask /><br/><br/>
 
-                    </div>
-                    <div className="flex flex-wrap justify-content-center align-items-center gap-2">
+                    
+                    
 
                         <label htmlFor="email" className="w-6rem">
                             Owner Email
                         </label>
-                        <br /><br />
-                        <InputText id="email" type="text" onValueChange={(e) => setEmail(e.value)} />
-                    </div>
-                    <div className="flex flex-wrap justify-content-center align-items-center gap-2">
+                        <br/>
+                        <InputText id="email" type="text" onValueChange={(e) => setEmail(e.value)} /><br/><br/>
+                  
+                    
 
                         <label htmlFor="email" className="w-6rem">
                             Store Location
                         </label>
-                        <br /><br />
-                        <InputText id="Location" type="text" onValueChange={(e) => setLocatione(e.value)} />
-                    </div>
+                        <br />
+                        <InputText id="Location" type="text" onValueChange={(e) => setLocatione(e.value)} /><br/><br/><br/>
+                  
                     <Button label="Submit" icon="pi pi-check" loading={loading} onClick={load} />
-                </div>
+         
 
-
-            </div> </div>
+         
+            </p>
+        </Card>
     </>
 }
 export default AddStore
