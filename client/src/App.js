@@ -39,18 +39,18 @@ const footer = (
 
 function App() {
   return (
-    <Card title="Welcome!" footer={footer} header={header} className="md:w-25rem" style={{ "margin": "2%", "width": "95%", "height": "95%" }}>
+    <Card title="Welcome!" footer={footer} header={header} className="md:w-25rem" style={{ "margin": "2%", "width": "95%", "height": "97%" ,"position":"fixed"}}>
             <p className="m-0">
 
         {/* <Payment/> <OwnerHome/> < UpdatePersonalsDetail/>  */}
       {/* <UpdateCategories/> */}
        {/* <UploadAd/> <UpdateStoreDetails/>*/}
       {/* perfect */}
-<UpdateStoreDetails/>
-
+{/* <UpdateStoreDetails/> */}
+<UserHome/>
       </p>
         </Card>)}
-      {/*  <UserHome/><LogIn/> not so good in big screen */}
+      // {/*  <LogIn/> not so good in big screen */}
       {/*  <Payment/> <AddStore/> <ManagerHome />  */}
      {/* <PriceList/> */}
       {/*  <LogIn/> not so good in big screen */}
