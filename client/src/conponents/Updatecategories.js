@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { InputText } from "primereact/inputtext";
 import { Button } from "primereact/button";
 import { Card } from "primereact/card";
-import { PrimeIcons } from 'primereact/api';
+
 const UpdateCategories = () => {
   const [categories, setCategories] = useState([]);
   const [value, setValue] = useState("");
@@ -40,7 +40,7 @@ const UpdateCategories = () => {
 
             {categories.map((category, index) => (
               <li>
-                <i className="pi pi-times" style={{ color: 'red', size:'20px' }}
+                <i className="pi pi-times" style={{ color: 'green', size:'20px' }}
                  onClick={(e) => {
                     setCategories((c) => [
                       ...c.slice(0, index),

@@ -12,7 +12,6 @@ import PresentLocation from "./conponents/present_location";
 import UpdateStoreDetails from "./conponents/UpdateStoreDetails";
 import UpdatePersonalsDetail from "./conponents/UpdatePersonalDetails"
 import UpdateCategories from "./conponents/Updatecategories";
-import ChooseStores from   "./conponents/ChooseStores"
 import "primereact/resources/primereact.min.css";
 import "primeicons/primeicons.css";
 import 'primereact/resources/themes/lara-light-indigo/theme.css';   
@@ -27,7 +26,7 @@ function App() {
 
   return (<>
 
-      <UserHome/>
+      <ChooseStores/>
       </>
 )}
 

@@ -55,8 +55,6 @@ const UploadAd = () => {
     return <>
     <Card title="upload an ad" footer={footer} header={header} className="md:w-25rem" style={{ "margin": "2%", "width": "95%", "height": "98%" ,"position":'fixed'}}>
             <p className="m-0">
-        <Button label="watch price list"  />
-      
         <lable>1. Load file</lable>
         <FileUpload name="demo[]" url={'/api/upload'} multiple accept="image/*" maxFileSize={1000000} emptyTemplate={<p className="m-0">Drag and drop files to here to upload.</p>} /><br></br>
         <lable>2. Choose in which categories the ad will be displayed</lable><br></br><br></br>
