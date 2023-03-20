@@ -19,7 +19,7 @@ const UpdatePersonalsDetails = () => {
     const [phone, setPhone] = useState(null);
     const [email, setEmail] = useState(null);
     return <>
-    <Card title="Update Your Personals Details" footer={footer} header={header} className="md:w-25rem" style={{ "margin": "2%", "width": "95%", "height": "98%" ,"position":'fixed'}}>
+    <Card title="Update Your Personals Details" footer={footer} header={header} className="md:w-25rem" style={{ "margin": "2%", "width": "95%", "height": "98%" ,"position":'fixed',overflowY:"auto"}}>
             <p className="m-0">
         <lable  style={{"marginRight":'1%'}}>your new password here</lable><br></br>
         <Password p-password-strong value={password} onChange={(e) => setPassword(e.target.value)} toggleMask /><br></br><br></br>

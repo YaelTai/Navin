@@ -17,7 +17,7 @@ const PresentLocation = () => {
     return (
         
            
-<Card title="You are here!" footer={footer} header={header} className="md:w-25rem" style={{ "margin": "2%", "width": "95%", "height": "95%" ,"position":"fixed"}}>
+<Card title="You are here!" footer={footer} header={header} className="md:w-25rem" style={{ "margin": "2%", "width": "95%", "height": "95%" ,"position":"fixed",overflowY:"auto"}}>
     <p className="m-0">
        <img src="../images/you_are_here.png"   />
     

@@ -26,7 +26,7 @@ export default function PriceList() {
     );
 
     return (
-        <Card title="Our price list!" footer={footer} header={header} className="md:w-25rem" style={{ "margin": "2%", "width": "95%", "height": "95%" ,"position":"fixed"}}>
+        <Card title="Our price list!" footer={footer} header={header} className="md:w-25rem" style={{ "margin": "2%", "width": "95%", "height": "95%" ,"position":"fixed",overflowY:"auto"}}>
         <p className="m-0">
             <h3 >Price per day:</h3>
             <h3 >Price per category:</h3>

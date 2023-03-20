@@ -7,7 +7,7 @@ import 'primeflex/primeflex.css';
 import Axios from 'axios'
 import '../index.css'
 import { Card } from 'primereact/card';
-import './LogIn.css'
+
 import { useGetAxiosApi } from '../hooks/useGetAxiosApi';
 const header = (
   
@@ -40,7 +40,7 @@ const AddStore = () => {
     const [password, setPassword] = useState(null);
     return <>
     
-    <Card title="Add New Store" footer={footer} header={header} className="md:w-25rem" style={{ "margin": "2%", "width": "95%", "height": "98%" ,"position":'fixed',"textAlign":"center"}}>
+    <Card title="Add New Store" footer={footer} header={header} className="md:w-25rem" style={{ "margin": "2%", "width": "95%", "height": "98%" ,"position":'fixed',"textAlign":"center",overflowY:"auto"}}>
             <p className="m-0">
 
                         <label htmlFor="ownerName" className="w-6rem">

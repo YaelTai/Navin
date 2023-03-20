@@ -75,7 +75,7 @@ const UpdateStoreDetails=()=>{
 
     return (
         <div style={{"marginTop":'5%'}} >
-        <Card title="Update Your Store Details" footer={footer} header={header} className="md:w-25rem" style={{ "margin": "2%", "width": "95%", "height": "98%" ,"position":'fixed'}}>
+        <Card title="Update Your Store Details" footer={footer} header={header} className="md:w-25rem" style={{ "margin": "2%", "width": "95%", "height": "98%" ,"position":'fixed',overflowY:"auto"}}>
             <p className="m-0">
         
            

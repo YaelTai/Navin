@@ -23,7 +23,7 @@ const OwnerHome=()=>{
  
           return (
         <>
-        <Card title="Welcome *owner*!" footer={footer} header={header} className="md:w-25rem" style={{ "margin": "2%", "width": "95%", "height": "98%" ,"position":'fixed'}}>
+        <Card title="Welcome *owner*!" footer={footer} header={header} className="md:w-25rem" style={{ "margin": "2%", "width": "95%", "height": "98%" ,"position":'fixed',overflowY:"auto"}}>
             <p className="m-0">
             <h1>welcome owner!</h1>
             <Button label="Load Advertisment" style={btn} /><br/><br/>

@@ -1,18 +1,17 @@
 import React, { useState } from "react";
 import { AutoComplete } from "primereact/autocomplete";
 import { Card } from "primereact/card";
-import { MultiSelect } from "primereact/multiselect";
+import { Button} from "primereact/button";
+import { BiWalk } from "react-icons/bi";
 
+import { MultiSelect } from "primereact/multiselect";
+import Ads from "./ads"
 import "primereact/resources/themes/lara-light-indigo/theme.css";
 import "primereact/resources/primereact.css";
 import "primeicons/primeicons.css";
 import "primeflex/primeflex.css";
 const header = (
-  <img
-    alt="Card"
-    src="https://primefaces.org/cdn/primereact/images/usercard.png"
-    style={{ width: "98%", height: "50px" }}
-  />
+      <Ads/>
 );
 const footer = <div className="flex flex-wrap justify-content-end gap-2"></div>;
 export default function ChooseStores() {
@@ -88,13 +87,14 @@ export default function ChooseStores() {
 
   return (
     <Card
-      title="Lets create the best route for you!"
+      title="Let's create the best route for you!"
       footer={footer}
       header={header}
       className="md:w-25rem"
-      style={{ margin: "2%", width: "95%", height: "98%", position: "fixed" }}
+      style={{ margin: "2%", width: "95%", height: "98%", position: "fixed" ,overflowY:"auto"}}
     >
       <p className="m-0">
+      
         <lable>select by store name</lable>
         <AutoComplete
           value={selectedStore}
@@ -105,7 +105,7 @@ export default function ChooseStores() {
           dropdown
           onChange={(e) =>{ if(!selectedstoresForCat.includes(e.value))setselectedstoresForCat([...selectedstoresForCat, e.value])}}
         />
-        <br></br><br/>
+        <br/><Button label="Let's Go" icon={BiWalk} style={{"color":"greenyellow","marginLeft":"65%"}}/>
         <lable>select by category</lable>
         <br></br>
         <AutoComplete
@@ -156,6 +156,7 @@ export default function ChooseStores() {
             </li>
           ))}
         </ul>
+        
       </p>
     </Card>
   );

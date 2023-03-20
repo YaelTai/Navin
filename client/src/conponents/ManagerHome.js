@@ -26,7 +26,7 @@ const ManagerHome=()=>{
           return (
       <>
           
-    <Card title="Welcome Manager!" footer={footer} header={header} className="md:w-25rem" style={{ "margin": "2%", "width": "95%", "height": "98%" ,"position":'fixed'}}>
+    <Card title="Welcome Manager!" footer={footer} header={header} className="md:w-25rem" style={{ "margin": "2%", "width": "95%", "height": "98%" ,"position":'fixed',overflowY:"auto"}}>
             <p className="m-0">
             <h1>welcome manager!</h1>
             <Button label="Update Map" style={btn} /><br/>
