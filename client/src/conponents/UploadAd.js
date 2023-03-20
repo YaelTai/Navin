@@ -44,6 +44,7 @@ const UploadAd = () => {
    
 
     return <>
+    
         <Button label="watch price list"  />
         <h1>Upload Ad</h1>
         <lable>1. Load file</lable>
