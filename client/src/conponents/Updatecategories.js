@@ -1,42 +1,61 @@
-import React, { useState } from 'react'
-import { InputText } from 'primereact/inputtext';
-import { Button } from 'primereact/button';
-import { Card } from 'primereact/card';    
+import React, { useState } from "react";
+import { InputText } from "primereact/inputtext";
+import { Button } from "primereact/button";
+import { Card } from "primereact/card";
+import { PrimeIcons } from 'primereact/api';
 const UpdateCategories = () => {
-    const [categories, setCategories] = useState([]);
-    const [value, setValue] = useState('');
-    const header = (
-  
-        <img alt="Card" src="https://primefaces.org/cdn/primereact/images/usercard.png" style={{ "width": "98%", "height": "50px" }} />
-      );
-      const footer = (
-        <div className="flex flex-wrap justify-content-end gap-2">
-      
-        </div>
-      );
-    return <>
-        <Card title="Update Catetegories for the mall!" footer={footer} header={header} className="md:w-25rem" style={{ "margin": "2%", "width": "95%", "height": "98%" ,"position":'fixed'}}>
-            <p className="m-0">
-
-      
-           
-           
-            {/* <div className="flex flex-column gap-2">
+  const [categories, setCategories] = useState([]);
+  const [value, setValue] = useState("");
+  const header = (
+    <img
+      alt="Card"
+      src="https://primefaces.org/cdn/primereact/images/usercard.png"
+      style={{ width: "98%", height: "50px" }}
+    />
+  );
+  const footer = (
+    <div className="flex flex-wrap justify-content-end gap-2"></div>
+  );
+  return (
+    <div style={{ tex: "center" }}>
+      <Card
+        title="Update Catetegories for the mall!"
+        footer={footer}
+        header={header}
+        className="md:w-25rem"
+        style={{ margin: "2%", width: "95%", height: "98%", position: "fixed" }}
+      >
+        <p className="m-0">
+         
+          <ul style={{ "list-style": "none", marginRight: "10%" }}>
+          <Button icon="pi pi-check" className="p-button-success" onClick ={(e) => {
+         if (value)
+                {setCategories((a) => [...a, value]);}
                 
-                <InputText  onBlur={(e) => { setCategories(a => [...a , e.target.value]);  }}/>
-                <p>{categories}**********</p>
-            </div> */}
-            <ul style={{ "list-style": "none","marginRight":"10%"}}>
-            <InputText value={value} onChange={(e) => setValue(e.target.value)} onBlur={(e)=>{setCategories(a => [...a , e.target.value]); setValue("")}} />
-     
-            {categories.map(e=><li > <Button label="x" onClick={e=>e.target.parentNode.removeChild(e.targrt)} style={{"height":"0.3%","width":"0.3%","backgroundColor":"red"}}/>{e} </li>) } 
- 
-         </ul>
-         <Button label="Submit" icon="pi pi-check" />
+              }}/>
+    <InputText placeholder="Category"  onChange={(e) => setValue(e.target.value)}/>
+   
+        
 
-         </p>
-        </Card>
-    </>
-    
-}
-export default UpdateCategories
+
+            {categories.map((category, index) => (
+              <li>
+                <i className="pi pi-times" style={{ color: 'red', size:'20px' }}
+                 onClick={(e) => {
+                    setCategories((c) => [
+                      ...c.slice(0, index),
+                      ...c.slice(index + 1, c.length),
+                    ]);
+                  }}></i>
+              
+                {category}
+              </li>
+            ))}
+          </ul>
+          <Button label="Submit" icon="pi pi-check" />
+        </p>
+      </Card>
+    </div>
+  );
+};
+export default UpdateCategories;
