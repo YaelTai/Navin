@@ -9,14 +9,14 @@ import UploadAd from "./conponents/UploadAd";
 
 import PriceList from "./conponents/priceList"
 import UserHome from "./conponents/user_home"
-
+import PresentLocation from "./conponents/present_location";
 import UpdateStoreDetails from "./conponents/UpdateStoreDetails";
 import UpdatePersonalsDetail from "./conponents/UpdatePersonalDetails"
 
 import UpdateCategories from "./conponents/Updatecategories";
 //theme
 import "primereact/resources/themes/lara-light-indigo/theme.css";     
-import { Card } from 'primereact/card';    
+
 //core
 import "primereact/resources/primereact.min.css";
 
@@ -38,18 +38,16 @@ const footer = (
 );
 
 function App() {
-  return (
-    <Card title="Welcome!" footer={footer} header={header} className="md:w-25rem" style={{ "margin": "2%", "width": "95%", "height": "97%" ,"position":"fixed"}}>
-            <p className="m-0">
-
+  return (<PresentLocation/>
+     )}
+    
         {/* <Payment/> <OwnerHome/> < UpdatePersonalsDetail/>  */}
       {/* <UpdateCategories/> */}
        {/* <UploadAd/> <UpdateStoreDetails/>*/}
       {/* perfect */}
 {/* <UpdateStoreDetails/> */}
-<UserHome/>
-      </p>
-        </Card>)}
+{/* <UserHome/> */}
+
       // {/*  <LogIn/> not so good in big screen */}
       {/*  <Payment/> <AddStore/> <ManagerHome />  */}
      {/* <PriceList/> */}
