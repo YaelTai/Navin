@@ -86,7 +86,7 @@ const UpdateStoreDetails=()=>{
          <label style={{"marginRight":'1%'}} >update your store's categories</label>
       
             <MultiSelect value={selectedCategories} options={categories}  onChange={ (e) => setselectedCategories( e.value )} optionLabel="name" placeholder="Select Categories" filter className="multiselect-custom"
-                        itemTemplate={categoriesTemplate} selectedItemTemplate={selectedCategoriesTemplate} />
+                        itemTemplate={categoriesTemplate} selectedItemTemplate={selectedCategoriesTemplate}  display="chip"/>
         <br/><br/><br/>
         <label style={{"marginRight":'1%'}}>update owner id</label> 
         <InputNumber id="withoutgrouping" placeholder='214121865' onValueChange={(e) => setownerId(e.value)} mode="decimal" useGrouping={false} /> <br/><br/><br/>
@@ -94,9 +94,8 @@ const UpdateStoreDetails=()=>{
         </p>
         </Card>
         </div>
-        
-    )
-         
+
+    )       
 }
 
  
