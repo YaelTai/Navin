@@ -29,6 +29,7 @@ import 'primereact/resources/themes/saga-blue/theme.css';
 import "./index.css"
 
 const header = (
+  
   <img alt="Card" src="https://primefaces.org/cdn/primereact/images/usercard.png" style={{ "width": "98%", "height": "50px" }} />
 );
 const footer = (
@@ -39,7 +40,8 @@ const footer = (
 
 function App() {
   return (
-    <Card title="Welcome!" footer={footer} header={header} className="md:w-25rem" style={{ "margin": "2%", "width": "95%", "height": "95%" }}>
+   
+    <Card title="Welcome!" footer={footer} header={header} className="md:w-25rem" style={{ "margin": "2%", "width": "95%", "height": "100%" }}>
             <p className="m-0">
 
         {/* <Payment/> <OwnerHome/> < UpdatePersonalsDetail/>  */}

@@ -71,7 +71,7 @@ const UpdateStoreDetails=()=>{
             <h1 >Update store details </h1>
             <label style={{"marginRight":'1%'}} >Choose the store which you want to update</label><br/><br/>
             <Dropdown  value={selectedStore} onChange={(e) => setSelectedStore( e.value)} options={stores} optionLabel="name" 
-                placeholder="your stores" className="w-full md:w-14rem" style={{"width":"20%"}}/><br/>
+                placeholder="your stores" className="w-full md:w-14rem" style={{"width":"15%"}}/><br/>
             <br/><br/>
          <label style={{"marginRight":'1%'}} >update your store's categories</label>
       
