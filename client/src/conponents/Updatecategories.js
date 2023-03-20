@@ -1,12 +1,22 @@
 import React, { useState } from 'react'
 import { InputText } from 'primereact/inputtext';
 import { Button } from 'primereact/button';
-
+import { Card } from 'primereact/card';    
 const UpdateCategories = () => {
     const [categories, setCategories] = useState([]);
     const [value, setValue] = useState('');
+    const header = (
+  
+        <img alt="Card" src="https://primefaces.org/cdn/primereact/images/usercard.png" style={{ "width": "98%", "height": "50px" }} />
+      );
+      const footer = (
+        <div className="flex flex-wrap justify-content-end gap-2">
+      
+        </div>
+      );
     return <>
-        <h1>Update categories</h1>
+        <Card title="Update Catetegories for the mall!" footer={footer} header={header} className="md:w-25rem" style={{ "margin": "2%", "width": "95%", "height": "98%" ,"position":'fixed'}}>
+            <p className="m-0">
 
       
            
@@ -24,7 +34,8 @@ const UpdateCategories = () => {
          </ul>
          <Button label="Submit" icon="pi pi-check" />
 
-
+         </p>
+        </Card>
     </>
     
 }

@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { MultiSelect } from 'primereact/multiselect';
 import { Calendar } from 'primereact/calendar';
 import { Button } from 'primereact/button';
-
+import { Card } from 'primereact/card';    
 const categories = [
     { name: 'shoes', code: '' },
     { name: 'cloting', code: 'BR' },
@@ -15,6 +15,15 @@ const categories = [
     { name: 'Japan', code: 'JP' },
     { name: 'Spain', code: 'ES' },
     { name: 'United States', code: 'US' }]
+    const header = (
+  
+        <img alt="Card" src="https://primefaces.org/cdn/primereact/images/usercard.png" style={{ "width": "98%", "height": "50px" }} />
+      );
+      const footer = (
+        <div className="flex flex-wrap justify-content-end gap-2">
+      
+        </div>
+      );
 let categoryTemplate = (option) => {
     return (
         <div className="country-item">
@@ -44,9 +53,10 @@ const UploadAd = () => {
    
 
     return <>
-    
+    <Card title="upload an ad" footer={footer} header={header} className="md:w-25rem" style={{ "margin": "2%", "width": "95%", "height": "98%" ,"position":'fixed'}}>
+            <p className="m-0">
         <Button label="watch price list"  />
-        <h1>Upload Ad</h1>
+      
         <lable>1. Load file</lable>
         <FileUpload name="demo[]" url={'/api/upload'} multiple accept="image/*" maxFileSize={1000000} emptyTemplate={<p className="m-0">Drag and drop files to here to upload.</p>} /><br></br>
         <lable>2. Choose in which categories the ad will be displayed</lable><br></br><br></br>
@@ -60,7 +70,8 @@ const UploadAd = () => {
             <h1>$$$$</h1>  
             <Button label="Send Request To Manager" icon="pi pi-check" />
 
-
+            </p>
+        </Card>
     </>
 }
 export default UploadAd
