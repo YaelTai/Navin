@@ -1,10 +1,15 @@
 import React, { useEffect, useState } from 'react'
+import { Image } from 'primereact/image';
+import { Card } from 'primereact/card';  
+import { Button } from 'primereact/button';
 
-import { Card } from 'primereact/card';   
 const AppoveAds = () => {
+
+
     const waitingAds=[
-        {id:"123"}
-    ]
+        {id:"123" , img:"https://primefaces.org/cdn/primereact/images/galleria/galleria10.jpg", storeName:"zara"},
+        {id:"123" , img:"https://primefaces.org/cdn/primereact/images/galleria/galleria10.jpg", storeName:"h&m"}
+      ]
     const header = (
   
         <img alt="Card" src="https://primefaces.org/cdn/primereact/images/usercard.png" style={{ "width": "98%", "height": "50px"}} />
@@ -20,10 +25,23 @@ const AppoveAds = () => {
     return (
         <>
            <Card title="Approve ads" footer={footer} header={header} className="md:w-25rem" style={{ "margin": "2%", "width": "95%", "height": "98%" ,"position":'fixed',overflowY:"auto"}}>
-            <p className="m-0">  
+            <p className="m-0">
+              <h5>Do you want to approve the ad?</h5>  
+            <ul style={{ "list-style": "none", marginRight: "10%" }}>
+              {waitingAds.map((ad, index) => (
+              <li>
+                
+              
+              <Image src={ad.img} alt="Image" width="250" preview  p-button-text style={{marginLeft:"10px"}}/><br/>
+              <span>Store Name: {ad.storeName}</span>
+              <Button  icon="pi pi-check" rounded text raised aria-label="Filter" style={{marginLeft:"10px"}}/>
+                <Button icon="pi pi-times" rounded text raised severity="danger" aria-label="Cancel" style={{marginLeft:"10px"}}/><br/><br/>
 
-            <ul>
-                <li></li>
+              </li>
+            ))}
+
+            
+                
                 </ul> 
              </p>
         </Card>
