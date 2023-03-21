@@ -1,6 +1,7 @@
 import React from 'react'
 import { Button } from 'primereact/button';
-import { Card } from 'primereact/card';    
+import { Card } from 'primereact/card';
+import { useNavigate } from "react-router-dom";    
 // import 'primereact/resources/themes/lara-light-indigo/theme.css';   // theme
 // import 'primereact/resources/primereact.css';                       // core css
 // import 'primeicons/primeicons.css';                                 // icons
@@ -22,20 +23,19 @@ const footer = (
   </div>
 );
 const ManagerHome=()=>{
- 
+  const navigate = useNavigate();
           return (
       <>
           
     <Card title="Welcome Manager!" footer={footer} header={header} className="md:w-25rem" style={{ "margin": "2%", "width": "95%", "height": "98%" ,"position":'fixed',overflowY:"auto"}}>
             <p className="m-0">
             <h1>welcome manager!</h1>
-            <Button label="Update Map" style={btn} /><br/>
-            <Button label="update categories " style={btn}/><br/>
-            <Button label="Add new Store" style={btn}/><br/>
-            <Button label="Remove Store" style={btn}/><br/>
-            <Button label="Add Store Owner" style={btn}/><br/>
-            <Button label="Remove Store Owner" style={btn}/><br/>
-            <Button label="Approve Ads" style={btn}/><br/>
+            <Button label="update categories" style={btn} onClick={()=>navigate("/manager/updateCategories")}/><br/>
+            <Button label="Add new Store" style={btn} onClick={()=>navigate("/manager/addStore")}/><br/>
+            <Button label="Remove Store" style={btn} onClick={()=>navigate("/manager/")}/><br/>
+            <Button label="Add Store Owner" style={btn} onClick={()=>navigate("/manager/")}/><br/>
+            <Button label="Remove Store Owner" style={btn} onClick={()=>navigate("/manager")}/><br/>
+            <Button label="Approve Ads" style={btn} onClick={()=>navigate("/manager/approveAds")}/><br/>
         
             </p>
         </Card>

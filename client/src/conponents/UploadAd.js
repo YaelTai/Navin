@@ -4,6 +4,8 @@ import { MultiSelect } from 'primereact/multiselect';
 import { Calendar } from 'primereact/calendar';
 import { Button } from 'primereact/button';
 import { Card } from 'primereact/card';    
+import { useNavigate } from "react-router-dom";
+
 const categories = [
     { name: 'shoes', code: '' },
     { name: 'cloting', code: 'BR' },
@@ -44,26 +46,27 @@ let selectedCategoriesTemplate = (option) => {
 
     return "Select categories";
 }
-
 const UploadAd = () => {
-
+    
     const [selectedCategories, setselectedCategories] = useState(null);
     const [from, setfrom] = useState('');
     const [to, setto] = useState(null);
    
+    const navigate = useNavigate();
 
     return <>
-    <Card title="upload an ad" footer={footer} header={header} className="md:w-25rem" style={{ "margin": "2%", "width": "95%", "height": "98%" ,"position":'fixed',overflowY:"auto"}}>
+    <Card title="Upload an Ad" footer={footer} header={header} className="md:w-25rem" style={{ "margin": "2%", "width": "95%", "height": "98%" ,"position":'fixed',overflowY:"auto"}}>
             <p className="m-0">
-        <lable>1. Load file</lable>
+                <Button label="watch Price List" icon="pi pi-eye" onClick={()=>navigate("/owner/priceList")}/><br/><br/>
+        <lable>1. Load file</lable><br/><br/>
         <FileUpload name="demo[]" url={'/api/upload'} multiple accept="image/*" maxFileSize={1000000} emptyTemplate={<p className="m-0">Drag and drop files to here to upload.</p>} /><br></br>
         <lable>2. Choose in which categories the ad will be displayed</lable><br></br><br></br>
         <MultiSelect value={selectedCategories} options={categories} onChange={(e) => setselectedCategories(e.value)} optionLabel="name" placeholder="Select Categories" filter className="multiselect-custom"
             itemTemplate={categoryTemplate} selectedItemTemplate={selectedCategoriesTemplate} /><br></br><br></br>
              <lable>3. Start and end date for your ad:</lable><br></br><br></br>
              {/* <Calendar value={date} onChange={(e) => setDate(e.value)} /> */}
-            <lable>from:</lable><Calendar value={from} onChange={(e) =>{ setfrom( new Date(e.target.value))}}  /><br></br><br></br>
-            <lable>to:</lable><Calendar value={to} onChange={(e) => setto(new Date(e.target.value))} /> <br></br><br></br>
+            <lable style={{"marginRight":"10px"}}>from:</lable><Calendar value={from} onChange={(e) =>{ setfrom( new Date(e.target.value))}}  /><br></br><br></br>
+            <lable style={{"marginRight":"10px"}}>to:</lable><Calendar value={to} onChange={(e) => setto(new Date(e.target.value))} /> <br></br><br></br>
             <lable>4. Estimated cost</lable>  
             <h1>$$$$</h1>  
             <Button label="Send Request To Manager" icon="pi pi-check" />

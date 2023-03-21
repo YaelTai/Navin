@@ -1,4 +1,5 @@
 import React from 'react'
+import { useNavigate } from "react-router-dom";
 import { Button } from 'primereact/button';
 import { Card } from 'primereact/card';    
 import 'primereact/resources/themes/lara-light-indigo/theme.css';   // theme
@@ -20,16 +21,16 @@ const footer = (
   </div>
 );
 const OwnerHome=()=>{
- 
+  const navigate = useNavigate();
           return (
         <>
         <Card title="Welcome *owner*!" footer={footer} header={header} className="md:w-25rem" style={{ "margin": "2%", "width": "95%", "height": "98%" ,"position":'fixed',overflowY:"auto"}}>
             <p className="m-0">
             <h1>welcome owner!</h1>
-            <Button label="Load Advertisment" style={btn} /><br/><br/>
-            <Button label="Pay For Approved Ad" style={btn}/><br/><br/>
-            <Button label="Update Personal details" style={btn}/><br/><br/>
-            <Button label="Update Store Details" style={btn}/><br/>
+            <Button label="Load Advertisment" style={btn} onClick={()=>navigate("/owner/uploadAd")} /><br/><br/>
+            <Button label="Pay For Approved Ad" style={btn} onClick={()=>navigate("")}/><br/><br/>
+            <Button label="Update Personal details" style={btn} onClick={()=>navigate("/owner/updatePersonalsDetail")}/><br/><br/>
+            <Button label="Update Store Details" style={btn} onClick={()=>navigate("/owner/updateStoreDetails")}/><br/>
             </p>
         </Card>
         </>

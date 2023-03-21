@@ -14,3 +14,6 @@ const B = () => {
     );
 }
 export default B
+import { useNavigate } from "react-router-dom";
+const navigate = useNavigate();//before return
+onClick={()=>navigate("/manager")}
