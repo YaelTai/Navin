@@ -33,7 +33,7 @@ const UpdateCategories = () => {
                 {setCategories((a) => [...a, value]);}
                 
               }}/>
-    <InputText placeholder="Category"  onChange={(e) => setValue(e.target.value)}/>
+    <InputText placeholder="Category"  onChange={(e) => setValue(e.target.value)}/><br/><br/>
    
         
 

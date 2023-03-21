@@ -33,52 +33,24 @@ const AddStore = () => {
             setLoading(false);
         }, 2000);
     };
-    const [Location, setLocatione] = useState(null);
+   
     const [storeName, setstoreName] = useState(null);
-    const [email, setEmail] = useState(null);
     const [ownerName, setownerName] = useState(null);
-    const [password, setPassword] = useState(null);
+    
     return <>
     
-    <Card title="Add New Store" footer={footer} header={header} className="md:w-25rem" style={{ "margin": "2%", "width": "95%", "height": "98%" ,"position":'fixed',"textAlign":"center",overflowY:"auto"}}>
-            <p className="m-0">
+    <Card title="Add Store Owner" footer={footer} header={header} className="md:w-25rem" style={{ "margin": "2%", "width": "95%", "height": "95%" ,"position":"fixed",overflowY:"auto"}}>
+        <p className="m-0">
+          
+    <InputText value={storeName} placeholder="Store name" onChange={(e) => setstoreName(e.target.value)} /><br/>
+    <label>*as it appears on the sign</label>
+    <br/><br/>
+    <InputText value={ownerName} placeholder="Owner name" onChange={(e) => setownerName(e.target.value)} /><br/><br/>
+ 
+    <Button label="Submit" icon="pi pi-check" />
 
-                        <label htmlFor="ownerName" className="w-6rem">
-                            Owner Name
-                        </label> <br/>
-                      
-                        <InputText id="email" type="text" onValueChange={(e) => setownerName(e.value)} /><br/><br/>
-                    
-                   
-                        <label htmlFor="password" className="w-6rem">
-                            Password
-                        </label>
-                        <br/>
-                        <Password value={password} onChange={(e) => setPassword(e.target.value)} toggleMask /><br/><br/>
-
-                    
-                    
-
-                        <label htmlFor="email" className="w-6rem">
-                            Owner Email
-                        </label>
-                        <br/>
-                        <InputText id="email" type="text" onValueChange={(e) => setEmail(e.value)} /><br/><br/>
-                  
-                    
-
-                        <label htmlFor="email" className="w-6rem">
-                            Store Location
-                        </label>
-                        <br />
-                        <InputText id="Location" type="text" onValueChange={(e) => setLocatione(e.value)} /><br/><br/><br/>
-                  
-                    <Button label="Submit" icon="pi pi-check" loading={loading} onClick={load} />
-         
-
-         
-            </p>
-        </Card>
+        </p>
+    </Card>
     </>
 }
 export default AddStore
