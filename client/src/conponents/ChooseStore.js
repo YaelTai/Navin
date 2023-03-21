@@ -95,7 +95,7 @@ export default function ChooseStores() {
     >
       <p className="m-0">
       
-        <lable>select by store name</lable>
+        <lable>select by store name</lable><br/>
         <AutoComplete
           value={selectedStore}
           suggestions={filteredStores}
@@ -105,7 +105,7 @@ export default function ChooseStores() {
           dropdown
           onChange={(e) =>{ if(!selectedstoresForCat.includes(e.value))setselectedstoresForCat([...selectedstoresForCat, e.value])}}
         />
-        <br/><Button label="Let's Go" icon={BiWalk} style={{"color":"greenyellow","marginLeft":"65%"}}/>
+        <br/><br></br>
         <lable>select by category</lable>
         <br></br>
         <AutoComplete
@@ -134,7 +134,7 @@ export default function ChooseStores() {
                             />
                             
         ) : (
-          <></>
+          <><Button label="Let's Go" icon={BiWalk} style={{"color":"greenyellow","marginLeft":"65%"}}/></>
         )}
 
         <h4>selected stores</h4>

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Card } from 'primereact/card';
+import VisitorMenu from './menues/UserMenu';
 
 const PresentLocation = () => {
 
@@ -9,7 +10,7 @@ const PresentLocation = () => {
     );
     const footer = (
         <div className="flex flex-wrap justify-content-end gap-2">
-           
+           <VisitorMenu/>
         </div>
     );
 

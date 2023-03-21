@@ -1,6 +1,8 @@
 import React from "react";
 import { Image } from "primereact/image";
 import { Card } from "primereact/card";
+import { useNavigate } from "react-router-dom";
+
 
 const Welcome = () => {
   const header = (
@@ -18,6 +20,9 @@ const Welcome = () => {
           marginLeft: "39px",
           borderRadius: "5px",
         }}
+        onClick={() => navigate("/manager/logIn")} 
+
+
       >
         Log in as a manager
       </button>
@@ -29,6 +34,8 @@ const Welcome = () => {
           marginLeft: "20px",
           borderRadius: "5px",
         }}
+        onClick={() => navigate("/owner/logIn")} 
+
       >
         Log in as a store owner
       </button>
@@ -36,9 +43,22 @@ const Welcome = () => {
   );
   const footer = (
     <div className="flex flex-wrap justify-content-end gap-2">
-      <h1>fh</h1>
+            <button
+        style={{
+          backgroundColor: "lightblue",
+          border: "none",
+          height: "30px",
+          marginLeft: "39px",
+          borderRadius: "5px",
+        }}
+        onClick={() => navigate("/visitor" )} 
+
+      >
+        Let's start
+      </button>
     </div>
   );
+  const navigate = useNavigate();
 
   return (
     <>

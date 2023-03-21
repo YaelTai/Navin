@@ -2,7 +2,6 @@
 import React, { useEffect, useState,useRef } from 'react'
 import { InputText } from 'primereact/inputtext';
 import { Button } from 'primereact/button';
-import { Password } from 'primereact/password';
 import 'primeflex/primeflex.css';
 import Axios from 'axios'
 import '../index.css'

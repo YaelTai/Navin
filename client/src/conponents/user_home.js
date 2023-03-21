@@ -3,6 +3,8 @@ import React, { useState, useRef, useEffect } from "react";
 import { Camera } from "react-camera-pro";
 import { Card } from 'primereact/card';
 import { Button } from 'primereact/button';
+import { useNavigate } from "react-router-dom";
+
 import 'primeicons/primeicons.css';
 const UserHome = () => {
   const camera = useRef(null);
@@ -17,6 +19,7 @@ const UserHome = () => {
 
     </div>
   );
+  const navigate = useNavigate();
 
   return (
     <Card title="Welcome!" footer={footer} header={header} className="md:w-25rem" style={{overflowY:"auto", "margin": "2%", "width": "95%", "height": "95%" }}>
@@ -38,7 +41,8 @@ const UserHome = () => {
 
           <span className="p-buttonset">
 
-            <Button label="Save" icon="pi pi-check" />
+            <Button label="Yes!" icon="pi pi-check" onClick={() => navigate("/visitor/presentLocation")} 
+/>
             <br /><br />
 
             <Button label="Canceling and reshooting" icon="pi pi-times" onClick={() => {

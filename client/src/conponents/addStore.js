@@ -9,13 +9,14 @@ import '../index.css'
 import { Card } from 'primereact/card';
 
 import { useGetAxiosApi } from '../hooks/useGetAxiosApi';
+import ManagerMenu from './menues/managerMenu';
 const header = (
   
     <img alt="Card" src="https://primefaces.org/cdn/primereact/images/usercard.png" style={{ "width": "98%", "height": "50px" }} />
   );
   const footer = (
     <div className="flex flex-wrap justify-content-end gap-2">
-  
+  <     ManagerMenu/>
     </div>
   );
 const AddStore = () => {

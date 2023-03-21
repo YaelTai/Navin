@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Image } from "primereact/image";
 import { Card } from "primereact/card";
 import { Button } from "primereact/button";
+import ManagerMenu from "./menues/managerMenu";
 
 const AppoveAds = () => {
   const waitingAds = [
@@ -24,7 +25,8 @@ const AppoveAds = () => {
     />
   );
   const footer = (
-    <div className="flex flex-wrap justify-content-end gap-2"></div>
+    <div className="flex flex-wrap justify-content-end gap-2">
+    </div>
   );
 
   return (
@@ -79,6 +81,8 @@ const AppoveAds = () => {
               </li>
             ))}
           </ul>
+          <ManagerMenu />
+
         </p>
       </Card>
     </>

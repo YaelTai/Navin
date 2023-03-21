@@ -6,16 +6,16 @@ import { FcWorkflow } from "react-icons/fc";
 import { useNavigate } from "react-router-dom";
 
 
-export default function UserMenu() {
+export default function VisitorMenu() {
   const items = [
     {
       label: "Finder",
       icon: () => (
         <>
         <lable>
-          <FcRotateCamera className="zoom" onClick={()=>{navigate("/visitor/chooseStores")}}/>
+          <FcRotateCamera className="zoom" onClick={()=>{navigate("/visitor/")}}/>
         </lable>
-        <lable onClick={()=>{navigate("/visitor/userHOme")}}>Where am I?</lable>
+        <lable onClick={()=>{navigate("/visitor/")}}>Where am I?</lable>
         </>
       ),
     },
@@ -26,18 +26,15 @@ export default function UserMenu() {
       icon: () => (
       <>
         <lable >
-          <FcWorkflow className="zoom" onClick={()=>{navigate("/visitor")}}/>
-
+          <FcWorkflow className="zoom" onClick={()=>{navigate("/visitor/chooseStores")}}/>
         </lable>
-        <small onClick={()=>{navigate("/visitor")}}>Rebuild route</small>
+        <small onClick={()=>{navigate("/visitor/chooseStores")}}>Rebuild route</small>
         </>
       ),
     },
   ];
 const navigate = useNavigate();
   return (
-    
-
     <div className="dock-window">
       <Dock model={items} position="bottom" />
     </div>

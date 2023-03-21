@@ -32,6 +32,7 @@ function App() {
        <Router>
         <Routes>
           <Route path="/" element={<Welcome />} />
+
           <Route path="/manager" element={<ManagerHome />} />
           <Route path="/manager/logIn" element={<Register />} />
           <Route path="/manager/addStore" element={<AddStore />} />
@@ -42,6 +43,7 @@ function App() {
           <Route path="/manager/AddOwner" element={<AddOwner />} />
 
           <Route path="/owner" element={<OwnerHome />} />
+          <Route path="/owner/logIn" element={<Register />} />
           <Route path="/owner/uploadAd" element={<UploadAd />} />
           <Route path="/owner/priceList" element={<PriceList />} />
           <Route path="/owner/updateStoreDetails" element={<UpdateStoreDetails />} />
