@@ -11,7 +11,7 @@ const footer = (
     </div>
 );
 
-const AddOwner = () => {
+const UpdatePriceList = () => {
     const [DayFee, setDayFee] = useState("");
     const [CategoryFee, setCategoryFee] = useState("");
 
@@ -19,7 +19,7 @@ const AddOwner = () => {
   return <>
     
 
-   <Card title="Add Store Owner" footer={footer} header={header} className="md:w-25rem" style={{ "margin": "2%", "width": "95%", "height": "95%" ,"position":"fixed",overflowY:"auto"}}>
+   <Card title="Update PriceList" footer={footer} header={header} className="md:w-25rem" style={{ "margin": "2%", "width": "95%", "height": "95%" ,"position":"fixed",overflowY:"auto"}}>
         <p className="m-0">
           
     <InputText value={DayFee} placeholder="old DayFee" onChange={(e) => setDayFee(e.target.value)} /><br/><br/>
@@ -30,4 +30,4 @@ const AddOwner = () => {
     </Card>
   </>;
 };
-export default AddOwner;
+export default UpdatePriceList;

@@ -2,12 +2,12 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import DeleteSrore from "./conponents/deleteStore"
 import Register from "./conponents/Register/Register";
-import ToolBar from "./conponents/visitotToolBar/toolBar";
+import ToolBar from "./conponents/menues/toolBar";
 import AddStore from "./conponents/addStore";
 import OwnerHome from "./conponents/OwnerHome";
 import ManagerHome from "./conponents/ManagerHome";
 import UploadAd from "./conponents/UploadAd";
-// import Payment from "./conponents/Payment";
+ import UpdatePriceList from "./conponents/UpdatePriceList";
 import PriceList from "./conponents/priceList";
 import VisitorHome from "./conponents/user_home";
 import ChooseStores from "./conponents/ChooseStore";
@@ -17,6 +17,7 @@ import UpdatePersonalsDetail from "./conponents/UpdatePersonalDetails";
 import UpdateCategories from "./conponents/Updatecategories";
 import AppoveAds from "./conponents/ApproveAds";
 import Welcome from "./conponents/Welcome";
+import AddOwner from "./conponents/addOwner";
 import "primereact/resources/primereact.min.css";
 import "primeicons/primeicons.css";
 import "primereact/resources/themes/lara-light-indigo/theme.css";
@@ -26,8 +27,8 @@ import "./index.css";
 
 function App() {
   return (
-    <><DeleteSrore/>
-{/* 
+    <>
+
        <Router>
         <Routes>
           <Route path="/" element={<Welcome />} />
@@ -36,7 +37,9 @@ function App() {
           <Route path="/manager/addStore" element={<AddStore />} />
           <Route path="/manager/updateCategories" element={<UpdateCategories />} />
           <Route path="/manager/approveAds" element={<AppoveAds />} />
-
+          <Route path="/manager/removeStore" element={<DeleteSrore />} />
+          <Route path="/manager/UpdatePriceList" element={<UpdatePriceList />} />
+          <Route path="/manager/AddOwner" element={<AddOwner />} />
 
           <Route path="/owner" element={<OwnerHome />} />
           <Route path="/owner/uploadAd" element={<UploadAd />} />
@@ -51,7 +54,7 @@ function App() {
           
           
         </Routes>
-      </Router>  */}
+      </Router> 
     </>
   );
 }

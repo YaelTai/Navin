@@ -39,7 +39,7 @@ const AddStore = () => {
     
     return <>
     
-    <Card title="Add Store Owner" footer={footer} header={header} className="md:w-25rem" style={{ "margin": "2%", "width": "95%", "height": "95%" ,"position":"fixed",overflowY:"auto"}}>
+    <Card title="Add Store " footer={footer} header={header} className="md:w-25rem" style={{ "margin": "2%", "width": "95%", "height": "95%" ,"position":"fixed",overflowY:"auto"}}>
         <p className="m-0">
           
     <InputText value={storeName} placeholder="Store name" onChange={(e) => setstoreName(e.target.value)} /><br/>

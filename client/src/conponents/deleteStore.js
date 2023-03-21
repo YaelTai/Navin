@@ -9,6 +9,8 @@ import '../index.css'
 import { Card } from 'primereact/card';
 import { Toast } from 'primereact/toast';
 import { useGetAxiosApi } from '../hooks/useGetAxiosApi';
+import ManagerMenu from "./menues/managerMenu";
+
 const header = (
   
     <img alt="Card" src="https://primefaces.org/cdn/primereact/images/usercard.png" style={{ "width": "98%", "height": "50px" }} />
@@ -72,11 +74,11 @@ const DeleteSrore = () => {
                         if(flag){load()}
                     }}
                    />
-                    
+                 
+         <ManagerMenu/>   
                     
          
 
-         
             </p>
         </Card>
     </>
