@@ -2,14 +2,14 @@ import { useNavigate } from "react-router-dom";
 import { Dock } from "primereact/dock";
 import "./DockDemo.css";
 import { AiFillHome } from "react-icons/ai";
-export default function OwnerMenu() {
+export default function ManagerMenu() {
   const items = [
     {
       label: "Finder",
       icon: () => (
         <>
-       <lable><AiFillHome className="zoom" onClick={()=>{navigate("/owner")}}/></lable>
-        <lable onClick={()=>{navigate("/owner")}}>Home</lable>
+       <lable><AiFillHome className="zoom" onClick={()=>{navigate("/manager")}}/></lable>
+        <lable onClick={()=>{navigate("/manager")}}>Home</lable>
         </>
       ),
     },
