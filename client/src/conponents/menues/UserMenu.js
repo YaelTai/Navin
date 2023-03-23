@@ -35,7 +35,7 @@ export default function VisitorMenu() {
   ];
 const navigate = useNavigate();
   return (
-    <div className="dock-window">
+    <div className="dock-window" style={{"position":"sticky"}}>
       <Dock model={items} position="bottom" />
     </div>
   );

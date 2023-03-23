@@ -17,27 +17,27 @@ const Welcome = () => {
           backgroundColor: "lightblue",
           border: "none",
           height: "30px",
-          marginLeft: "39px",
+          marginLeft: "3%",
           borderRadius: "5px",
         }}
         onClick={() => navigate("/manager/logIn")} 
 
 
       >
-        Log in as a manager
+        I am manager
       </button>
       <button
         style={{
           backgroundColor: "lightblue",
           border: "none",
           height: "30px",
-          marginLeft: "20px",
+          marginLeft: "3%",
           borderRadius: "5px",
         }}
         onClick={() => navigate("/owner/logIn")} 
 
       >
-        Log in as a store owner
+       I am store owner
       </button>
     </>
   );

@@ -17,37 +17,33 @@ const UpdateCategories = () => {
     <div className="flex flex-wrap justify-content-end gap-2"></div>
   );
   return (
-    <div style={{ tex: "center" }}>
+    <div >
       <Card
         title="Update Catetegories for the mall!"
         footer={footer}
         header={header}
         className="md:w-25rem"
-        style={{ margin: "2%", width: "95%", height: "98%", position: "fixed" ,overflowY:"auto"}}
+        style={{ margin: "2%", width: "95%", height: "98%", position: "fixed", overflowY: "auto" }}
       >
         <p className="m-0">
-         
-          <ul style={{ "list-style": "none", marginRight: "10%" }}>
-          <Button icon="pi pi-check" className="p-button-success" onClick ={(e) => {
-         if (value)
-                {setCategories((a) => [...a, value]);}
-                
-              }}/>
-    <InputText placeholder="Category"  onChange={(e) => setValue(e.target.value)}/><br/><br/>
-   
-        
 
+            <Button icon="pi pi-check" className="p-button-success" onClick={(e) => {
+              if (value) { setCategories((a) => [...a, value]); }
+
+            }} />
+            <InputText placeholder="Category" onChange={(e) => setValue(e.target.value)} /><br /><br />
+          <ul style={{ "list-style": "none", marginRight: "10%" }}>
 
             {categories.map((category, index) => (
               <li>
-                <i className="pi pi-times" style={{ color: 'green', size:'20px' }}
-                 onClick={(e) => {
+                <i className="pi pi-times" style={{ color: 'green', size: '20px' }}
+                  onClick={(e) => {
                     setCategories((c) => [
                       ...c.slice(0, index),
                       ...c.slice(index + 1, c.length),
                     ]);
                   }}></i>
-              
+
                 {category}
               </li>
             ))}
