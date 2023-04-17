@@ -26,26 +26,36 @@ class ManagerController {
     }
 
     addStore=async(req, res) => {
+        console.log("aftyyydgdg77777777");
         const stores=await StoreDB.getAllStores()
         if(!stores) return res.status(400).json({ message: 'error while check uq store name'}) 
         const storesNames=stores.map(e=>e.Name)
         if(storesNames.includes(req.body.Name)) return res.status(400).json({ message: 'store name alredy exists'})
-        const storesLocs=stores.map(e=>e.LocationCode)
-        if(storesLocs.includes(req.body.LocationCode)) return res.status(400).json({ message: 'store location alredy exists'})  
+        // const storesLocs=stores.map(e=>e.LocationCode)
+        // if(storesLocs.includes(req.body.LocationCode)) return res.status(400).json({ message: 'store location alredy exists'})  
         //if (!req.body.Name|| !req.body.LocationCode ||! req.body.OwnerId)  return res.status(400).json({ message: 'All fields are required'}) 
         if( await StoreDB.getStoreByName(req.body.Name))
          return res.status(400).json({ message: 'store name alredy exist'})
-        if( await StoreDB.getStoreByLocation(req.body.LocationCode) )
-        return res.status(400).json({ message: 'store location alredy exist'})
-        const newStore=await StoreDB.createNewStore(req.body)
+         const owner=await OwnerDB.getOwnerById(req.body.OwnerId)
+         if (!owner)return res.status(400).json({ message: 'no such owner'})
+        // if( await StoreDB.getStoreByLocation(req.body.LocationCode) )
+        // return res.status(400).json({ message: 'store location alredy exist'})
+
+         const newStore=await StoreDB.createNewStore(req.body)
         
         if (!newStore) res.status(400).json({ message: 'error created store' })
         else  res.status(201).json({ message: 'created store' })
     }
     deleteStore=async(req, res) => {
-            if (!req.body.Name|| !req.body.OwnerName)  return res.status(400).json({ message: 'All fields are required'}) 
-            if(! await OwnerDB.getOwnerByName(req.body.OwnerName)) return res.status(400).json({ message: 'wrong owner name'}) 
-            if(! await StoreDB.getStoreByName(req.body.Name)) return res.status(400).json({ message: 'wrong store name'}) 
+
+           console.log("srv "+req.body);
+        if (!req.body.Name|| !req.body.OwnerName)  return res.status(400).json({ message: 'All fields are required'}) 
+            
+            const store=await StoreDB.getStoreByName(req.body.Name)
+            const owner=await OwnerDB.getOwnerByName(req.body.OwnerName);
+            if(! owner ) return res.status(400).json({ message: 'wrong owner name'}) 
+            if(! store) return res.status(400).json({ message: 'wrong store name'})
+            if(!owner.Id==store.OwnerId) return res.status(400).json({ message: 'store name does not match owner name'})
             if(await StoreDB.deleteStore(req.body.Name))
                 return  res.status(201).json({ message: 'deleted store' })
             else
@@ -177,7 +187,7 @@ class ManagerController {
     }
     }
     logIn=async(req, res) => {
-
+        
         if (!req.body.Name|| !req.body.Password)  return res.status(400).json({ message: 'All fields are required'}) 
         const OwnerToCheck =await OwnerDB.getOwnerByEmail(req.body.Name)
         if(!OwnerToCheck)
@@ -187,7 +197,8 @@ class ManagerController {
             return res.status(400).json({ message: 'password does not match to user name'})
         if(!(OwnerToCheck.IsManager))    
             return res.status(400).json({ message: 'access denied'})
-        else  res.status(201).json(OwnerToCheck)
+       
+       res.status(200).json(OwnerToCheck)
 
         
     }

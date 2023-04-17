@@ -1,85 +1,111 @@
-
-import React, { useEffect, useState,useRef } from 'react'
-import { InputText } from 'primereact/inputtext';
-import { Button } from 'primereact/button';
-import 'primeflex/primeflex.css';
-import Axios from 'axios'
-import '../index.css'
-import { Card } from 'primereact/card';
-import { Toast } from 'primereact/toast';
-import { useGetAxiosApi } from '../hooks/useGetAxiosApi';
+import React, { useEffect, useState, useRef } from "react";
+import { InputText } from "primereact/inputtext";
+import { Button } from "primereact/button";
+import "primeflex/primeflex.css";
+import "../index.css";
+import { Card } from "primereact/card";
+import { Toast } from "primereact/toast";
 import ManagerMenu from "./menues/managerMenu";
-
+import { useAxios1 } from "../hooks/useAxios";
 const header = (
-  
-    <img alt="Card" src="https://primefaces.org/cdn/primereact/images/usercard.png" style={{ "width": "98%", "height": "50px" }} />
-  );
-  const footer = (
-    <div className="flex flex-wrap justify-content-end gap-2">
-  
-    </div>
-  );
-const DeleteSrore = () => {
+  <img
+    alt="Card"
+    src="https://primefaces.org/cdn/primereact/images/usercard.png"
+    style={{ width: "98%", height: "50px" }}
+  />
+);
+const footer = (
+  <div className="flex flex-wrap justify-content-end gap-2">
+    <ManagerMenu />
+  </div>
+);
+const DeleteStore = () => {
+  const { deleteData } = useAxios1();
+  const toast = useRef(null);
+  const showError = (msg) => {
+    toast.current.show({
+      severity: "error",
+      summary: "Error",
+      detail: msg,
+      life: 3000,
+    });
+  };
+  const showSuccess = (msg) => {
+    toast.current.show({
+      severity: "success",
+      summary: "Success",
+      detail: msg,
+      life: 3000,
+    });
+  };
 
-    const toast = useRef(null);
-    const showError = () => {
-        toast.current.show({severity:'error', summary: 'Error', detail:'All fileds required', life: 3000});
-    }
-    const [loading, setLoading] = useState(false);
-    const {data,loading:loadingPrice,error,refetch}=useGetAxiosApi('manager/priceList');
+  const [storeName, setstoreName] = useState(null);
+  const [ownerName, setownerName] = useState(null);
 
-    useEffect(()=>{console.log('data',data);},[data])
 
-    const load = () => {
-        setLoading(true);
-
-        setTimeout(() => {
-            setLoading(false);
-        }, 1000);
-    };
-   
-    const [storeName, setstoreName] = useState("");
-
-    const [ownerName, setownerName] = useState("");
-    const valid = () => {
-       if(storeName==""||ownerName==""){
-       
-         showError()
-         return false
-       }
-       return true
-    };
-    return <>
-    
-    <Card title="Delete Store" footer={footer} header={header} className="md:w-25rem" style={{ "margin": "2%", "width": "95%", "height": "98%" ,"position":'fixed',"textAlign":"center",overflowY:"auto"}}>
-            <p className="m-0">
-
-                        <label htmlFor="ownerName" className="w-6rem">
-                            Owner Name
-                        </label> <br/>
-                      
-                        <InputText id="ownerName" type="text" onInput={(e) => setownerName(e.value)} /><br/><br/>
+  return (
+    <>
+      <Card
+        title="Delete Store"
+        footer={footer}
+        header={header}
+        className="md:w-25rem"
+        style={{
+          margin: "2%",
+          width: "95%",
+          height: "98%",
+          position: "fixed",
+          textAlign: "center",
+          overflowY: "auto",
+        }}
+      >
+        <p className="m-0">
+        <Toast ref={toast} />
+          <InputText
+            value={storeName}
+            placeholder="Store name"
+            onChange={(e) => setstoreName(e.target.value)}
+          />
+          <br />
+          
+          <br />
+          <br />
+          <InputText
+            value={ownerName}
+            placeholder="Owner name"
+            onChange={(e) => setownerName(e.target.value)}
+          />
+          <br />
+          <br />
+      
+        
+          
+          
+          <Button
+            label="Submit"
+            icon="pi pi-check"
+            onClick={async () => {
+              if (!storeName || !ownerName) {
+                console.log("***************")//+storeName +"|| !"+ownerName);
+                // showError("all fields required");
+              } else {
+                console.log(ownerName);
+                let res = await deleteData("manager/store", {
+                  "Name": storeName,
+                  "OwnerName": ownerName,
+                });
+                if(res.status==201){
+                    showSuccess(res.data.message)
                     
-                        <label htmlFor="storeName" className="w-6rem">
-                        Store Name
-                        </label> <br/>
-                      
-                        <InputText id="storeName" type="text" onInput={(e) => setstoreName(e.value)} /><br/><br/>
-                    
-                        <Toast ref={toast} />
-                    <Button label="Submit" icon="pi pi-check" loading={loading} onClick={()=>{
-                        console.log(ownerName,"ownerName",storeName,"storeName");
-                        let flag=valid()
-                        if(flag){load()}
-                    }}
-                   />
-                 
-         <ManagerMenu/>   
-                    
-         
-
-            </p>
-        </Card>
+                  }
+                      else showError(res.response.data.message);
+                console.log(res)
+              }
+            }}
+          />
+        </p>
+      </Card>
     </>
-}
-export default DeleteSrore
+  );
+};
+export default DeleteStore;

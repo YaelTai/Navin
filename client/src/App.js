@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Login from "./conponents/login/login"
 
 import DeleteSrore from "./conponents/deleteStore"
 import Register from "./conponents/Register/Register";

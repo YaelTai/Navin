@@ -1,5 +1,5 @@
 
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef} from "react";
 import { Camera } from "react-camera-pro";
 import { Card } from 'primereact/card';
 import { Button } from 'primereact/button';
@@ -9,7 +9,6 @@ import 'primeicons/primeicons.css';
 const UserHome = () => {
   const camera = useRef(null);
   const [image, setImage] = useState(null);
-  const [flag, setFlag] = useState(false);
 
   const header = (
     <img alt="Card" src="https://primefaces.org/cdn/primereact/images/usercard.png" style={{ "width": "98%", "height": "50px" }} />

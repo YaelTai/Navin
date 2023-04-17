@@ -19,6 +19,7 @@ OwnerRouter.put("/owner",OwnerController.updatePersonalDetails)
 OwnerRouter.put("/store",OwnerController.updateStoreDetails)
 OwnerRouter.put("/advertisment",OwnerController.payForAd)
 OwnerRouter.post("/ad",OwnerController.uploadAd)
+OwnerRouter.post("/logIn",OwnerController.logIn)
 
 
 module.exports =OwnerRouter;

@@ -1,11 +1,23 @@
-import React, { useState } from "react";
+import React, { useState,useRef } from "react";
 import { InputText } from "primereact/inputtext";
 import { Button } from "primereact/button";
 import { Card } from "primereact/card";
-
+import { useAxios1 } from "../hooks/useAxios";
+import { Toast } from 'primereact/toast';
 const UpdateCategories = () => {
+const { postData } = useAxios1();
+
   const [categories, setCategories] = useState([]);
   const [value, setValue] = useState("");
+ 
+  const toast = useRef(null);
+  const showError = (msg) => {
+    toast.current.show({severity:'error', summary: 'Error', detail:msg, life: 3000});
+  }
+  const showSuccess = (msg) => {
+    toast.current.show({severity:'success', summary: 'Success', detail:msg, life: 3000});
+  }
+ 
   const header = (
     <img
       alt="Card"
@@ -17,38 +29,72 @@ const UpdateCategories = () => {
     <div className="flex flex-wrap justify-content-end gap-2"></div>
   );
   return (
-    <div >
+    <div>
       <Card
         title="Update Catetegories for the mall!"
         footer={footer}
         header={header}
         className="md:w-25rem"
-        style={{ margin: "2%", width: "95%", height: "98%", position: "fixed", overflowY: "auto" }}
+        style={{
+          margin: "2%",
+          width: "95%",
+          height: "98%",
+          position: "fixed",
+          overflowY: "auto",
+        }}
       >
         <p className="m-0">
-
-            <Button icon="pi pi-check" className="p-button-success" onClick={(e) => {
-              if (value) { setCategories((a) => [...a, value]); }
-
-            }} />
-            <InputText placeholder="Category" onChange={(e) => setValue(e.target.value)} /><br /><br />
+        <Toast ref={toast} />
+          <Button
+            icon="pi pi-check"
+            className="p-button-success"
+            onClick={(e) => {
+              if (value) {
+                setCategories((a) => [...a, value]);
+                setValue("");
+              }
+            }}
+          />
+          <InputText
+            placeholder="Category"
+            onChange={(e) => setValue(e.target.value)}
+            value={value}
+          />
+          <br />
+          <br />
           <ul style={{ "list-style": "none", marginRight: "10%" }}>
-
             {categories.map((category, index) => (
               <li>
-                <i className="pi pi-times" style={{ color: 'green', size: '20px' }}
+                <i
+                  className="pi pi-times"
+                  style={{ color: "green", size: "20px" }}
                   onClick={(e) => {
                     setCategories((c) => [
                       ...c.slice(0, index),
                       ...c.slice(index + 1, c.length),
                     ]);
-                  }}></i>
+                  }}
+                ></i>
 
                 {category}
               </li>
             ))}
           </ul>
-          <Button label="Submit" icon="pi pi-check" />
+          <Button
+            label="Submit"
+            icon="pi pi-check"
+            onClick={async () => {
+            
+             let res= await postData("manager/categories",categories.map((e)=>({"Name":e})))
+           console.log("+++++++++++++"+res.status);
+              if(res.status==201){
+              showSuccess(res.data.message)
+           
+            }
+                else showError(res.response);
+              
+            }}
+          />
         </p>
       </Card>
     </div>

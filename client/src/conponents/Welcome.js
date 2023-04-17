@@ -24,21 +24,9 @@ const Welcome = () => {
 
 
       >
-        I am manager
+        owner/manager
       </button>
-      <button
-        style={{
-          backgroundColor: "lightblue",
-          border: "none",
-          height: "30px",
-          marginLeft: "3%",
-          borderRadius: "5px",
-        }}
-        onClick={() => navigate("/owner/logIn")} 
-
-      >
-       I am store owner
-      </button>
+     
     </>
   );
   const footer = (

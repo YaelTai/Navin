@@ -5,6 +5,8 @@ import { Button } from "primereact/button";
 import { Password } from "primereact/password";
 import { classNames } from "primereact/utils";
 import { Card } from 'primereact/card';    
+import { useAxios1 } from "../../hooks/useAxios";
+import { useNavigate } from "react-router-dom";
 const header = (
   
   <img alt="Card" src="https://primefaces.org/cdn/primereact/images/usercard.png" style={{ "width": "98%", "height": "50px" }} />
@@ -15,14 +17,12 @@ const footer = (
   </div>
 );
 const Register = () => {
+  const { postData } = useAxios1();
   const [showMessage, setShowMessage] = useState(false);
   const [formData, setFormData] = useState({});
   const [password,set_password]= useState({});
   const [email,set_email]= useState({});
-  
-
-  
-
+  const navigate = useNavigate();
   const validate = (data) => {
     let errors = {};
 
@@ -47,11 +47,26 @@ const Register = () => {
     return errors;
   };
 
-  const onSubmit = (data, form) => {
+  const onSubmit =async  (data, form) => {
     setFormData(data);
     setShowMessage(true);
-    form.restart();
-  };
+    const x={
+      "Name":data.email,
+      "Password":data.password
+    }
+    
+    const res=await postData("owner/logIn",x)
+    if(!res)
+    {
+ 
+      alert("wrong email or password")
+      
+    }
+    else{
+    if (res.data.IsManager) navigate("/manager")
+    else navigate("/owner")
+    form.restart();}
+    }
 
   const isFormFieldValid = (meta) => !!(meta.touched && meta.error);
   const getFormErrorMessage = (meta) => {
