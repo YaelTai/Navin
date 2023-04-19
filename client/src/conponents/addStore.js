@@ -52,20 +52,22 @@ const AddStore = () => {
       >
         <p className="m-0">
         <Toast ref={toast} />
+        <span className="p-float-label">
           <InputText
             value={storeName}
-            placeholder="Store name"
+          
             onChange={(e) => setstoreName(e.target.value)}
-          />
+          /> <label htmlFor="drh">Store name</label></span>
           <br />
           <label>*as it appears on the sign</label>
           <br />
           <br />
+          <span className="p-float-label">
           <InputText
             value={ownerId}
-            placeholder="Owner id"
+         
             onChange={(e) => setownerName(e.target.value)}
-          />
+          /><label htmlFor="drh">Owner id</label></span>
           <br />
           <br />
 

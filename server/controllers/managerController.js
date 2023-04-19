@@ -26,7 +26,7 @@ class ManagerController {
     }
 
     addStore=async(req, res) => {
-        console.log("aftyyydgdg77777777");
+        
         const stores=await StoreDB.getAllStores()
         if(!stores) return res.status(400).json({ message: 'error while check uq store name'}) 
         const storesNames=stores.map(e=>e.Name)
@@ -135,9 +135,10 @@ class ManagerController {
 
     }
     getAllPendingAds=async(req, res) => {
-       const ads=await AdvertismentDB.getAllWaitingAds()
+       let ads=await AdvertismentDB.getAllWaitingAds()
        if(!ads) res.status(400).json({ message: 'error getting pending ads' })
-       res.status(201).json(ads)
+   
+       return res.status(201).json(ads)
     }
     approveAd=async(req, res) => {
         //update
@@ -150,13 +151,13 @@ class ManagerController {
             password += chars.substring(randomNumber, randomNumber +1);
         }
         
-        if(await AdvertismentDB.UpdateApprovmentCode(req.body.Id, password)!=0){
+       // if(await AdvertismentDB.UpdateApprovmentCode(req.body.Id, password)!=0){
        //mail
         
        let owner = await OwnerDB.getOwnerById(req.body.AdOwner)
        if(!owner) res.status(400).json({ message: 'error getting owner email' })
-       to=owner.Email
-       console.log("*******"+to);
+       let to=owner.Email
+       
        const subject = 'hi '+owner.Name+' your ad aprrroved!! password inside';
        const body = "your approvment code is: "+password+"/n"+"for payment click here->";
    
@@ -175,16 +176,34 @@ class ManagerController {
         
         }
          
-    }
+   // }
     refuseAd=async(req, res) => {
-       
+     
         if(!AdvertismentDB.deleteAd(req.body.Id))
         return res.status(400).json({ message: 'error occured while trying to refuse ad'})
-        else { res.status(201).json({ message: 'refused sucessfully' })
+        
 
 
         //email refusment
-    }
+        let owner = await OwnerDB.getOwnerById(req.body.AdOwner)
+        if(!owner) res.status(400).json({ message: 'error getting owner email' })
+        let to=owner.Email
+        console.log(to)
+        const subject = 'hi '+owner.Name;
+        const body = "Your ad has been rejected for system reasons";
+    
+        Mailer.sendEmail(to, subject, body)
+            .then(info => {
+                console.log('Email sent: ', info.response);
+                res.status(201).json('approved successfully')
+            })
+            .catch(error => {
+                console.log('Error sending email: ', error);
+                res.status(500).send('Failed to send email');
+            });
+ 
+ 
+    // }
     }
     logIn=async(req, res) => {
         

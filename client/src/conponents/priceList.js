@@ -13,7 +13,7 @@ export default function PriceList() {
   if (error) {
     return <p>Error!</p>;
   }
-console.log(data);
+
   const header = (
     <img
       alt="Card"
