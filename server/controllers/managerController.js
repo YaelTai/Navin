@@ -1,4 +1,4 @@
-const { log } = require("console")
+
 const CategoryDB=require("../dal/categoryAccess")
 const StoreDB=require("../dal/storesAccess")
 const OwnerDB= require("../dal/ownersAccess")
@@ -205,7 +205,8 @@ class ManagerController {
     getMap=async(req, res) => {}
     
     updatePriceList=async(req, res) => {
-       if(!PriceListDB.updatePriceList(req.body))return res.status(400).json({ message: 'error while updating price list'})
+        
+       if(!PriceListDB.updatePriceList(req.body)) return res.status(400).json({ message: 'error while updating price list'})
        res.status(201).json({ message: 'updated price list ' })
     }
     getPriceList=async(req, res) => {

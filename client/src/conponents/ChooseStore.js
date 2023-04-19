@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { AutoComplete } from "primereact/autocomplete";
 import { Card } from "primereact/card";
-import { Button} from "primereact/button";
+import { Button } from "primereact/button";
 import { BiWalk } from "react-icons/bi";
+import { useAxios1 } from "../hooks/useAxios";
 
 import { MultiSelect } from "primereact/multiselect";
 import Ads from "./ads"
@@ -11,32 +12,60 @@ import "primereact/resources/primereact.css";
 import "primeicons/primeicons.css";
 import "primeflex/primeflex.css";
 const header = (
-      <Ads/>
+  <Ads />
+  
 );
 const footer = <div className="flex flex-wrap justify-content-end gap-2"></div>;
 export default function ChooseStores() {
+
+
   const [selectedStore, setSelectedStore] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [filteredStores, setfilteredStores] = useState(null);
   const [filteredCategories, setfilteredCategories] = useState(null);
   const [selectedstoresForCat, setselectedstoresForCat] = useState([]);
+  const [storesForCat, setStoresForCat] = useState(null);
 
-  const storesForCat = [
-    { id: 1, Name: "zara" },
-    { id: 1, Name: "h&m" },
-    { id: 1, Name: "h&o" },
-  ];
+  const { Get,postData} = useAxios1();
 
-  const stores = [
-    { id: 1, Name: "zara" },
-    { id: 1, Name: "h&m" },
-    { id: 1, Name: "h&o" },
-  ];
-  const categories = [
-    { id: 1, Name: "shoes" },
-    { id: 1, Name: "clothing" },
-    { id: 1, Name: "food" },
-  ];
+
+  let s = Get(`visitor/stores`);
+  let c = Get(`visitor/categories`);
+  let stores = s.data
+  console.log(stores);
+  let categories = c.data;
+  console.log(categories);
+  // if (loadingStores) {
+  //   return <p>Loading...</p>;
+  // }
+  // if (errorStores) {
+  //   return <p>Error!</p>;
+  // }
+  // const stores = stores_;
+
+  // let { data: categories_, loading:loadingCategories, error:errorCategories, refetch :refetchCategories } = Get(`visitor/categories`);
+  // if (loadingCategories) {
+  //   return <p>Loading...</p>;
+  // }
+  // if (errorCategories) {
+  //   return <p>Error!</p>;
+  // }
+
+  
+const ImportStoresForCategory=async(id)=>{
+  
+   let cats=await postData(`visitor/storesForCategory`,{"CatId":id});
+  setStoresForCat(cats)
+
+}
+  // useEffect(() => {
+  //   if (selectedCategory != null) {
+  //     myData()
+  //     
+  //     console.log("33333333333" + c1);
+
+  //   }
+  // }, [selectedCategory])
 
   const searchStores = (event) => {
     //in a real application, make a request to a remote url with the query and return filtered results, for demo purposes we filter at client side
@@ -86,16 +115,17 @@ export default function ChooseStores() {
   };
 
   return (
+
     <Card
       title="Let's create the best route for you!"
       footer={footer}
       header={header}
       className="md:w-25rem"
-      style={{ margin: "2%", width: "95%", height: "98%", position: "fixed" ,overflowY:"auto"}}
+      style={{ margin: "2%", width: "95%", height: "98%", position: "fixed", overflowY: "auto" }}
     >
       <p className="m-0">
-      
-        <lable>select by store name</lable><br/>
+
+        <lable>select by store name</lable><br />
         <AutoComplete
           value={selectedStore}
           suggestions={filteredStores}
@@ -103,9 +133,9 @@ export default function ChooseStores() {
           virtualScrollerOptions={{ itemSize: 38 }}
           field="Name"
           dropdown
-          onChange={(e) =>{ if(!selectedstoresForCat.includes(e.value))setselectedstoresForCat([...selectedstoresForCat, e.value])}}
+          onChange={(e) => { if (!selectedstoresForCat.includes(e.value)) setselectedstoresForCat([...selectedstoresForCat, e.value]) }}
         />
-        <br/><br></br>
+        <br /><br></br>
         <lable>select by category</lable>
         <br></br>
         <AutoComplete
@@ -115,28 +145,29 @@ export default function ChooseStores() {
           virtualScrollerOptions={{ itemSize: 38 }}
           field="Name"
           dropdown
-          onChange={(e) => setSelectedCategory(e.value)}
-        /><br/><br/><br/>
-        {selectedCategory ? (<MultiSelect
-                            
-                                value={selectedstoresForCat}
-                                options={storesForCat}
-                                optionLabel="Name"
-                                onChange={(e) => {
-                                setselectedstoresForCat(e.value);
-                                }}
-                             
-                                placeholder="Select stores"
-                                itemTemplate={storeforCatTemplate}
-                                panelFooterTemplate={panelFooterTemplate}
-                                className="w-full md:w-20rem"
-                            
-                            />
-                            
-        ) : (
-          <><Button label="Let's Go" icon={BiWalk} style={{"color":"greenyellow","marginLeft":"65%"}}/></>
-        )}
+          onChange={(e) =>{ setSelectedCategory(e.value); ImportStoresForCategory(selectedCategory.Id);}}
+        /><br /><br /><br />
+        {selectedCategory ? (<>
+          <lable>Stores that sell {selectedCategory.Name}:</lable><br />
+          <MultiSelect
+            value={selectedstoresForCat}
+            options={storesForCat}
+            optionLabel="Name"
+            onChange={(e) => {
+              setselectedstoresForCat(e.value);
+            }}
 
+            placeholder="Select  store"
+            itemTemplate={storeforCatTemplate}
+            panelFooterTemplate={panelFooterTemplate}
+            className="w-full md:w-20rem"
+
+          />
+
+        </>) : (<></>)
+
+        }
+        <><Button label="Let's Go" icon={BiWalk} style={{ "color": "greenyellow", "marginLeft": "65%" }} /></>
         <h4>selected stores</h4>
         <ul style={{ "list-style": "none", marginRight: "10%" }}>
           {selectedstoresForCat.map((store, index) => (
@@ -156,7 +187,7 @@ export default function ChooseStores() {
             </li>
           ))}
         </ul>
-        
+
       </p>
     </Card>
   );

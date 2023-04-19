@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Button } from 'primereact/button';
 import { Carousel } from 'primereact/carousel';
 import { Card } from 'primereact/card';    
@@ -9,7 +9,14 @@ import { ProductService } from './ProductService';
 
 
 export default function Ads() {
-    const [products, setProducts] = useState([]);
+    const [products, setProducts] = useState([
+        {
+
+        },
+        {
+            
+        }
+    ]);
     const responsiveOptions = [
         {
             breakpoint: '1199px',
@@ -30,9 +37,9 @@ export default function Ads() {
 
    
 
-    useEffect(() => {
-        ProductService.getProductsSmall().then((data) => setProducts(data.slice(0, 9)));
-    }, []);
+    // useEffect(() => {
+    //     ProductService.getProductsSmall().then((data) => setProducts(data.slice(0, 9)));
+    // }, []);
 
     const productTemplate = (product) => {
         return (

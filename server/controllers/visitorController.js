@@ -13,10 +13,12 @@ class VisitorController {
     //takePicture=async(req, res) => {}
     //presentLocation=async(req, res) => {}
     //assembleRoute=async(req, res) => {}
-    getStoresByCategory=async(req, res) => {
+    getStoresByCategory=async (req, res) => {
         //get CatId
-       const stores=await CategoryDB.getStoreNamesByCategory(req.body.CatId)
+        console.log("88888888888888888888888");
+       const stores=await  CategoryDB.getStoreNamesByCategory(req.body.CatId)
        if(!stores)return res.status(400).json({ message: 'error occured when get stores to categories'})
+       console.log("00000000000000"+stores);
        res.status(200).json(stores)  
     }
     getAllCategories=async(req, res) => {
