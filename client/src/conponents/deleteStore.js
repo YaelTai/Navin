@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, {  useState, useRef } from "react";
 import { InputText } from "primereact/inputtext";
 import { Button } from "primereact/button";
 import "primeflex/primeflex.css";
@@ -45,36 +45,34 @@ const DeleteStore = () => {
 
   return (
     <>
-      <Card
-        title="Delete Store"
-        footer={footer}
-        header={header}
-        className="md:w-25rem"
-        style={{
-          margin: "2%",
-          width: "95%",
-          height: "98%",
-          position: "fixed",
-          textAlign: "center",
-          overflowY: "auto",
-        }}
-      >
-        <p className="m-0">
-        <Toast ref={toast} />
+    <Card
+      title="Delete Store "
+      footer={footer}
+      header={header}
+      className="md:w-25rem"
+      style={{
+        margin: "2%",
+        width: "95%",
+        height: "95%",
+        position: "fixed",
+        overflowY: "auto",
+      }}
+    >
+      <p className="m-0">
+      <Toast ref={toast} />
+      <span className="p-float-label">
           <InputText
             value={storeName}
-            placeholder="Store name"
             onChange={(e) => setstoreName(e.target.value)}
-          />
+          /><label htmlFor="drh">Store name</label></span>
           <br />
           
-          <br />
-          <br />
+          
+          <span className="p-float-label">
           <InputText
             value={ownerName}
-            placeholder="Owner name"
-            onChange={(e) => setownerName(e.target.value)}
-          />
+          onChange={(e) => setownerName(e.target.value)}
+          /><label htmlFor="drh">Owner name</label></span>
           <br />
           <br />
       
@@ -86,10 +84,10 @@ const DeleteStore = () => {
             icon="pi pi-check"
             onClick={async () => {
               if (!storeName || !ownerName) {
-                console.log("***************")//+storeName +"|| !"+ownerName);
-                // showError("all fields required");
+                
+                 showError("all fields required");
               } else {
-                console.log(ownerName);
+                
                 let res = await deleteData("manager/store", {
                   "Name": storeName,
                   "OwnerName": ownerName,

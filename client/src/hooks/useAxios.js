@@ -29,6 +29,7 @@ const srv="http://localhost:3001/api/";
         );
         if(error)
             console.log(error);
+
        
         return { data, loading, error, refetch };
       
@@ -37,12 +38,9 @@ const srv="http://localhost:3001/api/";
     
     const Get = (url) => {
 
-        const [{ data, loading, error }, refetch]= useAxios(srv+url
-            // {
-            //     url:url,
-            //     method:'get',
-            // }
-        );
+        const [{ data, loading, error }, refetch]= useAxios(srv+url);
+
+       
         
         if(error)
             console.log(error);
@@ -87,15 +85,16 @@ const srv="http://localhost:3001/api/";
     //     }
     // };
 
-    const updateData = async (url, params, body) => {
+    const updateData = async (url, body) => {
         try {
             console.log(url);
-            const res = await axios.put(`${srv}${url}/${params}`, body);
+            const res = await axios.put(`${srv}${url}`, body);
             console.log(res);
             return res
         }
         catch (err) {
             console.error(`error ${err}`);
+            return err
         }
     };
 

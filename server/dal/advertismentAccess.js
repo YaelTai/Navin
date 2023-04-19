@@ -24,7 +24,7 @@ const UpdatePaid = async  (id) => {
 
 } 
 const deleteAd=async (id)=>{
-   return await Store.destroy({ where:{Id:id}})
+   return await Advertisment.destroy({ where:{Id:id}})
 
 }
 
