@@ -5,6 +5,7 @@ const OwnerDB= require("../dal/ownersAccess")
 const AdvertismentDB= require("../dal/advertismentAccess")
 const PriceListDB= require("../dal/priceListAccess")
 const Mailer = require('../services/mail')
+const { log } = require("console")
 class ManagerController {
     insertToMap= async(req, res) => {}
     
@@ -141,6 +142,7 @@ class ManagerController {
        return res.status(201).json(ads)
     }
     approveAd=async(req, res) => {
+        console.log("AFGAUIG");
         //update
         var chars = "0123456789";
         var passwordLength = 4;
@@ -151,7 +153,7 @@ class ManagerController {
             password += chars.substring(randomNumber, randomNumber +1);
         }
         
-       // if(await AdvertismentDB.UpdateApprovmentCode(req.body.Id, password)!=0){
+        if(await AdvertismentDB.UpdateApprovmentCode(req.body.Id, password)!=0){
        //mail
         
        let owner = await OwnerDB.getOwnerById(req.body.AdOwner)
@@ -172,8 +174,8 @@ class ManagerController {
            });
 
 
-
-        
+        }
+        else res.status(400).json({ message: 'error approved  ads' })
         }
          
    // }
