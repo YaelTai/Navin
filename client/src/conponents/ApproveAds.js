@@ -50,6 +50,7 @@ const reject = () => {
       style={{ width: "98%", height: "50px" }}
     />
   );
+  
   const footer = (
     <div className="flex flex-wrap justify-content-end gap-2">
     </div>
@@ -86,7 +87,8 @@ const reject = () => {
       
         <ConfirmDialog />
        <Toast ref={toast} />
-        <h5>Do you want to approve the ad?</h5>
+        <h5>Advertisements awaiting approval:</h5>
+        <h6>You can choose to approve or reject.</h6>
         <ul style={{ listStyle: "none", marginRight: "10%",textAlign:"center"}}>
           {data.map((ad, index) => (
             <li>
