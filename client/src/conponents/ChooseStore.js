@@ -1,40 +1,35 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { AutoComplete } from "primereact/autocomplete";
 import { Card } from "primereact/card";
 import { Button } from "primereact/button";
 import { BiWalk } from "react-icons/bi";
 import { useAxios1 } from "../hooks/useAxios";
-
 import { MultiSelect } from "primereact/multiselect";
-import Ads from "./ads"
+import Ads from "./ads";
 import "primereact/resources/themes/lara-light-indigo/theme.css";
 import "primereact/resources/primereact.css";
 import "primeicons/primeicons.css";
 import "primeflex/primeflex.css";
-const header = (
-  <Ads />
-  
-);
+const header = <Ads />;
 const footer = <div className="flex flex-wrap justify-content-end gap-2"></div>;
+
 export default function ChooseStores() {
-
-
   const [selectedStore, setSelectedStore] = useState(null);
-  const [selectedCategory, setSelectedCategory] = useState(null);
+  //const [selectedCategory, setSelectedCategory] = useState(null);
   const [filteredStores, setfilteredStores] = useState(null);
   const [filteredCategories, setfilteredCategories] = useState(null);
   const [selectedstoresForCat, setselectedstoresForCat] = useState([]);
   const [storesForCat, setStoresForCat] = useState(null);
+  const [selectedCategory, setSelectedCategory] = useState(null);
+  const { Get, postData } = useAxios1();
 
-  const { Get,postData} = useAxios1();
-
-
-  let s = Get(`visitor/stores`);
-  let c = Get(`visitor/categories`);
-  let stores = s.data
-  console.log(stores);
-  let categories = c.data;
+  let stores_ = Get(`visitor/stores`);
+  let categories_ = Get(`visitor/categories`);
+  let stores = stores_.data;
+  let categories = categories_.data;
   console.log(categories);
+  console.log(stores);
+
   // if (loadingStores) {
   //   return <p>Loading...</p>;
   // }
@@ -51,17 +46,19 @@ export default function ChooseStores() {
   //   return <p>Error!</p>;
   // }
 
-  
-const ImportStoresForCategory=async(id)=>{
-  
-   let cats=await postData(`visitor/storesForCategory`,{"CatId":id});
-  setStoresForCat(cats)
-
-}
+  const ImportStoresForCategory = async () => {
+    console.log("ImportStoresForCategory");
+    let stores4cat = await postData(`visitor/storesForCategory`, {CatId: selectedCategory.Id,
+    });
+    console.log("stores4catttttttttttttttttttttttt",stores4cat.data);  
+    setStoresForCat([...stores4cat.data]);
+    //console.log("llllllllllllllll",storesForCat);
+    
+  };
   // useEffect(() => {
   //   if (selectedCategory != null) {
   //     myData()
-  //     
+  //
   //     console.log("33333333333" + c1);
 
   //   }
@@ -98,6 +95,7 @@ const ImportStoresForCategory=async(id)=>{
 
   const storeforCatTemplate = (option) => {
     return (
+      
       <div className="flex align-items-center">
         <div>{option.Name}</div>
       </div>
@@ -115,17 +113,22 @@ const ImportStoresForCategory=async(id)=>{
   };
 
   return (
-
     <Card
       title="Let's create the best route for you!"
       footer={footer}
       header={header}
       className="md:w-25rem"
-      style={{ margin: "2%", width: "95%", height: "98%", position: "fixed", overflowY: "auto" }}
+      style={{
+        margin: "2%",
+        width: "95%",
+        height: "98%",
+        position: "fixed",
+        overflowY: "auto",
+      }}
     >
       <p className="m-0">
-
-        <lable>select by store name</lable><br />
+        <lable>select by store name</lable>
+        <br />
         <AutoComplete
           value={selectedStore}
           suggestions={filteredStores}
@@ -133,11 +136,20 @@ const ImportStoresForCategory=async(id)=>{
           virtualScrollerOptions={{ itemSize: 38 }}
           field="Name"
           dropdown
-          onChange={(e) => { if (!selectedstoresForCat.includes(e.value)) setselectedstoresForCat([...selectedstoresForCat, e.value]) }}
+          onChange={(e) => {
+            setSelectedStore(e.value)
+            if (!selectedstoresForCat.includes()){
+              console.log("selectedStore"+e.value);
+              setselectedstoresForCat([...selectedstoresForCat, e.value]);
+            
+            }
+           }
+        }
         />
-        <br /><br></br>
+        <br />
+        <br />
         <lable>select by category</lable>
-        <br></br>
+        <br/>
         <AutoComplete
           value={selectedCategory}
           suggestions={filteredCategories}
@@ -145,29 +157,45 @@ const ImportStoresForCategory=async(id)=>{
           virtualScrollerOptions={{ itemSize: 38 }}
           field="Name"
           dropdown
-          onChange={(e) =>{ setSelectedCategory(e.value); ImportStoresForCategory(selectedCategory.Id);}}
-        /><br /><br /><br />
-        {selectedCategory ? (<>
-          <lable>Stores that sell {selectedCategory.Name}:</lable><br />
-          <MultiSelect
-            value={selectedstoresForCat}
-            options={storesForCat}
-            optionLabel="Name"
-            onChange={(e) => {
-              setselectedstoresForCat(e.value);
-            }}
-
-            placeholder="Select  store"
-            itemTemplate={storeforCatTemplate}
-            panelFooterTemplate={panelFooterTemplate}
-            className="w-full md:w-20rem"
-
+          onChange={(e) => {
+            setSelectedCategory(e.value);
+          }}
+          onBlur={async () => {
+            await ImportStoresForCategory();
+            console.log("imported");
+          }}
+           
+        />
+        <br />
+        <br />
+        <br />
+        {selectedCategory ? (
+          <>
+            <lable>Stores that sell {selectedCategory.Name}:</lable>
+            <br />
+            <MultiSelect
+              value={selectedstoresForCat}
+              options={storesForCat}
+              optionLabel="Name"
+              onChange={(e) => { console.log("e.value*********",e.value);
+                setselectedstoresForCat([...selectedstoresForCat, e.value]);
+              }}
+              placeholder="Select  store"
+              itemTemplate={storeforCatTemplate}
+              panelFooterTemplate={panelFooterTemplate}
+              className="w-full md:w-20rem"
+            />
+          </>
+        ) : (
+          <></>
+        )}
+        <>
+          <Button
+            label="Let's Go"
+            icon={BiWalk}
+            style={{ color: "greenyellow", marginLeft: "65%" }}
           />
-
-        </>) : (<></>)
-
-        }
-        <><Button label="Let's Go" icon={BiWalk} style={{ "color": "greenyellow", "marginLeft": "65%" }} /></>
+        </>
         <h4>selected stores</h4>
         <ul style={{ "list-style": "none", marginRight: "10%" }}>
           {selectedstoresForCat.map((store, index) => (
@@ -182,12 +210,10 @@ const ImportStoresForCategory=async(id)=>{
                   ]);
                 }}
               ></i>
-
               {store.Name}
             </li>
           ))}
         </ul>
-
       </p>
     </Card>
   );
