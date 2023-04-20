@@ -20,7 +20,7 @@ export default function ManagerMenu() {
   const navigate = useNavigate();
 
   return (
-    <div className="dock-window" style={{"position":"sticky"}}> 
+    <div className="dock-window" style={{position: 'absolute'}}> 
       <Dock model={items} position="bottom" />
     </div>
   );
