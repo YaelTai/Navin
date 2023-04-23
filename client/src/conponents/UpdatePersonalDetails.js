@@ -1,4 +1,6 @@
 import React, {useState, useRef} from 'react'
+import { useNavigate } from "react-router-dom";
+
 import { InputNumber } from 'primereact/inputnumber';
 import { InputText } from 'primereact/inputtext';
 import { Password } from 'primereact/password';
@@ -13,7 +15,7 @@ const UpdatePersonalsDetails = () => {
   const [email, setEmail] = useState("");
   const [visible, setVisible] = useState(false);
   const toast = useRef(null);
-
+  const navigate = useNavigate();
   const accept =async () => {
         let res1 = await updateData('owner/owner', {"Id":data.Id,"Password": password? password:data.Password,"Phone":phone? phone: data.Phone,"Name":data.Email})
 let status=res1.request.status
@@ -23,6 +25,10 @@ let status=res1.request.status
 status==200?
       toast.current.show({ severity: 'info', summary: 'Confirmed', detail: 'Your details have been successfully updated', life: 3000 }):
       toast.current.show({ severity: 'warn', summary: 'Rejected', detail: 'You have rejected', life: 3000 });
+      setTimeout(() => {
+        navigate("/owner/")
+      }, 3000);
+      
       }
 
   const reject = () => {

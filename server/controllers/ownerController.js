@@ -201,7 +201,7 @@ class OwnerController {
         //get Id
         let Categories=await StoreDB.getCategoriesNamesByStore(req.body.Id)
         if(!Categories)return res.status(400).json({ message: 'error occured when get categories'})
-        Categories=Categories.map(c=>c["Name.Name"])
+        Categories=Categories.map(c=>{return {"Name":c["Name.Name"]}})
         res.status(200).json(Categories) 
     }
     getAllCategories=async(req, res) => {

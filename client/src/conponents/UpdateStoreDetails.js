@@ -4,21 +4,23 @@ import { MultiSelect } from 'primereact/multiselect';
 import { InputNumber } from 'primereact/inputnumber';
 import { Button } from 'primereact/button';
 import '../MultiSelectDemo.css';
-import { Card } from 'primereact/card';    
+import { Card } from 'primereact/card'; 
+import { useAxios1 } from "../hooks/useAxios";
+
 // import 'primereact/resources/themes/lara-light-indigo/theme.css';   // theme
 // import 'primereact/resources/primereact.css';                       // core css
 // import 'primeicons/primeicons.css';  
 // import 'primereact/resources/themes/saga-blue/theme.css';
 //import 'primeflex/primeflex.css';
 // import '..//index.css';
-import ReactDOM from 'react-dom';
-import  { Component } from 'react';
+// import ReactDOM from 'react-dom';
+// import  { Component } from 'react';
 
 let categoriesTemplate=(option)=> {
     return (
         <div className="country-item">
             {/* <img alt={option.name} src="showcase/demo/images/flag_placeholder.png" onError={(e) => e.target.src='https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png'} className={`flag flag-${option.code.toLowerCase()}`} /> */}
-            <div>{option.name}</div>
+            <div>{option.Name}</div>
         </div>
     );
 }
@@ -27,7 +29,7 @@ let selectedCategoriesTemplate=(option)=> {
         return (
             <div className="country-item country-item-value">
                 {/* <img alt={option.name} src="showcase/demo/images/flag_placeholder.png" onError={(e) => e.target.src='https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png'} className={`flag flag-${option.code.toLowerCase()}`} /> */}
-                <div>{option.name}</div>
+                <div>{option.Name}</div>
             </div>
         );
     }
@@ -40,28 +42,37 @@ const UpdateStoreDetails=()=>{
     const [selectedStore, setSelectedStore] = useState(null);
     const [selectedCategories, setselectedCategories] = useState(null);
     const [ownerId, setownerId] = useState(null);
+    const [categories, setCategories] = useState([]);
 
-    const stores = [
-        { name: 'New York'},
-        { name: 'Rome' },
-        { name: 'London'},
-        { name: 'Istanbul' },
-        { name: 'Paris'}
-    ];
+    // const stores = [
+    //     { name: 'New York'},
+    //     { name: 'Rome' },
+    //     { name: 'London'},
+    //     { name: 'Istanbul' },
+    //     { name: 'Paris'}
+    // ];
+    const { Get, postData ,Post} = useAxios1();
+
+    let _stores = Post(`owner/allStores`,{"Id":181});
+    
+    if (_stores.loading) {
+        return <p>Loading...</p>;
+    }
+    if (_stores.error) {
+        return <p>Error!</p>;
+    }
+const stores=_stores.data
+const ImportCats4Store = async () => {
+    console.log("ImportCats4Store",selectedStore["Id"]);
+    let cats4store = await postData(`owner/categoriesByStore`, {"Id": selectedStore.Id});
+setCategories(cats4store.data) 
+   console.log("stores4catttttttttttttttttttttttt",cats4store.data);  
+    // setStoresForCat([...stores4cat.data]);
+    console.log("llllllllllllllll",categories);
+    
+  };
 
 
-   const categories = [
-        {name: 'shoes', code: ''},
-        {name: 'cloting', code: 'BR'},
-        {name: 'China', code: 'CN'},
-        {name: 'Egypt', code: 'EG'},
-        {name: 'France', code: 'FR'},
-        {name: 'Germany', code: 'DE'},
-        {name: 'India', code: 'IN'},
-        {name: 'Japan', code: 'JP'},
-        {name: 'Spain', code: 'ES'},
-        {name: 'United States', code: 'US'}
-    ];
 
     const header = (
   
@@ -80,12 +91,15 @@ const UpdateStoreDetails=()=>{
         
            
             <label style={{"marginRight":'1%'}} >Choose the store which you want to update</label><br/><br/>
-            <Dropdown  value={selectedStore} onChange={(e) => setSelectedStore( e.value)} options={stores} optionLabel="name" 
+            <Dropdown  value={selectedStore} onChange={(e) => {setSelectedStore( e.value) ;ImportCats4Store() }}
+
+        
+         options={stores} optionLabel="Name" 
                 placeholder="your stores" className="w-full md:w-14rem" style={{"width":"15%"}}/><br/>
             <br/><br/>
          <label style={{"marginRight":'1%'}} >update your store's categories</label>
       
-            <MultiSelect value={selectedCategories} options={categories}  onChange={ (e) => setselectedCategories( e.value )} optionLabel="name" placeholder="Select Categories" filter className="multiselect-custom"
+            <MultiSelect value={selectedCategories} options={categories}  onChange={ (e) => setselectedCategories( e.value )} optionLabel="Name" placeholder="Select Categories" filter className="multiselect-custom"
                         itemTemplate={categoriesTemplate} selectedItemTemplate={selectedCategoriesTemplate}  display="chip"/>
         <br/><br/><br/>
         <label style={{"marginRight":'1%'}}>update owner id</label> 
