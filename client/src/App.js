@@ -46,7 +46,7 @@ function App() {
           <Route path="/owner" element={<OwnerHome />} />
           <Route path="/owner/logIn" element={<Register />} />
           <Route path="/owner/uploadAd" element={<UploadAd />} />
-          <Route path="/owner/priceList" element={<PriceList />} />
+          {/* <Route path="/owner/priceList" element={<PriceList />} /> */}
           <Route path="/owner/updateStoreDetails" element={<UpdateStoreDetails />} />
           <Route path="/owner/updatePersonalsDetail" element={<UpdatePersonalsDetail />} />
 
