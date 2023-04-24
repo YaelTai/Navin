@@ -7,7 +7,7 @@ const OwnerController= require("../controllers/ownerController");
 const OwnerRouter = express.Router();
 
 OwnerRouter.put("/password",OwnerController.updatePassword)
-OwnerRouter.get("/fee",OwnerController.getFee)
+OwnerRouter.post("/fee",OwnerController.getFee)
 OwnerRouter.post("/categoriesByStore",OwnerController.getAllCategoriesForStore)
 OwnerRouter.get("/categories",OwnerController.getAllCategories)
 OwnerRouter.get("/priceList",OwnerController.getPriceList)

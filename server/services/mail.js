@@ -12,7 +12,7 @@ const transporter = nodemailer.createTransport({
 });
 
 function sendEmail(to, subject, body) {
-    console.log("ghgjhgj")
+    
     const mailOptions = {
         from: '36213876832@mby.co.il',
         to: to,

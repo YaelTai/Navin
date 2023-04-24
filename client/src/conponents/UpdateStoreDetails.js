@@ -3,7 +3,7 @@ import { Dropdown } from 'primereact/dropdown';
 import { MultiSelect } from 'primereact/multiselect';
 import { InputNumber } from 'primereact/inputnumber';
 import { Button } from 'primereact/button';
-import '../MultiSelectDemo.css';
+                                                                  
 import { Card } from 'primereact/card'; 
 import { useAxios1 } from "../hooks/useAxios";
 
@@ -43,7 +43,7 @@ const UpdateStoreDetails=()=>{
     const [selectedCategories, setselectedCategories] = useState(null);
     const [ownerId, setownerId] = useState(null);
     const [categories, setCategories] = useState([]);
-
+    
     // const stores = [
     //     { name: 'New York'},
     //     { name: 'Rome' },
@@ -53,8 +53,10 @@ const UpdateStoreDetails=()=>{
     // ];
     const { Get, postData ,Post} = useAxios1();
 
-    let _stores = Post(`owner/allStores`,{"Id":181});
-    
+    let _stores = Post(`owner/allStores`,{"Id":214121865});
+    let _allCats=Get(`owner/categories`)
+console.log("all cats",_allCats);
+
     if (_stores.loading) {
         return <p>Loading...</p>;
     }
@@ -90,7 +92,7 @@ setCategories(cats4store.data)
             <p className="m-0">
         
            
-            <label style={{"marginRight":'1%'}} >Choose the store which you want to update</label><br/><br/>
+            <label style={{"marginRight":'1%' , "width":"30%"}} >Choose the store which you want to update</label><br/><br/>
             <Dropdown  value={selectedStore} onChange={(e) => {setSelectedStore( e.value) ;ImportCats4Store() }}
 
         

@@ -39,8 +39,8 @@ const Approve = (props) => {
 
   return (
     <>
-     <Toast ref={toast} />
-     <ConfirmDialog />
+     {/* <Toast ref={toast} /> */}
+     {/* <ConfirmDialog /> */}
      {/* <span className="card flex flex-wrap gap-2 justify-content-center"></span> */}
                 <Button
                  

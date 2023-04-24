@@ -3,7 +3,17 @@ const Advertisment=db.advertisments
 const AdCategories=db.categories_for_ads
 
 
-
+const getAdsByCategory =async  (catId) => {
+   let adsid=await  AdCategories.findAll({where: {CatId:catId}})
+   console.log("******************",adsid[0].dataValues.CatId);
+   return await adsid.map(async (a)=>{
+      
+      let ad= await Advertisment.findOne({where:{Id:a.dataValues.AdId}})
+      console.log("ddddddddddddddddd",ad); 
+      return ad;
+   })
+  
+}
 const getAllWaitingAds =async  () => {
     return await  Advertisment.findAll({where: {ApprovmentCode:null}})
  }
@@ -49,6 +59,7 @@ const getAllAdsByOwner=async (id)=>{
     addCategoryToAd,
     UpdatePaid,
     getAllAdsByOwner,
-    getAllAds
+    getAllAds, 
+    getAdsByCategory
    
 }

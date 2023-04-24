@@ -17,23 +17,23 @@ const UpdatePersonalsDetails = () => {
   const toast = useRef(null);
   const navigate = useNavigate();
   const accept =async () => {
-        let res1 = await updateData('owner/owner', {"Id":data.Id,"Password": password? password:data.Password,"Phone":phone? phone: data.Phone,"Name":data.Email})
-let status=res1.request.status
-        console.log("res:",res1.request.status);
+    let res1 = await updateData('owner/owner', {"Id":data.Id,"Password": password? password:data.Password,"Phone":phone? phone: data.Phone,"Name":data.Email})
+
+        console.log("res:",res1);
 
 
-status==200?
+        res1.request.status==200?
       toast.current.show({ severity: 'info', summary: 'Confirmed', detail: 'Your details have been successfully updated', life: 3000 }):
-      toast.current.show({ severity: 'warn', summary: 'Rejected', detail: 'You have rejected', life: 3000 });
+      toast.current.show({ severity: 'warn', summary: 'Rejected', detail:res1.response.data.message, life: 3000 });
       setTimeout(() => {
         navigate("/owner/")
       }, 3000);
       
       }
 
-  const reject = () => {
+  const reject = () => {}
       
-  }
+  
   const tmpuserid=181;
   const {Post,updateData } = useAxios1();
   

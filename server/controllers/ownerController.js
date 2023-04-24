@@ -5,10 +5,8 @@ const CategoryDB= require("../dal/categoryAccess")
 const AdvertismentDB= require("../dal/advertismentAccess")
 const Mailer = require('../services/mail')
 const base64toFile = require('node-base64-to-file');
-const { log } = require("console")
-
-
-
+const path = require("path")
+const {v4:uuid} = require("uuid")
 
 class OwnerController {
 
@@ -37,11 +35,13 @@ class OwnerController {
     const daydiff = diff / (1000 * 60 * 60 * 24);
     const priceList=await PricesDB.getPriceList()
     if(!priceList) return res.status(400).json({ message: 'error occured while getting fee'})
-    res.status(201).json(priceList[0].DayFee*daydiff+priceList[0].CategoryFee*req.body.numOfCategories)
+    console.log("pricw",priceList.dataValues);
+    res.status(201).json(priceList.dataValues.DayFee*daydiff+priceList.dataValues.CategoryFee*req.body.numOfCategories)
     }
     getPriceList=async(req, res) => {
         const priceList=await PricesDB.getPriceList()
         if(!priceList)
+
             res.status(400).json({ message: 'error occured while getting price list'})
         res.status(200).json(priceList)
     }
@@ -57,6 +57,7 @@ class OwnerController {
         res.status(200).json({storeName:details.Name, categories:categories.map(c=>c["Name.Name"])})
     }
     getPersonalDetails=async(req, res) => {
+        
         const details=await OwnerDB.getOwnerDetails(req.body.Id)
         if(!details) return  res.status(400).json({ message: 'error occured while getting owner details'})
         else res.status(200).json(details)
@@ -109,7 +110,8 @@ class OwnerController {
     }
     
     updatePersonalDetails=async(req, res) => {
-        if(!await OwnerDB.updatePersonalDetails(req.body)) res.status(400).json({ message: 'error occured while updating owner details'})
+        
+        if(!await OwnerDB.updatePersonalDetails(req.body)) res.status(401).json({ message: 'error occured while updating owner details'})
         else res.status(200).json({ message: 'updated sucssfully'})
 
     }
@@ -128,20 +130,29 @@ class OwnerController {
     //  }
         //loadFile
         let imagePath=""
-        const base64String ='data:image/jpeg;base64,/9j/4AAQSkZJRgABAgEBLAEsAAD/4RbbRXhpZgAASUkqAAgAAAANAAABAwABAAAAGgQAAAEBAwABAAAAWgYAAAIBAwABAAAAAQAAAAMBAwABAAAAAQAAAAYBAwABAAAAAAAAABIBAwABAAAAAQAAABUBAwABAAAAAQAAABoBBQABAAAAqgAAABsBBQABAAAAsgAAACgBAwABAAAAAgAAADEBAgAcAAAAugAAADIBAgAUAAAA1gAAAGmHBAABAAAA7AAAABgBAADAxi0AECcAAMDGLQAQJwAAQWRvYmUgUGhvdG9zaG9wIENTMiBXaW5kb3dzADIwMDc6MDI6MDkgMTE6MjA6MTcAAAADAAGgAwABAAAA//8AAAKgBAABAAAAGgQAAAOgBAABAAAAWgYAAAAAAAAAAAYAAwEDAAEAAAAGAAAAGgEFAAEAAABmAQAAGwEFAAEAAABuAQAAKAEDAAEAAAACAAAAAQIEAAEAAAB2AQAAAgIEAAEAAABdFQAAAAAAAEgAAAABAAAASAAAAAEAAAD/2P/gABBKRklGAAECAABIAEgAAP/tAAxBZG9iZV9DTQAB/+4ADkFkb2JlAGSAAAAAAf/bAIQADAgICAkIDAkJDBELCgsRFQ8MDA8VGBMTFRMTGBEMDAwMDAwRDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAENCwsNDg0QDg4QFA4ODhQUDg4ODhQRDAwMDAwREQwMDAwMDBEMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwM/8AAEQgAoABnAwEiAAIRAQMRAf/dAAQAB//EAT8AAAEFAQEBAQEBAAAAAAAAAAMAAQIEBQYHCAkKCwEAAQUBAQEBAQEAAAAAAAAAAQACAwQFBgcICQoLEAABBAEDAgQCBQcGCAUDDDMBAAIRAwQhEjEFQVFhEyJxgTIGFJGhsUIjJBVSwWIzNHKC0UMHJZJT8OHxY3M1FqKygyZEk1RkRcKjdDYX0lXiZfKzhMPTde';
+        const folder = path.join(__dirname, "..", "public", "images")
+        const filename = `${uuid()}`
+        const fileUrl  =`${folder}\\${filename}`
+        
+        // const base64String ='data:image/jpeg;base64,/9j/4AAQSkZJRgABAgEBLAEsAAD/4RbbRXhpZgAASUkqAAgAAAANAAABAwABAAAAGgQAAAEBAwABAAAAWgYAAAIBAwABAAAAAQAAAAMBAwABAAAAAQAAAAYBAwABAAAAAAAAABIBAwABAAAAAQAAABUBAwABAAAAAQAAABoBBQABAAAAqgAAABsBBQABAAAAsgAAACgBAwABAAAAAgAAADEBAgAcAAAAugAAADIBAgAUAAAA1gAAAGmHBAABAAAA7AAAABgBAADAxi0AECcAAMDGLQAQJwAAQWRvYmUgUGhvdG9zaG9wIENTMiBXaW5kb3dzADIwMDc6MDI6MDkgMTE6MjA6MTcAAAADAAGgAwABAAAA//8AAAKgBAABAAAAGgQAAAOgBAABAAAAWgYAAAAAAAAAAAYAAwEDAAEAAAAGAAAAGgEFAAEAAABmAQAAGwEFAAEAAABuAQAAKAEDAAEAAAACAAAAAQIEAAEAAAB2AQAAAgIEAAEAAABdFQAAAAAAAEgAAAABAAAASAAAAAEAAAD/2P/gABBKRklGAAECAABIAEgAAP/tAAxBZG9iZV9DTQAB/+4ADkFkb2JlAGSAAAAAAf/bAIQADAgICAkIDAkJDBELCgsRFQ8MDA8VGBMTFRMTGBEMDAwMDAwRDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAENCwsNDg0QDg4QFA4ODhQUDg4ODhQRDAwMDAwREQwMDAwMDBEMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwM/8AAEQgAoABnAwEiAAIRAQMRAf/dAAQAB//EAT8AAAEFAQEBAQEBAAAAAAAAAAMAAQIEBQYHCAkKCwEAAQUBAQEBAQEAAAAAAAAAAQACAwQFBgcICQoLEAABBAEDAgQCBQcGCAUDDDMBAAIRAwQhEjEFQVFhEyJxgTIGFJGhsUIjJBVSwWIzNHKC0UMHJZJT8OHxY3M1FqKygyZEk1RkRcKjdDYX0lXiZfKzhMPTde';
+        const base64String=req.body.Img
         const allAds=await AdvertismentDB.getAllAds();
-        const maxId =allAds[allAds.length-1].Id+1
+        //const maxId =allAds[allAds.length-1].Id+1
         
-        try {
-        imagePath = await base64toFile(base64String, { filePath: 'J:\הנדסת תוכנה', fileName: "\ad_"+maxId+"_"+req.body.AdOwner, types: ['jpeg'], fileMaxSize: 3145728 });
-        
+       try {
+       // imagePath = await base64toFile(base64String, { filePath: "./img", fileName: "/ad_"+1+"_"+req.body.AdOwner, types: ['jpeg'], fileMaxSize: 3145728 });
+        imagePath = await base64toFile(base64String, { filePath:folder, fileName:filename, types: ['jpeg'], fileMaxSize: 3145728 });
+        //console.log("path"+fileUrl);
         } catch (error) {
-        
-        return res.status(400).json({ message: 'error occured while loading image'})
+           
+         return res.status(400).json({ message: 'error occured while loading image'})
         }
-  ///wrong path in db!!!!!!!!!!!!!!!!!!!!!!!
-        const newAd= await AdvertismentDB.createNewAd({"Img":'J:\הנדסת תוכנה'+imagePath, "StartDate": new Date(req.body.StartDate),
-                                                        "EndDate":new Date(req.body.EndDate),"AdOwner":req.body.AdOwner,"StoreId":req.body.StoreId})
+       
+
+        const newAd= await AdvertismentDB.createNewAd({"Img":fileUrl+".jpeg", "StartDate": req.body.StartDate,
+                                                       "EndDate":req.body.EndDate,"AdOwner":req.body.AdOwner,"StoreId":req.body.StoreId})
+
+
         if(!newAd) return res.status(400).json({ message: 'error occured when trying to add ad'})
         
         req.body.Categories.forEach(async(element) => {
@@ -154,7 +165,7 @@ class OwnerController {
         });
         //email reminder to manager
     const manager=await OwnerDB.getManager();
-    
+    console.log(manager);
     if(!manager)return res.status(400).json({ message: 'error occured when trying upload ad'})
         const to = manager.Email;
         
@@ -171,7 +182,7 @@ class OwnerController {
                 res.status(500).send('Failed to send email');
             });
 
-        //res.status(200).json({ message: 'uploaded sucssfully'}) 
+        // res.status(200).json({ message: 'uploaded sucssfully'}) 
 
     }
     

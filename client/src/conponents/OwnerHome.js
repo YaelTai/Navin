@@ -6,6 +6,9 @@ import 'primereact/resources/themes/lara-light-indigo/theme.css';   // theme
 import 'primereact/resources/primereact.css';                       // core css
 import 'primeicons/primeicons.css';                                 // icons
 import 'primeflex/primeflex.css';  
+import { useAxios1 } from "../hooks/useAxios";
+
+
 const btn = {
   height: '10%',
   margin: '2%',
@@ -20,13 +23,25 @@ const footer = (
 
   </div>
 );
+
 const OwnerHome=()=>{
+  const { Get, postData,Post } = useAxios1();
   const navigate = useNavigate();
+  let { data, loading, error, refetch } = Post(`owner/owner`,{"Id":181});
+  if (loading) {
+    return <p>Loading...</p>;
+  }
+  if (error) {
+    return <p>Error!</p>;
+  }
+
+  console.log("``````````````````````````````````````",data);
+  
           return (
         <>
-        <Card title="Welcome *owner*!" footer={footer} header={header} className="md:w-25rem" style={{ "margin": "2%", "width": "95%", "height": "98%" ,"position":'fixed',overflowY:"auto"}}>
+        <Card title="" footer={footer} header={header} className="md:w-25rem" style={{ "margin": "2%", "width": "95%", "height": "98%" ,"position":'fixed',overflowY:"auto"}}>
             <p className="m-0">
-            <h1>welcome owner!</h1>
+            <h1>welcome {data.Name}!</h1>
             <Button label="Load Advertisment" style={btn} onClick={()=>navigate("/owner/uploadAd")} /><br/><br/>
             <Button label="Pay For Approved Ad" style={btn} onClick={()=>navigate("")}/><br/><br/>
             <Button label="Update Personal details" style={btn} onClick={()=>navigate("/owner/updatePersonalsDetail")}/><br/><br/>

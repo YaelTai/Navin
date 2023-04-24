@@ -177,9 +177,11 @@ export default function ChooseStores() {
               value={selectedstoresForCat}
               options={storesForCat}
               optionLabel="Name"
-              onChange={(e) => { console.log("e.value*********",e.value);
-                setselectedstoresForCat([...selectedstoresForCat, e.value]);
+              onChange={(e) => { console.log("e.value*********",storesForCat);
+              console.log(selectedstoresForCat,"selectedstoresForCat");
+                setselectedstoresForCat(e.value);
               }}
+
               placeholder="Select  store"
               itemTemplate={storeforCatTemplate}
               panelFooterTemplate={panelFooterTemplate}
