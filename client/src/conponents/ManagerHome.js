@@ -31,13 +31,14 @@ const ManagerHome=()=>{
             <p className="m-0">
             <h1>welcome manager!</h1>
             <Button label="update categories" style={btn} onClick={()=>navigate("/manager/updateCategories")}/><br/>
+            <Button label="Add Store Owner" style={btn} onClick={()=>navigate("/manager/AddOwner")}/><br/>
+
             <Button label="Add new Store" style={btn} onClick={()=>navigate("/manager/addStore")}/><br/>
             <Button label="Remove Store" style={btn} onClick={()=>navigate("/manager/removeStore")}/><br/>
            
            
             <Button label="Approve Ads" style={btn} onClick={()=>navigate("/manager/approveAds")}/><br/>
             <Button label="Update PriceList" style={btn} onClick={()=>navigate("/manager/UpdatePriceList")}/><br/>
-            <Button label="Add Store Owner" style={btn} onClick={()=>navigate("/manager/AddOwner")}/><br/>
             </p>
         </Card>
         </>
