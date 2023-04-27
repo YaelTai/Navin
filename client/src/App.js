@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from "./conponents/login/login"
-
+import UserProvider from "./conponents/user/UserProvider"
 import DeleteSrore from "./conponents/deleteStore"
 import Register from "./conponents/Register/Register";
 import ToolBar from "./conponents/menues/toolBar";
@@ -27,8 +27,9 @@ import "primereact/resources/themes/saga-blue/theme.css";
 import "./index.css";
 
 function App() {
-  return (
-    <>
+  return (<>
+    
+     <UserProvider>
 
        <Router>
         <Routes>
@@ -58,6 +59,7 @@ function App() {
           
         </Routes>
       </Router> 
+      </UserProvider>
     </>
   );
 }

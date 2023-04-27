@@ -37,7 +37,7 @@ const UpdatePersonalsDetails = () => {
   const tmpuserid=181;
   const {Post,updateData } = useAxios1();
   
-  let { data, loading, error, refetch } = Post(`owner/owner`,{"Id":181});
+  let {data, loading, error, refetch } = Post(`owner/owner`,{"Id":181});
   if (loading) {
     return <p>Loading...</p>;
   }

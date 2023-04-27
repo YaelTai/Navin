@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState ,useContext,useRef} from "react";
 import { Form, Field } from "react-final-form";
 import { InputText } from "primereact/inputtext";
 import { Button } from "primereact/button";
@@ -7,6 +7,9 @@ import { classNames } from "primereact/utils";
 import { Card } from 'primereact/card';    
 import { useAxios1 } from "../../hooks/useAxios";
 import { useNavigate } from "react-router-dom";
+import { Toast } from "primereact/toast";
+
+import UserContext from '../user/UserContext'
 const header = (
   
   <img alt="Card" src="https://primefaces.org/cdn/primereact/images/usercard.png" style={{ "width": "98%", "height": "50px" }} />
@@ -17,6 +20,26 @@ const footer = (
   </div>
 );
 const Register = () => {
+const toast = useRef(null);
+const showError = (msg) => {
+  toast.current.show({
+    severity: "error",
+    summary: "Error",
+    detail: msg,
+    life: 3000,
+  });
+};
+const showSuccess = (msg) => {
+  toast.current.show({
+    severity: "success",
+    summary: "Success",
+    detail: msg,
+    life: 3000,
+  });
+};
+
+  const {setUserId}=useContext(UserContext);
+
   const { postData } = useAxios1();
   const [showMessage, setShowMessage] = useState(false);
   const [formData, setFormData] = useState({});
@@ -48,6 +71,7 @@ const Register = () => {
   };
 
   const onSubmit =async  (data, form) => {
+          
     setFormData(data);
     setShowMessage(true);
     const x={
@@ -56,13 +80,16 @@ const Register = () => {
     }
     
     const res=await postData("owner/logIn",x)
-    if(!res)
+   
+    if(res.status!=201)
     {
  
-      alert("wrong email or password")
+      showError("wrong email or password")
       
     }
+    
     else{
+    setUserId(res.data.Id)
     if (res.data.IsManager) navigate("/manager")
     else navigate("/owner")
     form.restart();}
@@ -79,7 +106,8 @@ const Register = () => {
     <Card title="Log In" footer={footer} header={header} className="md:w-25rem" style={{ "margin": "2%", "width": "95%", "height": "98%" ,"position":'fixed',overflowY:"auto"}}>
     <p className="m-0">
    
-          
+    <Toast ref={toast} />
+ 
           <Form
             onSubmit={onSubmit}
             initialValues={{
