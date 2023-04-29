@@ -5,6 +5,8 @@ import { Button } from "primereact/button";
 import { Toast } from "primereact/toast";
 import ManagerMenu from "./menues/managerMenu";
 import { useAxios1 } from "../hooks/useAxios";
+import { useNavigate } from "react-router-dom";
+
 const header = (
   <img
     alt="Card"
@@ -19,6 +21,7 @@ const footer = (
 );
 
 const AddOwner = () => {
+  const navigate = useNavigate();
   const { postData } = useAxios1();
   const toast = useRef(null);
   const showError = (msg) => {
@@ -61,23 +64,7 @@ const AddOwner = () => {
         <p className="m-0">
           <Toast ref={toast} />
 
-          {/* <span className="p-float-label">
-            <InputText
-              id="username"
-              value={Name}
-              onChange={(e) =>setName(e.target.value)}
-            />
-            <label htmlFor="username">Username</label>
-          </span>
           
-          <span className="p-float-label">
-            <InputText
-              id="username"
-              value={value}
-              onChange={(e) => setValue(e.target.value)}
-            />
-            <label htmlFor="drh">gday</label>
-          </span> */}
           <span className="p-float-label">
           <InputText
             value={Name}
@@ -123,11 +110,18 @@ const AddOwner = () => {
                 showError("all fields required");
               } else {
                 const obj = { Name: Name, Id: Id, Email: Email, Phone: Phone };
+                //debugger;
+               
                 const res = await postData("manager/owner", obj);
+                
                 console.log(res);
                 if (res.status == 200) {
                   showSuccess(res.data);
+                  setTimeout(() => {
+                    navigate(`/manager/`)
+                  }, 3000);
                 } else showError(res.response.data.message);
+
               }
             }}
           />
