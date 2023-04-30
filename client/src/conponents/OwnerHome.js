@@ -35,7 +35,7 @@ const OwnerHome=()=>{
     return <p>Error!</p>;
   }
 
-  console.log("``````````````````````````````````````",data);
+  //console.log("``````````````````````````````````````",data);
   
           return (
         <>
@@ -43,7 +43,7 @@ const OwnerHome=()=>{
             <p className="m-0">
             <h1>welcome {data.Name}!</h1>
             <Button label="Load Advertisment" style={btn} onClick={()=>navigate("/owner/uploadAd")} /><br/><br/>
-            <Button label="Pay For Approved Ad" style={btn} onClick={()=>navigate("")}/><br/><br/>
+            <Button label="Pay For Approved Ad" style={btn} onClick={()=>navigate("/payment")}/><br/><br/>
             <Button label="Update Personal details" style={btn} onClick={()=>navigate("/owner/updatePersonalsDetail")}/><br/><br/>
             <Button label="Update Store Details" style={btn} onClick={()=>navigate("/owner/updateStoreDetails")}/><br/>
             </p>
