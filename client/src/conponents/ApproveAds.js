@@ -7,6 +7,7 @@ import { useAxios1 } from "../hooks/useAxios";
 import { Toast } from 'primereact/toast';
 import Approve from "./v";
 import { ConfirmDialog, confirmDialog } from 'primereact/confirmdialog';
+
 const AppoveAds = () => {
   let Ad;
   const toast = useRef(null);
@@ -54,22 +55,13 @@ const reject = () => {
   );
   
   const footer = (
-    <div className="flex flex-wrap justify-content-end gap-2">
-    </div>
+    <div style={{ position: 'relative', height: '350px' }}>
+ 
+
+  <ManagerMenu/>
+</div>
   );
-  // const approveMsg = async (ad) => {
 
-  //   const res = await updateData("manager/approveAd", { "Id": ad.Id, "AdOwner": ad.AdOwner })
-  //   console.log(res);
-  //   if (res.request.status == 201) { showSuccess(res.data); }
-  //   else showError(res.response.data.message);
-  //   refetch()
-  // }
-
-  // const rejectedMsg = async (ad) => {
-  //   await updateData("manager/refuseAd", { "Id": ad.Id, "AdOwner": ad.AdOwner })
-  //   refetch()
-  // }
    return (<>
 <Card
       title="Approve ads"
@@ -92,10 +84,13 @@ const reject = () => {
         <h5>Advertisements awaiting approval:</h5>
         <h6>You can choose to approve or reject.</h6>
         <ul style={{ listStyle: "none", marginRight: "10%",textAlign:"center"}}>
+          
           {data.map((ad, index) => (
-            <li>
+     
+            <li> 
+              {console.log("ad",ad.Img)} 
               <Image
-                src={ad.img}
+                src={ad.Img}
                 alt="Image"
                 width="250"
                 preview
@@ -105,7 +100,8 @@ const reject = () => {
               <br /><br />
 
               <span>From: {ad.StartDate}</span><br />
-              <span>To: {ad.EndDate}</span><br /><br />              <span className="card flex flex-wrap gap-2 justify-content-center">
+              <span>To: {ad.EndDate}</span><br /><br />            
+                <span className="card flex flex-wrap gap-2 justify-content-center">
               <Approve refetch={refetch} Ad={ad}/>
 
               <Button
@@ -122,9 +118,10 @@ const reject = () => {
               <br />
               <br />
             </li>
+            
           ))}
         </ul>
-        <ManagerMenu />
+   
 
       </p>
     </Card>

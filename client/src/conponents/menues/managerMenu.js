@@ -1,27 +1,23 @@
 import { useNavigate } from "react-router-dom";
-import { Dock } from "primereact/dock";
-import "./DockDemo.css";
-import { AiFillHome } from "react-icons/ai";
-export default function ManagerMenu() {
-  const items = [
-    {
-      label: "Finder",
-      icon: () => (
-        <>
-       <lable><AiFillHome className="zoom" onClick={()=>{navigate("/manager")}}/></lable>
-        <lable onClick={()=>{navigate("/manager")}}>Home</lable>
-        </>
-      ),
-    },
-   
+import { SpeedDial } from 'primereact/speeddial';
+import 'primeflex/primeflex.css'
+import 'primeicons/primeicons.css';
 
-    
-  ];
+
+
+const ManagerMenu = () => {
+  
+
+
   const navigate = useNavigate();
 
   return (
-    <div className="dock-window" style={{position: 'absolute'}}> 
-      <Dock model={items} position="bottom" />
-    </div>
+    <SpeedDial  direction="right" transitionDelay={80} showIcon="pi pi-home" hideIcon="pi pi-times" buttonClassName="p-button-outlined"
+         onClick={()=>{ navigate("/manager")}}
+  
+   
+  className="bottom-auto mr-17rem ml-0   "
+/>
   );
 }
+export default ManagerMenu;

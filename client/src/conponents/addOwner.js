@@ -15,9 +15,11 @@ const header = (
   />
 );
 const footer = (
-  <div className="flex flex-wrap justify-content-end gap-2">
-    <ManagerMenu />
-  </div>
+  <div style={{ position: 'relative', height: '350px' }}>
+
+
+<ManagerMenu/>
+</div>
 );
 
 const AddOwner = () => {
@@ -39,6 +41,15 @@ const AddOwner = () => {
       detail: msg,
       life: 3000,
     });
+  };
+  const [loading, setLoading] = useState(false);
+
+  const load = () => {
+      
+
+      setTimeout(() => {
+          
+      }, 2000);
   };
   const [value, setValue] = useState('');
   const [Name, setName] = useState("");
@@ -102,29 +113,33 @@ const AddOwner = () => {
           </span>
           <br />
           <br />
-          <Button
-            label="Submit"
-            icon="pi pi-check"
-            onClick={async () => {
-              if (!Name || !Id || !Email ) {
-                showError("all fields required");
-              } else {
-                const obj = { Name: Name, Id: Id, Email: Email, Phone: Phone };
-                //debugger;
-               
-                const res = await postData("manager/owner", obj);
-                
-                console.log(res);
-                if (res.status == 200) {
-                  showSuccess(res.data);
-                  setTimeout(() => {
-                    navigate(`/manager/`)
-                  }, 3000);
-                } else showError(res.response.data.message);
+          <Button label="Submit" icon="pi pi-check" loading={loading} onClick={async ()=>{
+            
+            
+            
+            
+            if (!Name || !Id || !Email ) {
+              showError("all fields required");
+            } else {
+            setLoading(true);
+            load()
+              const obj = { Name: Name, Id: Id, Email: Email, Phone: Phone };
+              //debugger;
+           
+              const res = await postData("manager/owner", obj);
+              setLoading(false);
+              console.log(res);
+              if (res.status == 200) {
+                showSuccess(res.data);
+                setTimeout(() => {
+                  navigate(`/manager/`)
+                }, 3000);
+              } else showError(res.response.data.message);
 
-              }
-            }}
-          />
+            }
+          }} 
+            />
+         
         </p>
       </Card>
     </>

@@ -3,7 +3,7 @@ import { Dropdown } from 'primereact/dropdown';
 import { MultiSelect } from 'primereact/multiselect';
 import { InputNumber } from 'primereact/inputnumber';
 import { Button } from 'primereact/button';
-                                                                  
+import OwnerMenu from './menues/ownerMenu';                                                               
 import { Card } from 'primereact/card'; 
 import { useAxios1 } from "../hooks/useAxios";
 
@@ -76,15 +76,13 @@ setCategories(cats4store.data)
 
 
 
-    const header = (
-  
-        <img alt="Card" src="https://primefaces.org/cdn/primereact/images/usercard.png" style={{ "width": "98%", "height": "50px" }} />
-      );
-      const footer = (
-        <div className="flex flex-wrap justify-content-end gap-2">
-      
-        </div>
-      );
+  const header = (
+    <img alt="Card" src="https://primefaces.org/cdn/primereact/images/usercard.png" style={{ "width": "98%", "height": "50px" }} />
+);
+const footer = (
+    <OwnerMenu/>
+    //<Button  radius={80} type="semi-circle" direction="up" style={{ left: 'calc(50% - 2rem)', bottom: 0 }} />
+);
 
     return (
         <div style={{"marginTop":'5%'}} >

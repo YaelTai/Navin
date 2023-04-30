@@ -4,7 +4,12 @@ import { Button } from "primereact/button";
 import { Card } from "primereact/card";
 import { useAxios1 } from "../hooks/useAxios";
 import { Toast } from 'primereact/toast';
+import { SpeedDial } from 'primereact/speeddial';
+import { useNavigate } from "react-router-dom";
+import 'primeicons/primeicons.css';
+import ManagerMenu from "./menues/managerMenu";
 const UpdateCategories = () => {
+
 const { postData } = useAxios1();
 
   const [categories, setCategories] = useState([]);
@@ -26,7 +31,11 @@ const { postData } = useAxios1();
     />
   );
   const footer = (
-    <div className="flex flex-wrap justify-content-end gap-2"></div>
+    <div style={{ position: 'relative', height: '350px' }}>
+ 
+
+  <ManagerMenu/>
+</div>
   );
   return (
     <div>
@@ -34,8 +43,10 @@ const { postData } = useAxios1();
         title="Update Catetegories for the mall!"
         footer={footer}
         header={header}
-        className="md:w-25rem"
+      
+        className="text-green-600 md:w-25rem"
         style={{
+        
           margin: "2%",
           width: "95%",
           height: "98%",

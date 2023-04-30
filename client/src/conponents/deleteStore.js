@@ -15,9 +15,11 @@ const header = (
   />
 );
 const footer = (
-  <div className="flex flex-wrap justify-content-end gap-2">
-    <ManagerMenu />
-  </div>
+  <div style={{ position: 'relative', height: '350px' }}>
+
+
+<ManagerMenu/>
+</div>
 );
 const DeleteStore = () => {
   const { deleteData } = useAxios1();

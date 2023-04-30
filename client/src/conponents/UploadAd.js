@@ -11,25 +11,9 @@ import { useAxios1 } from "../hooks/useAxios";
 import { Toast } from 'primereact/toast';
 import PriceList from './priceList'
 import { set } from 'react-hook-form';
-// const stores = [
-//     { name: 'New York'},
-//     { name: 'Rome' },
-//     { name: 'London'},
-//     { name: 'Istanbul' },
-//     { name: 'Paris'}
-// ];
+import { Dialog } from 'primereact/dialog';
+import OwnerMenu from './menues/ownerMenu';
 
-// const categories = [
-//     { name: 'shoes', code: '' },
-//     { name: 'cloting', code: 'BR' },
-//     { name: 'China', code: 'CN' },
-//     { name: 'Egypt', code: 'EG' },
-//     { name: 'France', code: 'FR' },
-//     { name: 'Germany', code: 'DE' },
-//     { name: 'India', code: 'IN' },
-//     { name: 'Japan', code: 'JP' },
-//     { name: 'Spain', code: 'ES' },
-//     { name: 'United States', code: 'US' }]
 
 
 const header = (
@@ -37,9 +21,8 @@ const header = (
     <img alt="Card" src="https://primefaces.org/cdn/primereact/images/usercard.png" style={{ "width": "98%", "height": "50px" }} />
 );
 const footer = (
-    <div className="flex flex-wrap justify-content-end gap-2">
-
-    </div>
+    <></>
+    
 );
 let categoryTemplate = (option) => {
 
@@ -64,7 +47,18 @@ let selectedCategoriesTemplate = (option) => {
 }
 
 
+
+
 const UploadAd = () => {
+    const [loading, setLoading] = useState(false);
+    const [visible, setVisible] = useState(false);
+  const load = () => {
+      
+
+    setTimeout(() => {
+        
+    }, 2000);
+};
     const toast = useRef(null);
 
     const showSuccess = () => {
@@ -133,19 +127,22 @@ let  base64data="";
 
         return <>
         <Toast ref={toast} />
-            <Card title="Upload an Ad" footer={footer} header={header} className="md:w-25rem" style={{ "margin": "2%", "width": "95%", "height": "98%", "position": 'fixed', overflowY: "auto" }}>
-                <p className="m-0">
+        <> <Card title="Upload an Ad" footer={footer} header={header} className="md:w-25rem" style={{ "margin": "2%", "width": "95%", "height": "98%", "position": 'fixed', overflowY: "auto" }}>
+            <p className="m-0">
                     {/* <Button label="watch Price List" icon="pi pi-eye" onClick={() => navigate("/owner/priceList")} /><br /><br /> */}
                     <div className="card">
-                        <Accordion activeIndex={0}>
+                        <Accordion >
+                            
                             <AccordionTab header="Watch Price List">
-                                <PriceList />
-                            </AccordionTab>
+                    <p className="m-0">
+                    <PriceList />
+                    </p>
+                </AccordionTab>
                         </Accordion>
                     </div>3
 
                     <lable>1. Load file</lable><br /><br />
-                    <FileUpload name="demo[]" url={'/api/upload'} multiple accept="image/*" customUpload uploadHandler={customBase64Uploader} maxFileSize={'40mb'} emptyTemplate={<p className="m-0">Drag and drop files to here to upload.</p>} /><br></br>
+                    <FileUpload name="demo[]" url={'/api/upload'} multiple accept="image/*" customUpload uploadHandler={customBase64Uploader} maxFileSize={'10000000000000'} emptyTemplate={<p className="m-0">Drag and drop files to here to upload.</p>} /><br></br>
                     <label style={{ "marginRight": '1%' }} >2. choose store for the ad </label><br /><br />
                     <Dropdown value={selectedStore} onChange={(e) => {
 
@@ -163,12 +160,17 @@ let  base64data="";
                     <lable style={{ "marginRight": "10px" }}>to:</lable><Calendar value={to} onChange={(e) => setto(new Date(e.target.value))} /> <br></br><br></br>
                     <lable>5. Estimated cost</lable>
                     <h1>{fee} nis</h1>
-                    <Button label="Send Request To Manager" icon="pi pi-check" onClick={async ()=>{
+                    <Button className="mt-50rem" label="Send Request To Manager" icon="pi pi-check" loading={loading} onClick={async ()=>{
                         if(!base64data||!selectedCategories|!selectedStore){
+                            if(!base64data){
+                                setVisible(true)
+                            }
+                            else
                             showError()
                         }
                         else{
-
+                            setLoading(true);
+                            load()
                          const res1 = await postData("owner/ad", 
                          
                          {
@@ -179,6 +181,7 @@ let  base64data="";
                                      "Categories": selectedCategories.map((c)=>c.Name),
                                      "StoreId":selectedStore.Id   
                              });
+                             setLoading(false);
                          console.log("res",res1);
                          
                              res1.request.status==200?
@@ -187,10 +190,21 @@ let  base64data="";
                          
                          
                          
-                    }}} />
-
+                    }}} /> 
+                    <div className="mx-10"><OwnerMenu/></div>
+                 
+                   
+                     
+                 
+                      <Dialog header="Ooops!" visible={visible} modal={false} style={{ width: '50vw' }} onHide={() => setVisible(false)}>
+                <p className="m-0">
+         You forget to press on "Upload!"
                 </p>
-            </Card>
+            </Dialog>
+                </p>
+            
+            </Card> 
+                 </>
         </>
     }
     export default UploadAd

@@ -2,13 +2,14 @@ import React, { useEffect, useState } from "react";
 import { Card } from 'primereact/card';
 import { InputText } from "primereact/inputtext";
 import { Button } from "primereact/button";
+import 'primeicons/primeicons.css';
+import OwnerMenu from "./menues/ownerMenu";
 const header = (
     <img alt="Card" src="https://primefaces.org/cdn/primereact/images/usercard.png" style={{ "width": "98%", "height": "50px" }} />
 );
 const footer = (
-    <div className="flex flex-wrap justify-content-end gap-2">
-       
-    </div>
+    <OwnerMenu/>
+    //<Button  radius={80} type="semi-circle" direction="up" style={{ left: 'calc(50% - 2rem)', bottom: 0 }} />
 );
 
 const Payment = () => {
