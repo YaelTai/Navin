@@ -9,10 +9,25 @@ import Approve from "./v";
 import { ConfirmDialog, confirmDialog } from 'primereact/confirmdialog';
 
 const AppoveAds = () => {
+  const [images,setImages]=useState('');
+ 
+  const getImage=async()=>
+  { console.log("hiiiii");
+
+      const x = await postData(`manager/ads`,
+      {"URL": "C:\\Users\\213876832\\Desktop\\Navin\\server\\public\\images\\2bb0c403-21f7-492d-a245-9cc356c5c6bf.jpeg"});
+     console.log("x",x.data);
+      setImages(x.data);
+      console.log("images",images);
+  }
+
+  useEffect(()=>{
+    getImage();
+},[])
   let Ad;
   const toast = useRef(null);
-const confirm2 = () => {
-  // debugger;
+  const confirm2 = () => {
+    // debugger;
     confirmDialog({
       message: 'Do you want to reject this ad?',
       header: 'Delete Confirmation',
@@ -23,22 +38,24 @@ const confirm2 = () => {
     });
   };
 
-  const accept = async() => {
+  const accept = async () => {
     // debugger;
-    const res =  await updateData("manager/refuseAd", { "Id": Ad.Id, "AdOwner": Ad.AdOwner })
+    const res = await updateData("manager/refuseAd", { "Id": Ad.Id, "AdOwner": Ad.AdOwner })
     console.log(res);
-    debugger
-    if (res.status == 201){ console.log("yes");   toast.current.show({ severity: 'info', summary: 'Confirmed', detail:res.data , life: 3000 });
-    refetch()
-  }
-  
+
+    if (res.status == 201) {
+      console.log("yes"); toast.current.show({ severity: 'info', summary: 'Confirmed', detail: res.data, life: 3000 });
+      refetch()
+    }
+
     else toast.current.show({ severity: 'warn', summary: 'Rejected', detail: res.response.data.message, life: 3000 });
   }
-const reject = () => {
- return
-}
-  const { Get, updateData } = useAxios1();
+  const reject = () => {
+    return
+  }
+  const { Get, updateData, postData } = useAxios1();
   let { data, loading, error, refetch } = Get(`manager/ads`);
+console.log(data)
   if (loading) {
     return <p>Loading...</p>;
   }
@@ -53,17 +70,17 @@ const reject = () => {
       style={{ width: "98%", height: "50px" }}
     />
   );
-  
+
   const footer = (
     <div style={{ position: 'relative', height: '350px' }}>
- 
 
-  <ManagerMenu/>
-</div>
+
+      <ManagerMenu />
+    </div>
   );
 
-   return (<>
-<Card
+  return (<>
+    <Card
       title="Approve ads"
       footer={footer}
       header={header}
@@ -74,23 +91,24 @@ const reject = () => {
         height: "98%",
         position: "fixed",
         overflowY: "auto",
-        textAlign:"center"
+        textAlign: "center"
       }}
     >
       <p className="m-0">
-      
+
         <ConfirmDialog />
-       <Toast ref={toast} />
+        <Toast ref={toast} />
         <h5>Advertisements awaiting approval:</h5>
         <h6>You can choose to approve or reject.</h6>
-        <ul style={{ listStyle: "none", marginRight: "10%",textAlign:"center"}}>
-          
+        <ul style={{ listStyle: "none", marginRight: "10%", textAlign: "center" }}>
+
           {data.map((ad, index) => (
-     
-            <li> 
-              {console.log("ad",ad.Img)} 
+
+            <li>
+              {console.log("ad", ad.Img)}
+
               <Image
-                src={ad.Img}
+                src={`data:image/jpeg;base64,${ad.Img}`}
                 alt="Image"
                 width="250"
                 preview
@@ -100,28 +118,28 @@ const reject = () => {
               <br /><br />
 
               <span>From: {ad.StartDate}</span><br />
-              <span>To: {ad.EndDate}</span><br /><br />            
-                <span className="card flex flex-wrap gap-2 justify-content-center">
-              <Approve refetch={refetch} Ad={ad}/>
+              <span>To: {ad.EndDate}</span><br /><br />
+              <span className="card flex flex-wrap gap-2 justify-content-center">
+                <Approve refetch={refetch} Ad={ad} />
 
-              <Button
-                //no
-                icon="pi pi-times"
-                rounded
-                text
-                raised
-                severity="danger"
-                aria-label="Cancel"
-                style={{ marginLeft: "10px" }}
-                onClick={()=>{Ad=ad;confirm2();}}
-              /></span>
+                <Button
+                  //no
+                  icon="pi pi-times"
+                  rounded
+                  text
+                  raised
+                  severity="danger"
+                  aria-label="Cancel"
+                  style={{ marginLeft: "10px" }}
+                  onClick={() => { Ad = ad; confirm2(); }}
+                /></span>
               <br />
               <br />
             </li>
-            
+
           ))}
         </ul>
-   
+
 
       </p>
     </Card>

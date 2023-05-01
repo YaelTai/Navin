@@ -1,6 +1,8 @@
 const CategoryDB=require("../dal/categoryAccess")
 const StoreDB=require("../dal/storesAccess")
 const AdvertismentDB= require("../dal/advertismentAccess")
+const fs = require('fs');
+const { log } = require("console");
 class VisitorController {
 
     
@@ -25,9 +27,25 @@ class VisitorController {
        res.status(200).json(Categories)  
     }
     getAllAdsByCategory=async(req, res) => {
+       
         const ads=await AdvertismentDB.getAdsByCategory(req.body.CatId)
-        if(!ads)return res.status(400).json({ message: 'error occured when get ads to categories'})
-        res.status(200).json(ads)   
+
+        if(!ads) return res.status(400).json({ message: 'error occured when get ads to categories'});
+
+        let ads_=[]
+        for (let i = 0; i < ads.length; i++) {
+            let store= await  StoreDB.getStoreById(ads[i]["advertisment.StoreId"])
+            const element ={
+                Id:ads[i].Id,
+                Img:fs.readFileSync(ads[i]['advertisment.Img'], {encoding: 'base64'}),
+                StoreName:store.Name    
+                    
+                
+            }
+            ads_.push(element)
+            
+        }
+        res.status(200).json(ads_)   
     }
     getAllStores=async(req, res) => {
         let stores=await StoreDB.getAllStores()

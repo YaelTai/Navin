@@ -38,7 +38,7 @@ db.categories_for_stores = require('./categoriesForStores')(sequelize, DataTypes
 //links
 db.categories_for_stores.belongsTo(db.categories,{foreignKey:'CategoryId',as: "Name"})
 db.categories_for_stores.belongsTo(db.stores,{foreignKey:'StoreId'})
-
+db.categories_for_ads.belongsTo(db.advertisments,{foreignKey:'AdId'})
 
 db.sequelize.sync({ force: false })
     .then(() => {

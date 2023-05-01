@@ -10,7 +10,7 @@ import "primereact/resources/themes/lara-light-indigo/theme.css";
 import "primereact/resources/primereact.css";
 import "primeicons/primeicons.css";
 import "primeflex/primeflex.css";
-const header = <Ads />;
+
 const footer = <div className="flex flex-wrap justify-content-end gap-2"></div>;
 
 export default function ChooseStores() {
@@ -21,6 +21,7 @@ export default function ChooseStores() {
   const [selectedstoresForCat, setselectedstoresForCat] = useState([]);
   const [storesForCat, setStoresForCat] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState(null);
+  const header = selectedCategory? <Ads Cat={{"Id":selectedCategory.Id}} setselectedstoresForCat={setselectedstoresForCat} setSelectedStore={setSelectedStore} selectedstoresForCat={selectedstoresForCat}/>:<h1>ads will be here</h1>;
   const { Get, postData } = useAxios1();
 
   let stores_ = Get(`visitor/stores`);
@@ -137,14 +138,15 @@ export default function ChooseStores() {
           field="Name"
           dropdown
           onChange={(e) => {
+            console.log("e.val",e.value);
             setSelectedStore(e.value)
-            if (!selectedstoresForCat.includes()){
-              console.log("selectedStore"+e.value);
-              setselectedstoresForCat([...selectedstoresForCat, e.value]);
+            if(!selectedstoresForCat.find((s)=>s.Name===e.value.Name))
+              setselectedstoresForCat([...selectedstoresForCat,e.value]);
+            
             
             }
            }
-        }
+       
         />
         <br />
         <br />
@@ -158,7 +160,8 @@ export default function ChooseStores() {
           field="Name"
           dropdown
           onChange={(e) => {
-            setSelectedCategory(e.value);
+            console.log(e.value);
+            {setSelectedCategory(e.value);}
           }}
           onBlur={async () => {
             await ImportStoresForCategory();

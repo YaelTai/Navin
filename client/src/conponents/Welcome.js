@@ -2,14 +2,15 @@ import React from "react";
 import { Image } from "primereact/image";
 import { Card } from "primereact/card";
 import { useNavigate } from "react-router-dom";
-
-
+import NAVIN2 from '../videos/NAVIN2.mp4'
+import card from '../images/card.png'
+      
 const Welcome = () => {
   const header = (
     <>
       <img
         alt="Card"
-        src="https://primefaces.org/cdn/primereact/images/usercard.png"
+        src={card}
         style={{ width: "98%", height: "50px" }}
       />
       <button
@@ -51,7 +52,7 @@ const Welcome = () => {
   return (
     <>
       <Card
-        title="Welcome"
+        title="Welcome!"
         footer={footer}
         header={header}
         className="md:w-25rem"
@@ -59,16 +60,15 @@ const Welcome = () => {
           margin: "2%",
           width: "95%",
           height: "98%",
-          position: "fixed",
+         // position: "fixed",
           overflowY: "auto",
         }}
       >
-        <p className="m-0"></p>
-        <Image
-          src="https://primefaces.org/cdn/primereact/images/galleria/galleria7.jpg"
-          alt="Image"
-          width="90%"
-        />
+  
+      
+        <video autoPlay muted loop src={NAVIN2} type="video/mp4"
+                        style={{ width: '90%', height: 'auto', objectFit: 'contain' }}
+                    />
       </Card>
     </>
   );

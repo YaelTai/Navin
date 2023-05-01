@@ -9,7 +9,7 @@ VisitorRouter.get("/categories",VisitorController.getAllCategories)
 VisitorRouter.post("/storesForCategory",VisitorController.getStoresByCategory)
 VisitorRouter.get("/stores",VisitorController.getAllStores)
 VisitorRouter.get("/storeForAd",VisitorController.getStoreByAd)
-VisitorRouter.get("/ads",VisitorController.getAllAdsByCategory)
+VisitorRouter.post("/ads",VisitorController.getAllAdsByCategory)
 
 
 module.exports =VisitorRouter;

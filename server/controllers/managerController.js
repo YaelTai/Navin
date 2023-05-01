@@ -6,6 +6,8 @@ const AdvertismentDB= require("../dal/advertismentAccess")
 const PriceListDB= require("../dal/priceListAccess")
 const Mailer = require('../services/mail')
 const { log } = require("console")
+const fs = require('fs');
+
 class ManagerController {
     insertToMap= async(req, res) => {}
     
@@ -135,11 +137,44 @@ class ManagerController {
         else  res.status(201).json({ message: 'deleted  owner succesfully' })
 
     }
+    getOpenDocumentByURL = (req, res, next) => {
+//   let index=req.body.URL.lastIndexOf("\\");
+// console.log("**************************",req.body.URL.substring(index+1,req.body.URL.length));
+// console.log("**************************",req.body.URL.substring(0,index+1));
+//         const options = { 
+//           root: req.body.URL.substring(0,index+1)
+//       }; 
+      
+//         const fileName =  req.body.URL.substring(index+1,req.body.URL.length);
+        // res.sendFile(fileName, options, function (err) {
+        //     if (err) {
+        //       console.log(err);
+        //         next(err);
+        //     } else { 
+        //         console.log('Sent:', fileName); 
+        //     }
+        // });
+        const contents = fs.readFileSync(req.body.URL, {encoding: 'base64'});
+        res.send(contents)
+      }
     getAllPendingAds=async(req, res) => {
+      
        let ads=await AdvertismentDB.getAllWaitingAds()
+       var r = ads.map((item)=>{
+       var ttt= {Id:item.Id,
+            Img:fs.readFileSync(item.Img, {encoding: 'base64'}),
+             
+            StartDate:item.StartDate,
+            EndDate:item.EndDate
+
+        }
+       return ttt;
+       })
+
+      
        if(!ads) res.status(400).json({ message: 'error getting pending ads' })
-   
-       return res.status(201).json(ads)
+     
+       return res.status(201).json(r)
     }
     approveAd=async(req, res) => {
         console.log("AFGAUIG");

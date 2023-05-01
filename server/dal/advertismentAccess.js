@@ -1,17 +1,24 @@
+const { log } = require('console')
 const db=require('../models/index.js')
 const Advertisment=db.advertisments
 const AdCategories=db.categories_for_ads
 
 
 const getAdsByCategory =async  (catId) => {
-   let adsid=await  AdCategories.findAll({where: {CatId:catId}})
-   console.log("******************",adsid[0].dataValues.CatId);
-   return await adsid.map(async (a)=>{
+console.log("@@@@@",catId);
+   return await  AdCategories.findAll({
+      include:[{model:Advertisment}],
+      raw:true,
+      where:{CatId:catId}
+     })
+     
+   // console.log("******************",adsid[0].dataValues.CatId);
+   // return await adsid.map(async (a)=>{
       
-      let ad= await Advertisment.findOne({where:{Id:a.dataValues.AdId}})
-      console.log("ddddddddddddddddd",ad); 
-      return ad;
-   })
+   //    let ad= await Advertisment.findOne({where:{Id:a.dataValues.AdId}})
+   //    console.log("ddddddddddddddddd",ad); 
+   //    return ad;
+   // })
   
 }
 const getAllWaitingAds =async  () => {
