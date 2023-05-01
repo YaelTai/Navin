@@ -28,8 +28,7 @@ export default function ChooseStores() {
   let categories_ = Get(`visitor/categories`);
   let stores = stores_.data;
   let categories = categories_.data;
-  console.log(categories);
-  console.log(stores);
+
 
   // if (loadingStores) {
   //   return <p>Loading...</p>;
@@ -49,8 +48,8 @@ export default function ChooseStores() {
 
   const ImportStoresForCategory = async () => {
     console.log("ImportStoresForCategory");
-    let stores4cat = await postData(`visitor/storesForCategory`, {CatId: selectedCategory.Id,
-    });
+    let stores4cat = await postData(`visitor/storesForCategory`, {CatId: selectedCategory.Id, });
+   
     console.log("stores4catttttttttttttttttttttttt",stores4cat.data);  
     setStoresForCat([...stores4cat.data]);
     //console.log("llllllllllllllll",storesForCat);
@@ -165,7 +164,7 @@ export default function ChooseStores() {
           }}
           onBlur={async () => {
             await ImportStoresForCategory();
-            console.log("imported");
+            
           }}
            
         />
