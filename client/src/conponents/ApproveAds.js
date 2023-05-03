@@ -7,7 +7,7 @@ import { useAxios1 } from "../hooks/useAxios";
 import { Toast } from 'primereact/toast';
 import Approve from "./v";
 import { ConfirmDialog, confirmDialog } from 'primereact/confirmdialog';
-
+import { Dialog } from 'primereact/dialog';
 const AppoveAds = () => {
   const [images,setImages]=useState('');
  

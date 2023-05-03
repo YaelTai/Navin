@@ -9,22 +9,21 @@ import { useAxios1 } from '../hooks/useAxios';
 
 
 export default function Ads(props) {
-    //console.log("hiiiii++++++++++");
-   
-    const [products, setProducts] = useState([
-   
-    ]);   
-         
-        
-    
+    console.log("hiiiii++++++++++", props.Cat);
+
+    const [products, setProducts] = useState([]);
+    const [cat, setCat] = useState(props.Cat.Id);
+if(props.Cat.Id!=cat){setCat(props.Cat.Id)}
+
     const { postData } = useAxios1();
     const loadAds = async () => {
         //console.log("ADS LOADED");
         //console.log("hiiiii", props.Cat);
-        
+
         let res = await postData('visitor/ads', { CatId: props.Cat.Id })
-setProducts([...res.data])
-        console.log("Productd",products);
+        console.log("ads got from sever:", res.data);
+        setProducts([...res.data])
+        console.log("Productd", products);
 
         // x = await postData(`manager/ads`,
         //     { "URL": res.data[3]["advertisment.Img"] });
@@ -34,10 +33,10 @@ setProducts([...res.data])
     }
 
     useEffect(() => {
-        
-        if(props.Cat)loadAds()
-        
-    }, [])
+        console.log("useeeeeeeeeeeeeeeeeeeeee");
+        if (props.Cat) loadAds()
+
+    }, [cat])
 
     const responsiveOptions = [
         {
@@ -62,30 +61,30 @@ setProducts([...res.data])
 
     const productTemplate = (prod) => {
         return (
-           
+
             <div >
                 <div className="mb-3">
-                    
+
                     <img src={`data:image/jpeg;base64,${prod.Img}`} alt={prod.name} style={{ "height": "140px" }} />
                 </div>
                 <Button icon="pi pi-plus" className="p-button p-button-rounded" onClick={
                     () => {
                         //console.log("###########",products[index].StoreName);
-                        const obj={Name:prod.StoreName}
+                        const obj = { Name: prod.StoreName }
                         //console.log("###########",obj);
                         // props.setSelectedStore(products[index].StoreName)
-                        console.log("@@@@@@@@@@@@@@@",props.selectedstoresForCat);
+                        console.log("@@@@@@@@@@@@@@@", props.selectedstoresForCat);
                         // if (!props.selectedstoresForCat.includes({"Name":products[index].StoreName})) {
-                            if(props.selectedstoresForCat.find((s)=>s.Name===prod.StoreName))
-                            console.log("selectedStore" ,obj);
-                            else props.setselectedstoresForCat([...props.selectedstoresForCat,obj]);
+                        if (props.selectedstoresForCat.find((s) => s.Name === prod.StoreName))
+                            console.log("selectedStore", obj);
+                        else props.setselectedstoresForCat([...props.selectedstoresForCat, obj]);
 
-                        }
                     }
-                 /><span > add to your route</span>
+                }
+                /><span > add to your route</span>
 
             </div>
-       );
+        );
     };
 
 

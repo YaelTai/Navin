@@ -27,11 +27,11 @@ class VisitorController {
        res.status(200).json(Categories)  
     }
     getAllAdsByCategory=async(req, res) => {
-       
+       console.log("hi our cat is:",req.body.CatId);
         const ads=await AdvertismentDB.getAdsByCategory(req.body.CatId)
 
         if(!ads) return res.status(400).json({ message: 'error occured when get ads to categories'});
-
+console.log("this is our ads befor mapping",ads);
         let ads_=[]
         for (let i = 0; i < ads.length; i++) {
             let store= await  StoreDB.getStoreById(ads[i]["advertisment.StoreId"])

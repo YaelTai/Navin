@@ -6,19 +6,33 @@ const AdCategories=db.categories_for_ads
 
 const getAdsByCategory =async  (catId) => {
 console.log("@@@@@",catId);
-   return await  AdCategories.findAll({
+   ads= await  AdCategories.findAll({
       include:[{model:Advertisment}],
       raw:true,
       where:{CatId:catId}
      })
-     
-   // console.log("******************",adsid[0].dataValues.CatId);
-   // return await adsid.map(async (a)=>{
+     console.log("***********ads",ads);
+ ads=ads.filter((ad=>
+   //console.log(ad["advertisment.Paid"],new Date(ad["advertisment.StartDate"])<=new Date(),  new Date(ad["advertisment.EndDate"])>=new Date(),new Date());
+   ad["advertisment.Paid"]&&
+   new Date(ad["advertisment.StartDate"])<=new Date()&&
+   new Date(ad["advertisment.EndDate"])>=new Date()
+
+
+
+))
+   // ads= ads.filter((ad)=>{
       
-   //    let ad= await Advertisment.findOne({where:{Id:a.dataValues.AdId}})
-   //    console.log("ddddddddddddddddd",ad); 
-   //    return ad;
-   // })
+   //    console.log("*hiiiii we are in the mao");
+   //        if(ad["advertisment.Paid"]&&ad["advertisment.StartDate"]>=new Date()&&
+   //     ad["advertisment.EndDate"]>=new Date())
+
+   //   {     console.log("ad with map",ad);
+   //    return ad}
+       
+   //    })
+   console.log("that what we are gonna return",ads);
+   return ads
   
 }
 const getAllWaitingAds =async  () => {
