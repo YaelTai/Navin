@@ -3,13 +3,16 @@ import { Card } from 'primereact/card';
 import { Button } from 'primereact/button';
 import VisitorMenu from './menues/UserMenu';
 import { useNavigate } from "react-router-dom";
+import card from '../images/card.png'
+
 
 
 const PresentLocation = () => {
 
 
     const header = (
-        <img alt="Card" src="https://primefaces.org/cdn/primereact/images/usercard.png" style={{ "width": "98%", "height": "50px" }} />
+        <img alt="Card"         src={card}
+        style={{ "width": "98%", "height": "50px" }} />
     );
     const footer = (
         <div className="flex flex-wrap justify-content-end gap-2">

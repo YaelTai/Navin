@@ -10,6 +10,7 @@ import "primereact/resources/themes/lara-light-indigo/theme.css";
 import "primereact/resources/primereact.css";
 import "primeicons/primeicons.css";
 import "primeflex/primeflex.css";
+import card from '../images/card.png'
 
 const footer = <div className="flex flex-wrap justify-content-end gap-2"></div>;
 

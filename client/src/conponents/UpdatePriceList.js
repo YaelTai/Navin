@@ -9,8 +9,11 @@ import { Toast } from 'primereact/toast';
 import { ConfirmDialog, confirmDialog } from 'primereact/confirmdialog';
 import { useNavigate } from "react-router-dom";
 import ManagerMenu from "./menues/managerMenu";
+import card from '../images/card.png'
+
 const header = (
-    <img alt="Card" src="https://primefaces.org/cdn/primereact/images/usercard.png" style={{ "width": "98%", "height": "50px" }} />
+    <img alt="Card"         src={card}
+    style={{ "width": "98%", "height": "50px" }} />
 );
 const footer = (
     <div style={{ position: 'relative', height: '350px' }}>

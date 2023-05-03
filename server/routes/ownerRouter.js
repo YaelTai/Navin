@@ -1,5 +1,6 @@
 
 const express = require("express");
+const ownerController = require("../controllers/ownerController");
 const OwnerController= require("../controllers/ownerController");
 
 
@@ -20,6 +21,6 @@ OwnerRouter.put("/store",OwnerController.updateStoreDetails)
 OwnerRouter.put("/advertisment",OwnerController.payForAd)
 OwnerRouter.post("/ad",OwnerController.uploadAd)
 OwnerRouter.post("/logIn",OwnerController.logIn)
-
+OwnerRouter.post("/checkAd",ownerController.getAdByPassword)
 
 module.exports =OwnerRouter;

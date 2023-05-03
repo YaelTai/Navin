@@ -9,10 +9,13 @@ import { Card } from "primereact/card";
 import { useAxios1 } from "../hooks/useAxios";
 import { Toast } from 'primereact/toast';
 import ManagerMenu from "./menues/managerMenu";
+import card from '../images/card.png'
+
 const header = (
   <img
     alt="Card"
-    src="https://primefaces.org/cdn/primereact/images/usercard.png"
+    src={card}
+
     style={{ width: "98%", height: "50px" }}
   />
 );

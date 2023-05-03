@@ -185,10 +185,31 @@ class OwnerController {
         // res.status(200).json({ message: 'uploaded sucssfully'}) 
 
     }
-    
+    getAdByPassword=async(req, res) => {
+        //GET:
+        //code
+        //adId
+
+        let ad= await AdvertismentDB.getAdById(req.body.adId)
+        if(!ad) return res.status(400).json({ message: 'wrong ad code'})
+        if(ad.ApprovmentCode!=req.body.code) return res.status(400).json({ message: 'wrong password'})
+        const start = new Date(ad.StartDate);   
+        const end = new Date(ad.EndDate); 
+        const diff = end.getTime() - start.getTime();   
+        const daydiff = diff / (1000 * 60 * 60 * 24);
+        const priceList=await PricesDB.getPriceList()
+        let catsForAd= await AdvertismentDB.getCatsForAd(req.body.adId)
+        if(!priceList) return res.status(400).json({ message: 'error occured while getting fee'})
+        
+        res.status(200).json(priceList.dataValues.DayFee*daydiff+priceList.dataValues.CategoryFee*catsForAd.length)
+
+    }
+
     payForAd=async(req, res) => {
         //GET:
         //Id
+
+        
         //update to paid
         if(! await AdvertismentDB.UpdatePaid(req.body.Id))
         return res.status(400).json({ message: 'error occured when update paid'})

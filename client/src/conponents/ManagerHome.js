@@ -2,6 +2,8 @@ import React from 'react'
 import { Button } from 'primereact/button';
 import { Card } from 'primereact/card';
 import { useNavigate } from "react-router-dom";    
+import card from '../images/card.png'
+
 // import 'primereact/resources/themes/lara-light-indigo/theme.css';   // theme
 // import 'primereact/resources/primereact.css';                       // core css
 // import 'primeicons/primeicons.css';                                 // icons
@@ -15,7 +17,8 @@ const btn = {
 }
 const header = (
   
-  <img alt="Card" src="https://primefaces.org/cdn/primereact/images/usercard.png" style={{ "width": "98%", "height": "50px"}} />
+  <img alt="Card"         src={card}
+  style={{ "width": "98%", "height": "50px"}} />
 );
 const footer = (
   <div className="flex flex-wrap justify-content-end gap-2">

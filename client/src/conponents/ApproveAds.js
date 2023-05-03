@@ -7,6 +7,7 @@ import { useAxios1 } from "../hooks/useAxios";
 import { Toast } from 'primereact/toast';
 import Approve from "./v";
 import { ConfirmDialog, confirmDialog } from 'primereact/confirmdialog';
+import card from '../images/card.png'
 
 const AppoveAds = () => {
   const [images,setImages]=useState('');
@@ -66,7 +67,8 @@ console.log(data)
   const header = (
     <img
       alt="Card"
-      src="https://primefaces.org/cdn/primereact/images/usercard.png"
+      src={card}
+
       style={{ width: "98%", height: "50px" }}
     />
   );

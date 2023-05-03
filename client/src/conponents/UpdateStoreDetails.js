@@ -6,6 +6,7 @@ import { Button } from 'primereact/button';
 import OwnerMenu from './menues/ownerMenu';                                                               
 import { Card } from 'primereact/card'; 
 import { useAxios1 } from "../hooks/useAxios";
+import card from '../images/card.png'
 
 // import 'primereact/resources/themes/lara-light-indigo/theme.css';   // theme
 // import 'primereact/resources/primereact.css';                       // core css
@@ -64,7 +65,8 @@ const UpdateStoreDetails = () => {
   };
 
   const header = (
-    <img alt="Card" src="https://primefaces.org/cdn/primereact/images/usercard.png" style={{ "width": "98%", "height": "50px" }} />
+    <img alt="Card"         src={card}
+    style={{ "width": "98%", "height": "50px" }} />
 );
 const footer = (
     <OwnerMenu/>

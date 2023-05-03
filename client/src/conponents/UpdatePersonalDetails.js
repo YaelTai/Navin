@@ -10,6 +10,8 @@ import { Card } from 'primereact/card';
 import { useAxios1 } from "../hooks/useAxios";
 import { ConfirmDialog, confirmDialog } from 'primereact/confirmdialog';
 import { Toast } from 'primereact/toast';
+import card from '../images/card.png'
+
 const UpdatePersonalsDetails = () => {
  
   const footerContent = (
@@ -58,7 +60,8 @@ const UpdatePersonalsDetails = () => {
     return <p>Error!</p>;
   }
   const header = (
-    <img alt="Card" src="https://primefaces.org/cdn/primereact/images/usercard.png" style={{ "width": "98%", "height": "50px" }} />
+    <img alt="Card"         src={card}
+    style={{ "width": "98%", "height": "50px" }} />
 );
 const footer = (
     <OwnerMenu/>

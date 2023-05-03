@@ -2,6 +2,8 @@ import { useAxios1 } from "../hooks/useAxios";
 import React, { useEffect, useState } from "react";
 import { Card } from "primereact/card";
 import { Button } from "primereact/button";
+import card from '../images/card.png'
+
 
 export default function PriceList() {
   const { Get } = useAxios1();

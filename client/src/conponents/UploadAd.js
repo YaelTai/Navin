@@ -13,12 +13,14 @@ import PriceList from './priceList'
 import { set } from 'react-hook-form';
 import { Dialog } from 'primereact/dialog';
 import OwnerMenu from './menues/ownerMenu';
+import card from '../images/card.png'
 
 
 
 const header = (
 
-    <img alt="Card" src="https://primefaces.org/cdn/primereact/images/usercard.png" style={{ "width": "98%", "height": "50px" }} />
+    <img alt="Card"         src={card}
+    style={{ "width": "98%", "height": "50px" }} />
 );
 const footer = (
     <></>
@@ -139,7 +141,7 @@ let  base64data="";
                     </p>
                 </AccordionTab>
                         </Accordion>
-                    </div>3
+                    </div>
 
                     <lable>1. Load file</lable><br /><br />
                     <FileUpload name="demo[]" url={'/api/upload'} multiple accept="image/*" customUpload uploadHandler={customBase64Uploader} maxFileSize={'10000000000000'} emptyTemplate={<p className="m-0">Drag and drop files to here to upload.</p>} /><br></br>

@@ -8,6 +8,8 @@ import { SpeedDial } from 'primereact/speeddial';
 import { useNavigate } from "react-router-dom";
 import 'primeicons/primeicons.css';
 import ManagerMenu from "./menues/managerMenu";
+import card from '../images/card.png'
+
 const UpdateCategories = () => {
 
 const { postData } = useAxios1();
@@ -26,7 +28,8 @@ const { postData } = useAxios1();
   const header = (
     <img
       alt="Card"
-      src="https://primefaces.org/cdn/primereact/images/usercard.png"
+      src={card}
+
       style={{ width: "98%", height: "50px" }}
     />
   );

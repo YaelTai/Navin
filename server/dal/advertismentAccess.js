@@ -24,6 +24,9 @@ console.log("@@@@@",catId);
 const getAllWaitingAds =async  () => {
     return await  Advertisment.findAll({where: {ApprovmentCode:null}})
  }
+ const getAdById =async  (id) => {
+   return await Advertisment.findByPk(id);
+}
  const getAllAds =async  () => {
    return await  Advertisment.findAll()
 }  
@@ -58,6 +61,11 @@ const getAllAdsByOwner=async (id)=>{
    return await Advertisment.findAll({ where:{AdOwner:id}});
  
  }
+ const getCatsForAd=async (id)=>{
+  
+   return await AdCategories.findAll({ where:{AdId:id}});
+ 
+ }
  module.exports={
     getAllWaitingAds,
     UpdateApprovmentCode,
@@ -67,6 +75,7 @@ const getAllAdsByOwner=async (id)=>{
     UpdatePaid,
     getAllAdsByOwner,
     getAllAds, 
-    getAdsByCategory
-   
+    getAdsByCategory,
+    getAdById,
+    getCatsForAd
 }

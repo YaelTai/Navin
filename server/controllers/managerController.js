@@ -177,7 +177,7 @@ class ManagerController {
        return res.status(201).json(r)
     }
     approveAd=async(req, res) => {
-        console.log("AFGAUIG");
+        
         //update
         var chars = "0123456789";
         var passwordLength = 4;
@@ -196,7 +196,7 @@ class ManagerController {
        let to=owner.Email
        
        const subject = 'hi '+owner.Name+' your ad aprrroved!! password inside';
-       const body = "your approvment code is: "+password+"/n"+"for payment click here->";
+       const body = "your approvment code is: "+password+"/n"+"ad code"+req.body.Id//+"for payment click here->";
    
        Mailer.sendEmail(to, subject, body)
            .then(info => {

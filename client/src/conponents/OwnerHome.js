@@ -7,6 +7,8 @@ import 'primereact/resources/primereact.css';                       // core css
 import 'primeicons/primeicons.css';                                 // icons
 import 'primeflex/primeflex.css';  
 import { useAxios1 } from "../hooks/useAxios";
+import card from '../images/card.png'
+
 
 
 const btn = {
@@ -16,7 +18,8 @@ const btn = {
 }
 const header = (
   
-  <img alt="Card" src="https://primefaces.org/cdn/primereact/images/usercard.png" style={{ "width": "98%", "height": "50px" }} />
+  <img alt="Card"         src={card}
+  style={{ "width": "98%", "height": "50px" }} />
 );
 const footer = (
   <div className="flex flex-wrap justify-content-end gap-2">
