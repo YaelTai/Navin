@@ -219,7 +219,7 @@ class ManagerController {
      console.log("hiiii    refuseAd   ",req.body.Id);
         if(!AdvertismentDB.deleteAd(req.body.Id))
         return res.status(400).json({ message: 'error occured while trying to refuse ad'})
-        
+
         res.status(201).json('approved successfully')
 
 
