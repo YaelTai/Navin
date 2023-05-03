@@ -182,8 +182,11 @@ let  base64data="";
                                      "StoreId":selectedStore.Id   
                              });
                              setLoading(false);
-                         console.log("res",res1);
-                         
+                        setCategories('')
+                        setSelectedStore('')
+                        setselectedCategories('')
+                        setfrom('')
+                         setto('')
                              res1.request.status==200?
                              toast.current.show({ severity: 'info', summary: 'Confirmed', detail: 'Your advertisment have been successfully uploaded', life: 3000 }):
                              toast.current.show({ severity: 'warn', summary: 'Rejected', detail:res1.response.data.message, life: 3000 });

@@ -27,7 +27,7 @@ const AppoveAds = () => {
   let Ad;
   const toast = useRef(null);
   const confirm2 = () => {
-    // debugger;
+
     confirmDialog({
       message: 'Do you want to reject this ad?',
       header: 'Delete Confirmation',
@@ -39,12 +39,14 @@ const AppoveAds = () => {
   };
 
   const accept = async () => {
-    // debugger;
-    const res = await updateData("manager/refuseAd", { "Id": Ad.Id, "AdOwner": Ad.AdOwner })
-    console.log(res);
+    console.log("accept!!!!!");
 
-    if (res.status == 201) {
-      console.log("yes"); toast.current.show({ severity: 'info', summary: 'Confirmed', detail: res.data, life: 3000 });
+    const res = await updateData("manager/refuseAd", { "Id": Ad.Id, "AdOwner": Ad.AdOwner })
+    console.log("reeeeeeees",res);
+    
+    if (res.request.status== 201) {
+      console.log("yes");
+      toast.current.show({ severity: 'info', summary: 'Confirmed', detail: res.data, life: 3000 });
       refetch()
     }
 
@@ -131,7 +133,8 @@ console.log(data)
                   severity="danger"
                   aria-label="Cancel"
                   style={{ marginLeft: "10px" }}
-                  onClick={() => { Ad = ad; confirm2(); }}
+                  onClick={() => {
+                    debugger; Ad = ad; confirm2(); }}
                 /></span>
               <br />
               <br />

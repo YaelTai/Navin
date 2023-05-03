@@ -51,7 +51,7 @@ class ManagerController {
     }
     deleteStore=async(req, res) => {
 
-           console.log("srv "+req.body);
+           console.log("srvvvvvvvvvvv "+req.body);
         if (!req.body.Name|| !req.body.OwnerName)  return res.status(400).json({ message: 'All fields are required'}) 
             
             const store=await StoreDB.getStoreByName(req.body.Name)
@@ -189,55 +189,57 @@ class ManagerController {
         }
         
         if(await AdvertismentDB.UpdateApprovmentCode(req.body.Id, password)!=0){
+            res.status(201).json('approved successfully')
        //mail
         
-       let owner = await OwnerDB.getOwnerById(req.body.AdOwner)
-       if(!owner) res.status(400).json({ message: 'error getting owner email' })
-       let to=owner.Email
+    //    let owner = await OwnerDB.getOwnerById(req.body.AdOwner)
+    //    if(!owner) res.status(400).json({ message: 'error getting owner email' })
+    //    let to=owner.Email
        
-       const subject = 'hi '+owner.Name+' your ad aprrroved!! password inside';
-       const body = "your approvment code is: "+password+"/n"+"for payment click here->";
+    //    const subject = 'hi '+owner.Name+' your ad aprrroved!! password inside';
+    //    const body = "your approvment code is: "+password+"/n"+"for payment click here->";
    
-       Mailer.sendEmail(to, subject, body)
-           .then(info => {
-               console.log('Email sent: ', info.response);
-               res.status(201).json('approved successfully')
-           })
-           .catch(error => {
-               console.log('Error sending email: ', error);
-               res.status(500).send('Failed to send email');
-           });
+    //    Mailer.sendEmail(to, subject, body)
+    //        .then(info => {
+    //            console.log('Email sent: ', info.response);
+    //            res.status(201).json('approved successfully')
+    //        })
+    //        .catch(error => {
+    //            console.log('Error sending email: ', error);
+    //            res.status(500).send('Failed to send email');
+    //        });
 
 
-        }
-        else res.status(400).json({ message: 'error approved  ads' })
+    //     }
+    //     else res.status(400).json({ message: 'error approved  ads' })
         }
          
-   // }
+    }
     refuseAd=async(req, res) => {
-     
+     console.log("hiiii    refuseAd   ",req.body.Id);
         if(!AdvertismentDB.deleteAd(req.body.Id))
         return res.status(400).json({ message: 'error occured while trying to refuse ad'})
         
+        res.status(201).json('approved successfully')
 
 
-        //email refusment
-        let owner = await OwnerDB.getOwnerById(req.body.AdOwner)
-        if(!owner) res.status(400).json({ message: 'error getting owner email' })
-        let to=owner.Email
-        console.log(to)
-        const subject = 'hi '+owner.Name;
-        const body = "Your ad has been rejected for system reasons";
+        // //email refusment
+        // let owner = await OwnerDB.getOwnerById(req.body.AdOwner)
+        // if(!owner) res.status(400).json({ message: 'error getting owner email' })
+        // let to=owner.Email
+        // console.log(to)
+        // const subject = 'hi '+owner.Name;
+        // const body = "Your ad has been rejected for system reasons";
     
-        Mailer.sendEmail(to, subject, body)
-            .then(info => {
-                console.log('Email sent: ', info.response);
-                res.status(201).json('approved successfully')
-            })
-            .catch(error => {
-                console.log('Error sending email: ', error);
-                res.status(500).send('Failed to send email');
-            });
+        // Mailer.sendEmail(to, subject, body)
+        //     .then(info => {
+        //         console.log('Email sent: ', info.response);
+        //         res.status(201).json('approved successfully')
+        //     })
+        //     .catch(error => {
+        //         console.log('Error sending email: ', error);
+        //         res.status(500).send('Failed to send email');
+        //     });
  
  
     // }

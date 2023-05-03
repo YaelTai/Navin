@@ -60,23 +60,23 @@ setProducts([...res.data])
 
 
 
-    const productTemplate = (product) => {
+    const productTemplate = (prod) => {
         return (
-            products.map((prod, index) => (
+           
             <div >
                 <div className="mb-3">
                     
-                    <img src={`data:image/jpeg;base64,${prod.Img}`} alt={product.name} style={{ "height": "140px" }} />
+                    <img src={`data:image/jpeg;base64,${prod.Img}`} alt={prod.name} style={{ "height": "140px" }} />
                 </div>
                 <Button icon="pi pi-plus" className="p-button p-button-rounded" onClick={
                     () => {
                         //console.log("###########",products[index].StoreName);
-                        const obj={Name:products[index].StoreName}
+                        const obj={Name:prod.StoreName}
                         //console.log("###########",obj);
                         // props.setSelectedStore(products[index].StoreName)
                         console.log("@@@@@@@@@@@@@@@",props.selectedstoresForCat);
                         // if (!props.selectedstoresForCat.includes({"Name":products[index].StoreName})) {
-                            if(props.selectedstoresForCat.find((s)=>s.Name===products[index].StoreName))
+                            if(props.selectedstoresForCat.find((s)=>s.Name===prod.StoreName))
                             console.log("selectedStore" ,obj);
                             else props.setselectedstoresForCat([...props.selectedstoresForCat,obj]);
 
@@ -85,7 +85,7 @@ setProducts([...res.data])
                  /><span > add to your route</span>
 
             </div>
-        )));
+       );
     };
 
 

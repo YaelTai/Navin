@@ -10,7 +10,7 @@ import "primereact/resources/themes/lara-light-indigo/theme.css";
 import "primereact/resources/primereact.css";
 import "primeicons/primeicons.css";
 import "primeflex/primeflex.css";
-
+import azrieli from "../images/azrieli.png"
 const footer = <div className="flex flex-wrap justify-content-end gap-2"></div>;
 
 export default function ChooseStores() {
@@ -21,7 +21,11 @@ export default function ChooseStores() {
   const [selectedstoresForCat, setselectedstoresForCat] = useState([]);
   const [storesForCat, setStoresForCat] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState(null);
-  const header = selectedCategory? <Ads Cat={{"Id":selectedCategory.Id}} setselectedstoresForCat={setselectedstoresForCat} setSelectedStore={setSelectedStore} selectedstoresForCat={selectedstoresForCat}/>:<h1>ads will be here</h1>;
+  const header = selectedCategory? <Ads Cat={{"Id":selectedCategory.Id}} setselectedstoresForCat={setselectedstoresForCat} setSelectedStore={setSelectedStore} selectedstoresForCat={selectedstoresForCat}/>: <img
+  alt="Card"
+  src={azrieli}
+  style={{ width: "98%", height: "200px" }}
+/>;
   const { Get, postData } = useAxios1();
 
   let stores_ = Get(`visitor/stores`);

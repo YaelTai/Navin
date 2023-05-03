@@ -30,7 +30,7 @@ import Payment from "./conponents/Payment";
 function App() {
   return (<>
     
-     <UserProvider>
+     {/* <UserProvider> */}
 
        <Router>
         <Routes>
@@ -62,7 +62,7 @@ function App() {
           
         </Routes>
       </Router> 
-      </UserProvider>
+      {/* </UserProvider> */}
     </>
   );
 }
