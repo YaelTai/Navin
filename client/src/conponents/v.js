@@ -20,10 +20,13 @@ const Approve = (props) => {
       const { Get, updateData } = useAxios1();
    
     const accept = async() => {
+    console.log("yeeeeeeeeeeeeees");
       const res = await updateData("manager/approveAd", { "Id": props.Ad.Id, "AdOwner": props.Ad.AdOwner })
       console.log(res);
-      if (res.request.status == 201){toast.current.show({ severity: 'info', summary: 'Confirmed', detail:res.data , life: 3000 });
-      props.refetch()
+      if (res.request.status == 201){
+        props.refetch()
+        toast.current.show({ severity: 'info', summary: 'Confirmed', detail:res.data , life: 3000 });
+     
     }
     
       else toast.current.show({ severity: 'warn', summary: 'Rejected', detail: res.response.data.message, life: 3000 });

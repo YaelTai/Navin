@@ -44,7 +44,11 @@ const UpdatePaid = async  (id) => {
 
 } 
 const deleteAd=async (id)=>{
-   return await Advertisment.destroy({ where:{Id:id}})
+   console.log("deleteAd",id);
+   await Advertisment.destroy({ where:{Id:id}})
+   await AdCategories.destroy({ where:{AdId:id}})
+   return
+    
 
 }
 

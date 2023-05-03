@@ -43,7 +43,7 @@ const UpdateStoreDetails = () => {
 
   const { Get, postData, Post } = useAxios1();
 
-  let _stores = Post(`owner/allStores`, { Id: 214121865 });
+  let _stores = Post(`owner/allStores`, { Id: localStorage.getItem("user") });
   let _allCats = Get(`owner/categories`);
 
   if (_stores.loading) {

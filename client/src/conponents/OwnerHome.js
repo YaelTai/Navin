@@ -30,7 +30,7 @@ const footer = (
 const OwnerHome=()=>{
   const { Get, postData,Post } = useAxios1();
   const navigate = useNavigate();
-  let { data, loading, error, refetch } = Post(`owner/owner`,{"Id":181});
+  let { data, loading, error, refetch } = Post(`owner/owner`,{"Id":localStorage.getItem("user")});
   if (loading) {
     return <p>Loading...</p>;
   }
@@ -38,7 +38,6 @@ const OwnerHome=()=>{
     return <p>Error!</p>;
   }
 
-  //console.log("``````````````````````````````````````",data);
   
           return (
         <>

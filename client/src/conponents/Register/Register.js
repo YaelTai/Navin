@@ -9,7 +9,7 @@ import { useAxios1 } from "../../hooks/useAxios";
 import { useNavigate } from "react-router-dom";
 import { Toast } from "primereact/toast";
 
-import UserContext from '../user/UserContext'
+
 const header = (
   
   <img alt="Card" src="https://primefaces.org/cdn/primereact/images/usercard.png" style={{ "width": "98%", "height": "50px" }} />
@@ -38,7 +38,7 @@ const showSuccess = (msg) => {
   });
 };
 
-  const {setUserId}=useContext(UserContext);
+  // const {setUserId}=useContext(UserContext);
 
   const { postData } = useAxios1();
   const [showMessage, setShowMessage] = useState(false);
@@ -89,7 +89,9 @@ const showSuccess = (msg) => {
     }
     
     else{
-    setUserId(res.data.Id)
+    // setUserId(res.data.Id)
+    localStorage.setItem("user", res.data.Id);
+   console.log('local', localStorage.getItem("user"));
     if (res.data.IsManager) navigate("/manager")
     else navigate("/owner")
     form.restart();}

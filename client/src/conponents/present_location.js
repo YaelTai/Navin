@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Card } from 'primereact/card';
 import { Button } from 'primereact/button';
-import VisitorMenu from './menues/UserMenu';
+import VisitorMenu from './menues/visitorMenu'
 import { useNavigate } from "react-router-dom";
 import card from '../images/card.png'
 
@@ -11,12 +11,14 @@ const PresentLocation = () => {
 
 
     const header = (
+        <>
+         
         <img alt="Card"         src={card}
-        style={{ "width": "98%", "height": "50px" }} />
+        style={{ "width": "98%", "height": "50px" }} /></>
     );
     const footer = (
         <div className="flex flex-wrap justify-content-end gap-2">
-           <VisitorMenu/>
+          
         </div>
     );
 
