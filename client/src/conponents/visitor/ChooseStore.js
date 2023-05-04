@@ -36,39 +36,17 @@ export default function ChooseStores() {
   let categories = categories_.data;
 
 
-  // if (loadingStores) {
-  //   return <p>Loading...</p>;
-  // }
-  // if (errorStores) {
-  //   return <p>Error!</p>;
-  // }
-  // const stores = stores_;
-
-  // let { data: categories_, loading:loadingCategories, error:errorCategories, refetch :refetchCategories } = Get(`visitor/categories`);
-  // if (loadingCategories) {
-  //   return <p>Loading...</p>;
-  // }
-  // if (errorCategories) {
-  //   return <p>Error!</p>;
-  // }
 
   const ImportStoresForCategory = async () => {
     console.log("ImportStoresForCategory");
-    let stores4cat = await postData(`visitor/storesForCategory`, {CatId: selectedCategory.Id, });
+    let stores4cat = await postData(`visitor/storesForCategory`, {CatId: selectedCategory.Id });
    
     console.log("stores4catttttttttttttttttttttttt",stores4cat.data);  
     setStoresForCat([...stores4cat.data]);
-    //console.log("llllllllllllllll",storesForCat);
+    console.log("----------",stores4cat);
     
   };
-  // useEffect(() => {
-  //   if (selectedCategory != null) {
-  //     myData()
-  //
-  //     console.log("33333333333" + c1);
 
-  //   }
-  // }, [selectedCategory])
 
   const searchStores = (event) => {
     //in a real application, make a request to a remote url with the query and return filtered results, for demo purposes we filter at client side
@@ -168,7 +146,7 @@ export default function ChooseStores() {
             console.log(e.value);
             {setSelectedCategory(e.value);}
           }}
-          onBlur={async () => {
+          onBlur= {async () => {
             await ImportStoresForCategory();
             
           }}
@@ -179,7 +157,8 @@ export default function ChooseStores() {
         <br />
         {selectedCategory ? (
           <>
-            <lable>Stores that sell {selectedCategory.Name}:</lable>
+            {storesForCat.length==0?<lable>No stores match to this category</lable>:<>
+            <lable>Stores that sell {selectedCategory.Name}</lable>
             <br />
             <MultiSelect
               value={selectedstoresForCat}
@@ -194,7 +173,7 @@ export default function ChooseStores() {
               itemTemplate={storeforCatTemplate}
               panelFooterTemplate={panelFooterTemplate}
               className="w-full md:w-20rem"
-            />
+            /></>}
           </>
         ) : (
           <></>

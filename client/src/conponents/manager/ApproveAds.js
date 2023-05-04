@@ -8,22 +8,24 @@ import { Toast } from 'primereact/toast';
 import Approve from "./v";
 import { ConfirmDialog, confirmDialog } from 'primereact/confirmdialog';
 import { Dialog } from 'primereact/dialog';
+import card from '../../images/card.png'
+
 const AppoveAds = () => {
   const [images,setImages]=useState('');
  
-  const getImage=async()=>
-  { console.log("hiiiii");
+  // const getImage=async()=>
+  // { console.log("hiiiii");
 
-      const x = await postData(`manager/ads`,
-      {"URL": "C:\\Users\\213876832\\Desktop\\Navin\\server\\public\\images\\2bb0c403-21f7-492d-a245-9cc356c5c6bf.jpeg"});
-     console.log("x",x.data);
-      setImages(x.data);
-      console.log("images",images);
-  }
+  //     const x = await postData(`manager/ads`,
+  //     {"URL": "C:\\Users\\213876832\\Desktop\\Navin\\server\\public\\images\\2bb0c403-21f7-492d-a245-9cc356c5c6bf.jpeg"});
+  //    console.log("x",x.data);
+  //     setImages(x.data);
+  //     console.log("images",images);
+  // }
 
-  useEffect(()=>{
-    getImage();
-},[])
+//   useEffect(()=>{
+//     getImage();
+// },[])
   let Ad;
   const toast = useRef(null);
   const confirm2 = () => {
@@ -68,7 +70,7 @@ console.log(data)
   const header = (
     <img
       alt="Card"
-      src="https://primefaces.org/cdn/primereact/images/usercard.png"
+      src={card}
       style={{ width: "98%", height: "50px" }}
     />
   );

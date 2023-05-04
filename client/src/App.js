@@ -30,13 +30,13 @@ import Map from './conponents/map/Map'
 function App() {
   return (<>
     
-    <Map/>
 
-{/* 
+
+
 
        <Router>
         <Routes>
-          <Route path="/" element={<Welcome />} />
+          <Route path="/" element={<Welcome/> } />
 
           <Route path="/manager" element={<ManagerHome />} />
           <Route path="/manager/logIn" element={<Register />} />
@@ -51,7 +51,7 @@ function App() {
           <Route path="/owner/logIn" element={<Register />} />
           <Route path="/owner/uploadAd" element={<UploadAd />} />
           {/* <Route path="/owner/priceList" element={<PriceList />} /> */}
-          {/* <Route path="payment" element={<Payment />} />
+          <Route path="payment" element={<Payment />} />
 
           <Route path="/owner/updateStoreDetails" element={<UpdateStoreDetails />} />
           <Route path="/owner/updatePersonalsDetail" element={<UpdatePersonalsDetail />} />
@@ -63,7 +63,7 @@ function App() {
           
           
         </Routes>
-      </Router>  */}
+      </Router> 
       
     </>
   );

@@ -162,7 +162,7 @@ class ManagerController {
        let ads=await AdvertismentDB.getAllWaitingAds()
        var r = ads.map((item)=>{
        var ttt= {Id:item.Id,
-            Img:""//fs.readFileSync(item.Img, {encoding: 'base64'})
+            Img:fs.readFileSync(item.Img, {encoding: 'base64'})
             ,AdOwner:item.AdOwner
              
             ,StartDate:item.StartDate,
