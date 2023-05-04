@@ -2,14 +2,12 @@ import React, { useEffect, useState, useRef } from "react";
 import { Image } from "primereact/image";
 import { Card } from "primereact/card";
 import { Button } from "primereact/button";
-import ManagerMenu from "./menues/managerMenu";
-import { useAxios1 } from "../hooks/useAxios";
+import ManagerMenu from "../menues/managerMenu";
+import { useAxios1 } from "../../hooks/useAxios";
 import { Toast } from 'primereact/toast';
 import Approve from "./v";
 import { ConfirmDialog, confirmDialog } from 'primereact/confirmdialog';
 import { Dialog } from 'primereact/dialog';
-import card from '../images/card.png'
-
 const AppoveAds = () => {
   const [images,setImages]=useState('');
  
@@ -70,8 +68,7 @@ console.log(data)
   const header = (
     <img
       alt="Card"
-      src={card}
-
+      src="https://primefaces.org/cdn/primereact/images/usercard.png"
       style={{ width: "98%", height: "50px" }}
     />
   );

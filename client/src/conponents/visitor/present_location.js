@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { Card } from 'primereact/card';
 import { Button } from 'primereact/button';
-import VisitorMenu from './menues/visitorMenu'
+import VisitorMenu from '../menues/visitorMenu'
 import { useNavigate } from "react-router-dom";
-import card from '../images/card.png'
+import card from '../../images/card.png'
 
 
 

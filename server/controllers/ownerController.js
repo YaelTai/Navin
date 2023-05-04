@@ -219,6 +219,7 @@ class OwnerController {
     }
 
     getAllYourStores=async(req, res) => {
+        console.log("//////////////////////",req.body.Id);
         const stores=await StoreDB.getAllStoresByOwner(req.body.Id)
         if(!stores) return res.status(400).json({ message: 'error occured when trying to get stores'})
         else res.status(200).json(stores) 

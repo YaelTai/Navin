@@ -7,13 +7,13 @@ import { Card } from 'primereact/card';
 import { useNavigate } from "react-router-dom";
 import { Dropdown } from 'primereact/dropdown';
 import { Accordion, AccordionTab } from 'primereact/accordion';
-import { useAxios1 } from "../hooks/useAxios";
+import { useAxios1 } from "../../hooks/useAxios";
 import { Toast } from 'primereact/toast';
 import PriceList from './priceList'
 import { set } from 'react-hook-form';
 import { Dialog } from 'primereact/dialog';
-import OwnerMenu from './menues/ownerMenu';
-import card from '../images/card.png'
+import OwnerMenu from '../menues/ownerMenu';
+import card from '../../images/card.png'
 
 
 

@@ -162,9 +162,10 @@ class ManagerController {
        let ads=await AdvertismentDB.getAllWaitingAds()
        var r = ads.map((item)=>{
        var ttt= {Id:item.Id,
-            Img:fs.readFileSync(item.Img, {encoding: 'base64'}),
+            Img:""//fs.readFileSync(item.Img, {encoding: 'base64'})
+            ,AdOwner:item.AdOwner
              
-            StartDate:item.StartDate,
+            ,StartDate:item.StartDate,
             EndDate:item.EndDate
 
         }
@@ -189,32 +190,34 @@ class ManagerController {
         }
         
         if(await AdvertismentDB.UpdateApprovmentCode(req.body.Id, password)!=0){
-            res.status(201).json('approved successfully')
+            // res.status(201).json('approved successfully')
        //mail
-        
-    //    let owner = await OwnerDB.getOwnerById(req.body.AdOwner)
-    //    if(!owner) res.status(400).json({ message: 'error getting owner email' })
-    //    let to=owner.Email
+        console.log("adowner",req.body.AdOwner);
+       let owner = await OwnerDB.getOwnerById(req.body.AdOwner)
+
+       if(!owner) res.status(400).json({ message: 'error getting owner email' })
+       let to=owner.Email
        
-    //    const subject = 'hi '+owner.Name+' your ad aprrroved!! password inside';
-    //    const body = "your approvment code is: "+password+"/n"+"for payment click here->";
+       const subject = 'hi '+owner.Name+' your ad aprrroved!! password inside';
+       const body = "your approvment code is: "+password
+      +" Your advertismet code is:"+ req.body.Id;
    
-    //    Mailer.sendEmail(to, subject, body)
-    //        .then(info => {
-    //            console.log('Email sent: ', info.response);
-    //            res.status(201).json('approved successfully')
-    //        })
-    //        .catch(error => {
-    //            console.log('Error sending email: ', error);
-    //            res.status(500).send('Failed to send email');
-    //        });
+       Mailer.sendEmail(to, subject, body)
+           .then(info => {
+               console.log('Email sent: ', info.response);
+               res.status(201).json('approved successfully')
+           })
+           .catch(error => {
+               console.log('Error sending email: ', error);
+               res.status(500).send('Failed to send email');
+           });
 
 
-    //     }
-    //     else res.status(400).json({ message: 'error approved  ads' })
+        }
+        else res.status(400).json({ message: 'error approved  ads' })
         }
          
-    }
+
     refuseAd=async(req, res) => {
      console.log("hiiii    refuseAd   ",req.body.Id);
         if(!AdvertismentDB.deleteAd(req.body.Id))

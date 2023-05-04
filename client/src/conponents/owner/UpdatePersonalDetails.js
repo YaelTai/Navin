@@ -1,16 +1,16 @@
 import React, {useState, useRef} from 'react'
 import { useNavigate } from "react-router-dom";
-import OwnerMenu from './menues/ownerMenu';
+import OwnerMenu from '../menues/ownerMenu';
 import { Dialog } from 'primereact/dialog';
 import { InputNumber } from 'primereact/inputnumber';
 import { InputText } from 'primereact/inputtext';
 import { Password } from 'primereact/password';
 import { Button } from 'primereact/button';
 import { Card } from 'primereact/card';    
-import { useAxios1 } from "../hooks/useAxios";
+import { useAxios1 } from "../../hooks/useAxios";
 import { ConfirmDialog, confirmDialog } from 'primereact/confirmdialog';
 import { Toast } from 'primereact/toast';
-import card from '../images/card.png'
+import card from '../../images/card.png'
 
 const UpdatePersonalsDetails = () => {
  

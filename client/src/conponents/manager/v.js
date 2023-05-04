@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 
 import { useNavigate } from "react-router-dom";
 import { Button } from "primereact/button";
-import { useAxios1 } from "../hooks/useAxios";
+import { useAxios1 } from "../../hooks/useAxios";
 import { Toast } from 'primereact/toast';
 import { ConfirmDialog, confirmDialog } from 'primereact/confirmdialog';
 const Approve = (props) => {
@@ -20,7 +20,7 @@ const Approve = (props) => {
       const { Get, updateData } = useAxios1();
    
     const accept = async() => {
-    console.log("yeeeeeeeeeeeeees");
+    console.log("yeeeeeeeeeeeeees",props.Ad);
       const res = await updateData("manager/approveAd", { "Id": props.Ad.Id, "AdOwner": props.Ad.AdOwner })
       console.log(res);
       if (res.request.status == 201){

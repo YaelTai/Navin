@@ -3,16 +3,16 @@ import { AutoComplete } from "primereact/autocomplete";
 import { Card } from "primereact/card";
 import { Button } from "primereact/button";
 import { BiWalk } from "react-icons/bi";
-import { useAxios1 } from "../hooks/useAxios";
+import { useAxios1 } from "../../hooks/useAxios";
 import { MultiSelect } from "primereact/multiselect";
 import Ads from "./ads";
 import "primereact/resources/themes/lara-light-indigo/theme.css";
 import "primereact/resources/primereact.css";
 import "primeicons/primeicons.css";
 import "primeflex/primeflex.css";
-import card from '../images/card.png'
+// import card from '../../images/card.png'
 
-import azrieli from "../images/azrieli.png"
+import azrieli from "../../images/azrieli.png"
 const footer = <div className="flex flex-wrap justify-content-end gap-2"></div>;
 
 export default function ChooseStores() {

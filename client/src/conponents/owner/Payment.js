@@ -3,9 +3,9 @@ import { Card } from 'primereact/card';
 import { InputText } from "primereact/inputtext";
 import { Button } from "primereact/button";
 import 'primeicons/primeicons.css';
-import OwnerMenu from "./menues/ownerMenu";
-import card from '../images/card.png'
-import { useAxios1 } from "../hooks/useAxios";
+import OwnerMenu from "../menues/ownerMenu";
+import card from '../../images/card.png'
+import { useAxios1 } from "../../hooks/useAxios";
 import { Toast } from 'primereact/toast';
 import { useNavigate } from "react-router-dom";
 

@@ -2,13 +2,13 @@ import React, { useState,useRef } from "react";
 import { InputText } from "primereact/inputtext";
 import { Button } from "primereact/button";
 import { Card } from "primereact/card";
-import { useAxios1 } from "../hooks/useAxios";
+import { useAxios1 } from "../../hooks/useAxios";
 import { Toast } from 'primereact/toast';
 import { SpeedDial } from 'primereact/speeddial';
 import { useNavigate } from "react-router-dom";
 import 'primeicons/primeicons.css';
-import ManagerMenu from "./menues/managerMenu";
-import card from '../images/card.png'
+import ManagerMenu from "../menues/managerMenu";
+import card from '../../images/card.png'
 
 const UpdateCategories = () => {
 
@@ -43,11 +43,11 @@ const { postData } = useAxios1();
   return (
     <div>
       <Card
-        title="Update Catetegories for the mall!"
+        title="Add Catetegories for the mall"
         footer={footer}
         header={header}
       
-        className="text-green-600 md:w-25rem"
+        className=" md:w-25rem"
         style={{
         
           margin: "2%",
@@ -59,21 +59,21 @@ const { postData } = useAxios1();
       >
         <p className="m-0">
         <Toast ref={toast} />
-          <Button
-            icon="pi pi-check"
-            className="p-button-success"
-            onClick={(e) => {
-              if (value) {
-                setCategories((a) => [...a, value]);
-                setValue("");
-              }
-            }}
-          />
+          
           <InputText
             placeholder="Category"
             onChange={(e) => setValue(e.target.value)}
             value={value}
-          />
+          /><Button
+          icon="pi pi-plus"
+          className="p-button-success"
+          onClick={(e) => {
+            if (value) {
+              setCategories((a) => [...a, value]);
+              setValue("");
+            }
+          }}
+        />
           <br />
           <br />
           <ul style={{ "list-style": "none", marginRight: "10%" }}>

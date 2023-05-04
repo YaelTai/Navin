@@ -2,12 +2,12 @@ import React, {  useState, useRef } from "react";
 import { InputText } from "primereact/inputtext";
 import { Button } from "primereact/button";
 import "primeflex/primeflex.css";
-import "../index.css";
+import "../../index.css";
 import { Card } from "primereact/card";
 import { Toast } from "primereact/toast";
-import ManagerMenu from "./menues/managerMenu";
-import { useAxios1 } from "../hooks/useAxios";
-import card from '../images/card.png'
+import ManagerMenu from "../menues/managerMenu";
+import { useAxios1 } from "../../hooks/useAxios";
+import card from '../../images/card.png'
 
 const header = (
   <img

@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { Button } from 'primereact/button';
 import { Carousel } from 'primereact/carousel';
 import { Card } from 'primereact/card';
-import { ProductService } from './ProductService';
-import you_are_here from '../images/you_are_here.png'
-import { useAxios1 } from '../hooks/useAxios';
-import card from '../images/card.png'
+
+import you_are_here from '../../images/you_are_here.png'
+import { useAxios1 } from '../../hooks/useAxios';
+// import card from '../../images/card.png'
 
 
 

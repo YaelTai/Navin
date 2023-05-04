@@ -2,7 +2,7 @@ import React from 'react'
 import { Button } from 'primereact/button';
 import { Card } from 'primereact/card';
 import { useNavigate } from "react-router-dom";    
-import card from '../images/card.png'
+import card from '../../images/card.png'
 
 // import 'primereact/resources/themes/lara-light-indigo/theme.css';   // theme
 // import 'primereact/resources/primereact.css';                       // core css

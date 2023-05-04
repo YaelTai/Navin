@@ -1,18 +1,17 @@
 import React, { useState,useRef } from "react";
 import { Card } from 'primereact/card';
 import { Dialog } from 'primereact/dialog';
-
 import { InputText } from "primereact/inputtext";
 import { Button } from "primereact/button";
-import { useAxios1 } from "../hooks/useAxios";
+import { useAxios1 } from "../../hooks/useAxios";
 import { Toast } from 'primereact/toast';
 import { ConfirmDialog, confirmDialog } from 'primereact/confirmdialog';
 import { useNavigate } from "react-router-dom";
-import ManagerMenu from "./menues/managerMenu";
-import card from '../images/card.png'
+import ManagerMenu from ".././menues/managerMenu";
+import card from '../../images/card.png'
 
 const header = (
-    <img alt="Card"         src={card}
+    <img alt="Card" src={card}
     style={{ "width": "98%", "height": "50px" }} />
 );
 const footer = (
@@ -39,10 +38,10 @@ const UpdatePriceList = () => {
 );
     const navigate = useNavigate();
     const accept =async () => {
-debugger
-        const res=await updateData("manager/priceList",{ "DayFee": DayFee, "CategoryFee": CategoryFee } )
+
+  const res=await updateData("manager/priceList",{ "DayFee": DayFee?DayFee:data.DayFee, "CategoryFee": CategoryFee?CategoryFee:data.CategoryFee } )
                     
-                    if(res.status==201){
+                 if(res.status==201){
                         showSuccess(res.data.message)
                         
                       }
@@ -55,7 +54,7 @@ debugger
           
           }
     
-      const reject = () => {}
+    const reject = () => {}
     const toast = useRef(null);
     const showError = (msg) => {
       toast.current.show({severity:'error', summary: 'Error', detail:msg, life: 3000});
@@ -68,8 +67,11 @@ debugger
     const { Get, updateData } = useAxios1();
     const [visible, setVisible] = useState(false);
     let { data, loading, error, refetch } = Get(`owner/priceList`);
-    const [DayFee, setDayFee] = useState(data.DayFee);
-    const [CategoryFee, setCategoryFee] = useState(data.CategoryFee);
+
+
+    
+    const [DayFee, setDayFee] = useState('');
+    const [CategoryFee, setCategoryFee] = useState();
     if (loading) {
         return <p>Loading...</p>;
     }

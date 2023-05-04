@@ -1,21 +1,13 @@
-import React, {useState}from 'react'
+import React, { useState } from 'react'
 import { Dropdown } from 'primereact/dropdown';
 import { MultiSelect } from 'primereact/multiselect';
 import { InputNumber } from 'primereact/inputnumber';
 import { Button } from 'primereact/button';
-import OwnerMenu from './menues/ownerMenu';                                                               
-import { Card } from 'primereact/card'; 
-import { useAxios1 } from "../hooks/useAxios";
-import card from '../images/card.png'
+import OwnerMenu from '../menues/ownerMenu';
+import { Card } from 'primereact/card';
+import { useAxios1 } from "../../hooks/useAxios";
+import card from '../../images/card.png'
 
-// import 'primereact/resources/themes/lara-light-indigo/theme.css';   // theme
-// import 'primereact/resources/primereact.css';                       // core css
-// import 'primeicons/primeicons.css';
-// import 'primereact/resources/themes/saga-blue/theme.css';
-//import 'primeflex/primeflex.css';
-// import '..//index.css';
-// import ReactDOM from 'react-dom';
-// import  { Component } from 'react';
 
 let categoriesTemplate = (option) => {
   return (
@@ -39,7 +31,6 @@ let selectedCategoriesTemplate = (option) => {
 const UpdateStoreDetails = () => {
   const [selectedStore, setSelectedStore] = useState(null);
   const [selectedCategories, setselectedCategories] = useState(null);
-  const [ownerId, setownerId] = useState(null);
 
   const { Get, postData, Post } = useAxios1();
 
@@ -65,13 +56,13 @@ const UpdateStoreDetails = () => {
   };
 
   const header = (
-    <img alt="Card"         src={card}
-    style={{ "width": "98%", "height": "50px" }} />
-);
-const footer = (
-    <OwnerMenu/>
+    <img alt="Card" src={card}
+      style={{ "width": "98%", "height": "50px" }} />
+  );
+  const footer = (
+    <OwnerMenu />
     //<Button  radius={80} type="semi-circle" direction="up" style={{ left: 'calc(50% - 2rem)', bottom: 0 }} />
-);
+  );
 
   return (
     <div style={{ marginTop: "5%" }}>
@@ -98,8 +89,9 @@ const footer = (
             value={selectedStore}
             onChange={(e) => {
               setSelectedStore(e.value);
+              
             }}
-            onBlur={async () => {
+            onBlur={ () => {
               ImportCats4Store();
             }}
             options={stores}
@@ -113,9 +105,7 @@ const footer = (
               <br />
               <br />
               <br />
-              <label style={{ marginRight: "1%" }}>
-                update your store's categories
-              </label>
+
               <MultiSelect
                 value={selectedCategories}
                 options={_allCats.data}
@@ -131,14 +121,8 @@ const footer = (
               <br />
               <br />
               <br />
-              <label style={{ marginRight: "1%" }}>update owner id</label>
-              <InputNumber
-                id="withoutgrouping"
-                placeholder="214121865"
-                onValueChange={(e) => setownerId(e.value)}
-                mode="decimal"
-                useGrouping={false}
-              />
+           
+
               <Button label="Submit" icon="pi pi-check" />
             </>
           ) : (

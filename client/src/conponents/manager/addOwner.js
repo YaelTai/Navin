@@ -3,10 +3,10 @@ import { Card } from "primereact/card";
 import { InputText } from "primereact/inputtext";
 import { Button } from "primereact/button";
 import { Toast } from "primereact/toast";
-import ManagerMenu from "./menues/managerMenu";
-import { useAxios1 } from "../hooks/useAxios";
+import ManagerMenu from "../menues/managerMenu";
+import { useAxios1 } from "../../hooks/useAxios";
 import { useNavigate } from "react-router-dom";
-import card from '../images/card.png'
+import card from '../../images/card.png'
 
 const header = (
   <img

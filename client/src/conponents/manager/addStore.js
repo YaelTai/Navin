@@ -4,12 +4,12 @@ import { Button } from "primereact/button";
 import { Password } from "primereact/password";
 import "primeflex/primeflex.css";
 import Axios from "axios";
-import "../index.css";
+import "../../index.css";
 import { Card } from "primereact/card";
-import { useAxios1 } from "../hooks/useAxios";
+import { useAxios1 } from "../../hooks/useAxios";
 import { Toast } from 'primereact/toast';
-import ManagerMenu from "./menues/managerMenu";
-import card from '../images/card.png'
+import ManagerMenu from ".././menues/managerMenu";
+import card from '../../images/card.png'
 
 const header = (
   <img
