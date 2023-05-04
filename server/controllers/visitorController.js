@@ -50,7 +50,18 @@ console.log("this is our ads befor mapping",ads);
     getAllStores=async(req, res) => {
         let stores=await StoreDB.getAllStores()
         if(!stores)return res.status(400).json({ message: 'error occured when get stores'})
+        console.log(stores);
         res.status(200).json(stores.map((s)=>{return{"Name":s.Name}})) 
+    }
+    getLocationByStoreName=async(req,res)=>{
+        console.log("*********",req.body);
+        let store=await StoreDB.getStoreByName(req.body.storeName)
+        if (!store) return res.status(400).json({ message: 'error occured when get stores'})
+        console.log("--------------",store);
+        let location={lat:store.Lat, lng:store.Lng}
+        res.status(200).json(location) 
+
+
     }
 
     getStoreByAd=async(req, res) => {

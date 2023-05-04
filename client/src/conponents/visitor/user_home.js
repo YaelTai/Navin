@@ -15,15 +15,18 @@ const UserHome = () => {
   const { Get } = useAxios1();
   let stores_ = Get(`visitor/stores`);
   let stores = stores_.data;
-
+console.log(stores);
 
   useEffect(() => {
-    if(selectedStore)
-      
+    if(selectedStore){
+      console.log("222222",selectedStore);
+    localStorage.setItem("store",selectedStore.Name)
     setTimeout(() => {
+     
       navigate("/visitor/presentLocation")
-    }, 2000);
+    }, 2000);}
     }, [selectedStore])
+  
 
   
   const searchStores = (event) => {
@@ -51,7 +54,7 @@ const UserHome = () => {
   const navigate = useNavigate();
 
   return (
-    <Card title="Welcome!" footer={footer} header={header} className="md:w-25rem" style={{overflowY:"auto", "margin": "2%", "width": "95%", "height": "95%" }}>
+    <Card title="Welcome!" footer={footer} header={header} className="m-auto" style={{overflowY:"auto", "margin": "2%", "width": "95%", "height": "95%" }}>
       <p className="m-0">
         
         

@@ -57,7 +57,7 @@ const UpdateStoreDetails = () => {
 
   const header = (
     <img alt="Card" src={card}
-      style={{ "width": "98%", "height": "50px" }} />
+      style={{ "width": "100%", "height": "50px" }} />
   );
   const footer = (
     <OwnerMenu />

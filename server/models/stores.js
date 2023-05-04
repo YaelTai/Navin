@@ -8,11 +8,21 @@ module.exports = (sequelize, DataTypes) => {
         },
        
         Name: { type: DataTypes.STRING, unique: true ,allowNull: false},
-        // LocationCode :{
+        Floor :{
             
-        //     type: DataTypes.STRING
-        //     ,allowNull: false
-        // },
+            type: DataTypes.INTEGER
+            ,allowNull: false
+        },
+        Lat :{
+            
+            type: DataTypes.FLOAT
+            ,allowNull: false
+        },
+        Lng :{
+            
+            type: DataTypes.FLOAT
+            ,allowNull: false
+        },
         
             
     OwnerId :{   

@@ -12,7 +12,7 @@ import card from '../../images/card.png'
 
 const header = (
     <img alt="Card" src={card}
-    style={{ "width": "98%", "height": "50px" }} />
+    style={{ "width": "100%", "height": "50px" }} />
 );
 const footer = (
     <div style={{ position: 'relative', height: '350px' }}>

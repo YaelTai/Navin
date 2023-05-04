@@ -52,7 +52,7 @@ const { postData } = useAxios1();
         
           margin: "2%",
           width: "95%",
-          height: "98%",
+          height: "100%",
           position: "fixed",
           overflowY: "auto",
         }}

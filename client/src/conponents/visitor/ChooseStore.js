@@ -10,14 +10,11 @@ import "primereact/resources/themes/lara-light-indigo/theme.css";
 import "primereact/resources/primereact.css";
 import "primeicons/primeicons.css";
 import "primeflex/primeflex.css";
-// import card from '../../images/card.png'
-
 import azrieli from "../../images/azrieli.png"
 const footer = <div className="flex flex-wrap justify-content-end gap-2"></div>;
 
 export default function ChooseStores() {
   const [selectedStore, setSelectedStore] = useState(null);
-  //const [selectedCategory, setSelectedCategory] = useState(null);
   const [filteredStores, setfilteredStores] = useState(null);
   const [filteredCategories, setfilteredCategories] = useState(null);
   const [selectedstoresForCat, setselectedstoresForCat] = useState([]);
@@ -26,7 +23,7 @@ export default function ChooseStores() {
   const header = selectedCategory? <Ads Cat={{"Id":selectedCategory.Id}} setselectedstoresForCat={setselectedstoresForCat} setSelectedStore={setSelectedStore} selectedstoresForCat={selectedstoresForCat}/>: <img
   alt="Card"
   src={azrieli}
-  style={{ width: "98%", height: "200px" }}
+  style={{ width: "98%%", height: "200px" }}
 />;
   const { Get, postData } = useAxios1();
 
@@ -34,11 +31,12 @@ export default function ChooseStores() {
   let categories_ = Get(`visitor/categories`);
   let stores = stores_.data;
   let categories = categories_.data;
+  console.log(categories);
 
 
 
   const ImportStoresForCategory = async () => {
-    console.log("ImportStoresForCategory");
+    console.log("ImportStoresForCategory",selectedCategory);
     let stores4cat = await postData(`visitor/storesForCategory`, {CatId: selectedCategory.Id });
    
     console.log("stores4catttttttttttttttttttttttt",stores4cat.data);  
@@ -67,7 +65,7 @@ export default function ChooseStores() {
     let query = event.query;
     let _filteredCategories = [];
 
-    for (let i = 0; i < stores.length; i++) {
+    for (let i = 0; i < categories.length; i++) {
       const cat = categories[i];
       if (cat.Name.toLowerCase().indexOf(query.toLowerCase()) === 0) {
         _filteredCategories.push(cat);
@@ -101,9 +99,9 @@ export default function ChooseStores() {
       title="Let's create the best route for you!"
       footer={footer}
       header={header}
-      className="md:w-25rem"
+      className=" m-auto" 
       style={{
-        margin: "2%",
+        // margin: "2%",
         width: "95%",
         height: "98%",
         position: "fixed",
@@ -137,7 +135,7 @@ export default function ChooseStores() {
         <br/>
         <AutoComplete
           value={selectedCategory}
-          suggestions={filteredCategories}
+          suggestions={filteredCategories} 
           completeMethod={searchCategories}
           virtualScrollerOptions={{ itemSize: 38 }}
           field="Name"
@@ -150,15 +148,14 @@ export default function ChooseStores() {
             await ImportStoresForCategory();
             
           }}
-           
         />
         <br />
         <br />
         <br />
         {selectedCategory ? (
           <>
-            {storesForCat.length==0?<lable>No stores match to this category</lable>:<>
-            <lable>Stores that sell {selectedCategory.Name}</lable>
+          
+            <lable>You can find {selectedCategory.Name} in:</lable>
             <br />
             <MultiSelect
               value={selectedstoresForCat}
@@ -173,7 +170,7 @@ export default function ChooseStores() {
               itemTemplate={storeforCatTemplate}
               panelFooterTemplate={panelFooterTemplate}
               className="w-full md:w-20rem"
-            /></>}
+            />
           </>
         ) : (
           <></>
@@ -207,3 +204,6 @@ export default function ChooseStores() {
     </Card>
   );
 }
+
+
+

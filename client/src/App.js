@@ -28,14 +28,11 @@ import Payment from "./conponents/owner/Payment";
 import Map from './conponents/map/Map'
 
 function App() {
-  return (<>
-    
-
-
-
-
+  return (
+      <div className=" m-auto" >
        <Router>
         <Routes>
+          
           <Route path="/" element={<Welcome/> } />
 
           <Route path="/manager" element={<ManagerHome />} />
@@ -61,11 +58,12 @@ function App() {
           <Route path="/visitor/presentLocation" element={<PresentLocation />} />
 
           
-          
+        
         </Routes>
-      </Router> 
+      </Router>   
+      </div>
       
-    </>
+    
   );
 }
 

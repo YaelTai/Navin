@@ -5,9 +5,12 @@ import VisitorMenu from '../menues/visitorMenu'
 import { useNavigate } from "react-router-dom";
 import card from '../../images/card.png'
 import Map from '../map/Map'
+import { useAxios1 } from "../../hooks/useAxios";
 
 
 const PresentLocation = () => {
+  const { Get, postData } = useAxios1();
+
 
     const [location, setLocation] = useState();
   
@@ -20,9 +23,10 @@ const PresentLocation = () => {
         console.log("Geolocation is not supported by this browser.");
       }
     }
-    function showPosition(position) {
-     
-      setLocation({lat: 32.075644522031276, lng:34.77546354546296  });
+    async function showPosition(position) {
+     let location_= await postData('visitor/location',{storeName:localStorage.getItem("store")})
+     console.log(location_);
+      setLocation(location_.data);
     }
   
     const header = (
