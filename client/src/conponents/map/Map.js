@@ -19,7 +19,7 @@ function Map({ location, height, width, zoomy, showDirection, userLocation, m, m
   const [map, setMap] = React.useState(null);
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
-    googleMapsApiKey: "AIzaSyCPams-OwVhpAAxAr-4WcFbE5w-mcZUFYk"
+    googleMapsApiKey: ""
   })
 
   const onLoad = React.useCallback(function callback(map) {
