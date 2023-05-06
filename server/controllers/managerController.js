@@ -32,11 +32,9 @@ class ManagerController {
         
         const stores=await StoreDB.getAllStores()
         if(!stores) return res.status(400).json({ message: 'error while check uq store name'}) 
-        const storesNames=stores.map(e=>e.Name)
-        if(storesNames.includes(req.body.Name)) return res.status(400).json({ message: 'store name alredy exists'})
-        // const storesLocs=stores.map(e=>e.LocationCode)
-        // if(storesLocs.includes(req.body.LocationCode)) return res.status(400).json({ message: 'store location alredy exists'})  
-        //if (!req.body.Name|| !req.body.LocationCode ||! req.body.OwnerId)  return res.status(400).json({ message: 'All fields are required'}) 
+        // const storesNames=stores.map(e=>e.Name)
+        // if(storesNames.includes(req.body.Name)) return res.status(400).json({ message: 'store name alredy exists'})
+        
         if( await StoreDB.getStoreByName(req.body.Name))
          return res.status(400).json({ message: 'store name alredy exist'})
          const owner=await OwnerDB.getOwnerById(req.body.OwnerId)

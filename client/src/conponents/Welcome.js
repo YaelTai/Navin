@@ -1,11 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Image } from "primereact/image";
 import { Card } from "primereact/card";
 import { useNavigate } from "react-router-dom";
 import NAVIN2 from '../videos/NAVIN2.mp4'
 import card from '../images/card.png'
-      
+
 const Welcome = () => {
+    
   const header = (
     <>
       <img

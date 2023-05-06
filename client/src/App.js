@@ -26,7 +26,7 @@ import "primereact/resources/themes/saga-blue/theme.css";
 import "./index.css";
 import Payment from "./conponents/owner/Payment";
 import Map from './conponents/map/Map'
-
+import DestList from "./conponents/visitor/destList/destList";
 function App() {
   return (
       <div className=" m-auto" >
@@ -52,7 +52,7 @@ function App() {
 
           <Route path="/owner/updateStoreDetails" element={<UpdateStoreDetails />} />
           <Route path="/owner/updatePersonalsDetail" element={<UpdatePersonalsDetail />} />
-
+          <Route path="/visitor/destList" element={<DestList />} />
           <Route path="/visitor" element={<VisitorHome />} />
           <Route path="/visitor/chooseStores" element={<ChooseStores />} />
           <Route path="/visitor/presentLocation" element={<PresentLocation />} />

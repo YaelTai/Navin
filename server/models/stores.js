@@ -13,16 +13,16 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.INTEGER
             ,allowNull: false
         },
-        Lat :{
+        // Lat :{
             
-            type: DataTypes.FLOAT
-            ,allowNull: false
-        },
-        Lng :{
+        //     type: DataTypes.DOUBLE
+        //     ,allowNull: false
+        // },
+        // Lng :{
             
-            type: DataTypes.FLOAT
-            ,allowNull: false
-        },
+        //     type: DataTypes.DOUBLE
+        //     ,allowNull: false
+        // },
         
             
     OwnerId :{   

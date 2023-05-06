@@ -11,9 +11,11 @@ import "primereact/resources/primereact.css";
 import "primeicons/primeicons.css";
 import "primeflex/primeflex.css";
 import azrieli from "../../images/azrieli.png"
+import { useNavigate } from "react-router-dom";
 const footer = <div className="flex flex-wrap justify-content-end gap-2"></div>;
 
 export default function ChooseStores() {
+  const navigate = useNavigate();
   const [selectedStore, setSelectedStore] = useState(null);
   const [filteredStores, setfilteredStores] = useState(null);
   const [filteredCategories, setfilteredCategories] = useState(null);
@@ -123,7 +125,7 @@ export default function ChooseStores() {
             setSelectedStore(e.value)
             if(!selectedstoresForCat.find((s)=>s.Name===e.value.Name))
               setselectedstoresForCat([...selectedstoresForCat,e.value]);
-            
+              localStorage.setItem("selectedstoresForCat", selectedstoresForCat);
             
             }
            }
@@ -164,6 +166,8 @@ export default function ChooseStores() {
               onChange={(e) => { console.log("e.value*********",storesForCat);
               console.log(selectedstoresForCat,"selectedstoresForCat");
                 setselectedstoresForCat(e.value);
+              localStorage.setItem("selectedstoresForCat", selectedstoresForCat);
+
               }}
 
               placeholder="Select  store"
@@ -180,6 +184,10 @@ export default function ChooseStores() {
             label="Let's Go"
             icon={BiWalk}
             style={{ color: "greenyellow", marginLeft: "65%" }}
+            onClick={() => {
+             
+              navigate("/visitor/destList" )}} 
+
           />
         </>
         <h4>selected stores</h4>

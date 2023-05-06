@@ -8,6 +8,8 @@ import "../../index.css";
 import { Card } from "primereact/card";
 import { useAxios1 } from "../../hooks/useAxios";
 import { Toast } from 'primereact/toast';
+import { InputNumber } from 'primereact/inputnumber';
+
 import ManagerMenu from ".././menues/managerMenu";
 import card from '../../images/card.png'
 
@@ -38,6 +40,7 @@ const AddStore = () => {
   const { postData } = useAxios1();
   const [storeName, setstoreName] = useState(null);
   const [ownerId, setownerName] = useState(null);
+  const [floor, setFloor] = useState(null);
 
   return (
     <>
@@ -62,12 +65,18 @@ const AddStore = () => {
           
             onChange={(e) => setstoreName(e.target.value)}
           /> <label htmlFor="drh">Store name</label></span>
-          <br />
           <label>*as it appears on the sign</label>
           <br />
           <br />
+
           <span className="p-float-label">
-          <InputText
+
+          <InputNumber inputId="minmax-buttons" value={floor} 
+          onValueChange={(e) => setFloor(e.value)} mode="decimal" showButtons min={0} max={2} />
+          <label htmlFor="drh">Floor number</label></span>
+          <br/><br/>
+          <span className="p-float-label">
+          <InputText 
             value={ownerId}
          
             onChange={(e) => setownerName(e.target.value)}
@@ -79,10 +88,10 @@ const AddStore = () => {
             label="Submit"
             icon="pi pi-check"
             onClick={async () => {
-              if (!storeName || !ownerId) {
+              if (!storeName || !ownerId || !floor) {
                 alert("all fields required");
               } else {
-                const obj = { Name: storeName, OwnerId: ownerId };
+                const obj = { Name: storeName, OwnerId: ownerId ,Floor:floor};
                 const res = await postData("manager/store", obj);
             if(res.status==201){
               showSuccess(res.data.message)

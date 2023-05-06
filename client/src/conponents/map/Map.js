@@ -8,7 +8,6 @@ function Map({ location, height, width, zoomy, showDirection, userLocation, m, m
   const [zoom, setZoom] = React.useState(14);
   const [route, setRoute] = React.useState();
 
-  console.log(showDirection);
   const containerStyle = {
     margin: 'auto',
     marginTop: m || 0,
@@ -17,13 +16,14 @@ function Map({ location, height, width, zoomy, showDirection, userLocation, m, m
   };
 
   const [map, setMap] = React.useState(null);
+  
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
-    googleMapsApiKey: ""
+    googleMapsApiKey: "AIzaSyCPams-OwVhpAAxAr-4WcFbE5w-mcZUFYk"
   })
 
   const onLoad = React.useCallback(function callback(map) {
-    map.setZoom(zoomy ? zoomy : zoom)
+    // map.setZoom(zoomy ? zoomy : zoom)
     setMap(map)
   }, [])
 
@@ -35,9 +35,10 @@ function Map({ location, height, width, zoomy, showDirection, userLocation, m, m
     <GoogleMap
       mapContainerStyle={containerStyle}
       center={location}
-      zoom={zoom}
+      zoom={1000}
       onLoad={onLoad}
       onUnmount={onUnmount}
+      
     >
       {showDirection && route && <DirectionsRenderer directions={route} />}
       { /* Child components, such as markers, info windows, etc. */}

@@ -2,7 +2,6 @@ const CategoryDB=require("../dal/categoryAccess")
 const StoreDB=require("../dal/storesAccess")
 const AdvertismentDB= require("../dal/advertismentAccess")
 const fs = require('fs');
-const { log } = require("console");
 class VisitorController {
 
     
@@ -53,16 +52,23 @@ console.log("this is our ads befor mapping",ads);
         console.log(stores);
         res.status(200).json(stores.map((s)=>{return{"Name":s.Name}})) 
     }
-    getLocationByStoreName=async(req,res)=>{
-        console.log("*********",req.body);
+    // getLocationByStoreName=async(req,res)=>{
+    //     let store=await StoreDB.getStoreByName(req.body.storeName)
+    //     if (!store) return res.status(400).json({ message: 'error occured when get stores'})
+    //     console.log("--------------",store);
+    //     let location={lat:store.Lat, lng:store.Lng}
+    //     res.status(200).json(location) 
+
+    // }
+    getFloorByStoreName=async(req,res)=>{
         let store=await StoreDB.getStoreByName(req.body.storeName)
         if (!store) return res.status(400).json({ message: 'error occured when get stores'})
-        console.log("--------------",store);
-        let location={lat:store.Lat, lng:store.Lng}
-        res.status(200).json(location) 
+        res.status(200).json(store.Floor) 
+    
+}
 
-
-    }
+    
+    
 
     getStoreByAd=async(req, res) => {
         const store =await StoreDB.getStoreById(req.body.StoreId)

@@ -6,7 +6,9 @@ import { useNavigate } from "react-router-dom";
 import card from '../../images/card.png'
 import Map from '../map/Map'
 import { useAxios1 } from "../../hooks/useAxios";
+import Geocode from "react-geocode";
 
+Geocode.setApiKey("AIzaSyCPams-OwVhpAAxAr-4WcFbE5w-mcZUFYk");
 
 const PresentLocation = () => {
   const { Get, postData } = useAxios1();
@@ -18,15 +20,26 @@ const PresentLocation = () => {
   
     function getLocation() {
       if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(showPosition);
+        //navigator.geolocation.getCurrentPosition(showPosition);
       } else {
         console.log("Geolocation is not supported by this browser.");
       }
-    }
-    async function showPosition(position) {
-     let location_= await postData('visitor/location',{storeName:localStorage.getItem("store")})
-     console.log(location_);
-      setLocation(location_.data);
+    
+
+let adress=`${localStorage.getItem("store")} , דרך אגודת ספורט בית"ר 1`
+      Geocode.fromAddress(adress).then(
+        (response) => {
+          const { lat, lng } = response.results[0].geometry.location;
+          console.log(lat, lng);
+      setLocation(response.results[0].geometry.location);
+
+        },
+        (error) => {
+          console.error(error);
+        }
+      );
+
+ 
     }
   
     const header = (
