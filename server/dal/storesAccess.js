@@ -30,8 +30,9 @@ const getAllStoresLocations= async ()=>{
       
     
 }
-const deleteStore=async (name)=>{
-   return await Store.destroy({ where:{Name:name}})
+const deleteStore=async (id)=>{
+    await StoreCategories.destroy({ where:{"StoreId":id}})
+   return await Store.destroy({ where:{"Id":id}})
 
 }
 
@@ -50,9 +51,9 @@ const getCategoriesNamesByStore=async (id)=>{
     }
     ); 
 } 
-const updateStore = async  (storeName,OwnerId) => {
+const updateStore = async  (storeName,OwnerId,Logo) => {
   
-    return  await  Store.update( {"Name":storeName,"OwnerId":OwnerId},{
+    return  await  Store.update( {"Name":storeName,"OwnerId":OwnerId,"Logo":Logo},{
         where:{Name: storeName}
    })
 

@@ -57,7 +57,7 @@ class ManagerController {
             if(! owner ) return res.status(400).json({ message: 'wrong owner name'}) 
             if(! store) return res.status(400).json({ message: 'wrong store name'})
             if(!owner.Id==store.OwnerId) return res.status(400).json({ message: 'store name does not match owner name'})
-            if(await StoreDB.deleteStore(req.body.Name))
+            if(await StoreDB.deleteStore(store.Id))
                 return  res.status(201).json({ message: 'deleted store' })
             else
             return res.status(400).json({ message: 'error while delete store'})
