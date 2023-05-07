@@ -6,6 +6,8 @@ import { BiWalk } from "react-icons/bi";
 import { useAxios1 } from "../../hooks/useAxios";
 import { MultiSelect } from "primereact/multiselect";
 import Ads from "./ads";
+import { Badge } from 'primereact/badge';
+
 import "primereact/resources/themes/lara-light-indigo/theme.css";
 import "primereact/resources/primereact.css";
 import "primeicons/primeicons.css";
@@ -125,7 +127,6 @@ export default function ChooseStores() {
             setSelectedStore(e.value)
             if(!selectedstoresForCat.find((s)=>s.Name===e.value.Name))
               setselectedstoresForCat([...selectedstoresForCat,e.value]);
-              localStorage.setItem("selectedstoresForCat", selectedstoresForCat);
             
             }
            }
@@ -160,13 +161,12 @@ export default function ChooseStores() {
             <lable>You can find {selectedCategory.Name} in:</lable>
             <br />
             <MultiSelect
-              value={selectedstoresForCat}
+             value={selectedstoresForCat}
               options={storesForCat}
               optionLabel="Name"
               onChange={(e) => { console.log("e.value*********",storesForCat);
-              console.log(selectedstoresForCat,"selectedstoresForCat");
+              // console.log(selectedstoresForCat,"selectedstoresForCat");
                 setselectedstoresForCat(e.value);
-              localStorage.setItem("selectedstoresForCat", selectedstoresForCat);
 
               }}
 
@@ -185,7 +185,8 @@ export default function ChooseStores() {
             icon={BiWalk}
             style={{ color: "greenyellow", marginLeft: "65%" }}
             onClick={() => {
-             
+             //et storesString=JSON.stringify(selectedstoresForCat)
+             localStorage.setItem("chosenStores",JSON.stringify(selectedstoresForCat))
               navigate("/visitor/destList" )}} 
 
           />
@@ -194,16 +195,13 @@ export default function ChooseStores() {
         <ul style={{ "list-style": "none", marginRight: "10%" }}>
           {selectedstoresForCat.map((store, index) => (
             <li>
-              <i
-                className="pi pi-times"
-                style={{ color: "green", size: "20px" }}
-                onClick={(e) => {
+              <Badge  value="x" severity="warning" style={{"margin":"1%"}} onClick={(e) => {
                   setselectedstoresForCat((s) => [
                     ...s.slice(0, index),
                     ...s.slice(index + 1, s.length),
                   ]);
-                }}
-              ></i>
+                }} ></Badge>
+
               {store.Name}
             </li>
           ))}

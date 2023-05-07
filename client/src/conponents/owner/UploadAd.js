@@ -159,7 +159,6 @@ const UploadAd = () => {
                 <MultiSelect value={selectedCategories} options={categories} onChange={(e) => setselectedCategories(e.value)} optionLabel="Name" placeholder="Select Categories" filter className="multiselect-custom"
                     itemTemplate={categoryTemplate} selectedItemTemplate={selectedCategoriesTemplate} /><br></br><br></br>
                 <lable>4. Start and end date for your ad:</lable><br></br><br></br>
-                {/* <Calendar value={date} onChange={(e) => setDate(e.value)} /> */}
                 <lable style={{ "marginRight": "10px" }}>from:</lable><Calendar value={from} onChange={(e) => { setfrom(new Date(e.target.value)) }} /><br></br><br></br>
                 <lable style={{ "marginRight": "10px" }}>to:</lable><Calendar value={to} onChange={(e) => setto(new Date(e.target.value))} /> <br></br><br></br>
                 <lable>5. Estimated cost</lable>

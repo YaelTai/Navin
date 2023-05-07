@@ -8,7 +8,7 @@ import { Tag } from 'primereact/tag';
 import { Card } from "primereact/card";
 import { useNavigate } from "react-router-dom";
 import 'primeflex/primeflex.css';
-
+import handm from '../../../images/handm.png'
 import card from '../../../images/card.png'
  
 const DestList = () => {
@@ -22,48 +22,23 @@ const DestList = () => {
       );
   
   const navigate = useNavigate();
-  const [products, setProducts] = useState([]);
+  const [stores, setStores] = useState([]);
 
   useEffect(() => {
- ProductService.getProductsSmall().then((data) => setProducts(data.slice(0, 5)));
+ setStores(JSON.parse(localStorage.getItem("chosenStores") || "[]"))
   }, []);
-  const getSeverity = (product) => {
-    switch (product.inventoryStatus) {
-        case 'INSTOCK':
-            return 'success';
-
-        case 'LOWSTOCK':
-            return 'warning';
-
-        case 'OUTOFSTOCK':
-            return 'danger';
-
-        default:
-            return null;
-    }
-};
+ 
 
 const itemTemplate = (product) => {
     return (
         <div className="col-12">
             <div className="flex flex-column xl:flex-row xl:align-items-start p-4 gap-4">
-                
+                <img  src={handm} alt={product.name} style={{"height":"30%%","width":"30%"}}/>
                 <div className="flex flex-column sm:flex-row justify-content-between align-items-center xl:align-items-start flex-1 gap-4">
-                    <div className="flex flex-column align-items-center sm:align-items-start gap-3">
-                        <div className="text-2xl font-bold text-900">{product.name}</div>
-                      
-                        <div className="flex align-items-center gap-3">
-                            <span className="flex align-items-center gap-2">
-                             
-                                <span className="font-semibold">{product.category}</span>
-                            </span>
-                          
-                        </div>
-                    </div>
-                    <div className="flex sm:flex-column align-items-center sm:align-items-end gap-3 sm:gap-2">
-                        
-                        <Button icon="pi pi-shopping-cart" className="p-button-rounded" disabled={product.inventoryStatus === 'OUTOFSTOCK'}></Button>
-                    </div>
+                    {/* <div className="flex sm:flex-column align-items-center sm:align-items-end gap-3 sm:gap-2"> */}
+                       
+                        <Button icon="pi pi-times" className="p-button-rounded" disabled={product.inventoryStatus === 'OUTOFSTOCK'}></Button>
+                    {/* </div> */}
                 </div>
             </div>
         </div>
@@ -86,7 +61,7 @@ const itemTemplate = (product) => {
         }}
       >
   <h2>first floor:</h2>
-  <DataView value={products} itemTemplate={itemTemplate} />
+  <DataView value={stores} itemTemplate={itemTemplate} />
   <h2>second floor:</h2>  
       </Card>
     </>
