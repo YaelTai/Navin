@@ -11,6 +11,6 @@ VisitorRouter.get("/stores",VisitorController.getAllStores)
 VisitorRouter.get("/storeForAd",VisitorController.getStoreByAd)
 VisitorRouter.post("/ads",VisitorController.getAllAdsByCategory)
 VisitorRouter.post("/floor",VisitorController.getFloorByStoreName)
-
+VisitorRouter.post("/store",VisitorController.getStoreDetails)
 
 module.exports =VisitorRouter;

@@ -135,26 +135,26 @@ class ManagerController {
         else  res.status(201).json({ message: 'deleted  owner succesfully' })
 
     }
-    getOpenDocumentByURL = (req, res, next) => {
-//   let index=req.body.URL.lastIndexOf("\\");
-// console.log("**************************",req.body.URL.substring(index+1,req.body.URL.length));
-// console.log("**************************",req.body.URL.substring(0,index+1));
-//         const options = { 
-//           root: req.body.URL.substring(0,index+1)
-//       }; 
+//     getOpenDocumentByURL = (req, res, next) => {
+// //   let index=req.body.URL.lastIndexOf("\\");
+// // console.log("**************************",req.body.URL.substring(index+1,req.body.URL.length));
+// // console.log("**************************",req.body.URL.substring(0,index+1));
+// //         const options = { 
+// //           root: req.body.URL.substring(0,index+1)
+// //       }; 
       
-//         const fileName =  req.body.URL.substring(index+1,req.body.URL.length);
-        // res.sendFile(fileName, options, function (err) {
-        //     if (err) {
-        //       console.log(err);
-        //         next(err);
-        //     } else { 
-        //         console.log('Sent:', fileName); 
-        //     }
-        // });
-        const contents = fs.readFileSync(req.body.URL, {encoding: 'base64'});
-        res.send(contents)
-      }
+// //         const fileName =  req.body.URL.substring(index+1,req.body.URL.length);
+//         // res.sendFile(fileName, options, function (err) {
+//         //     if (err) {
+//         //       console.log(err);
+//         //         next(err);
+//         //     } else { 
+//         //         console.log('Sent:', fileName); 
+//         //     }
+//         // });
+//         const contents = fs.readFileSync(req.body.URL, {encoding: 'base64'});
+//         res.send(contents)
+//       }
     getAllPendingAds=async(req, res) => {
       
        let ads=await AdvertismentDB.getAllWaitingAds()

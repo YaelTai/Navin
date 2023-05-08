@@ -8,11 +8,11 @@ import { Card } from 'primereact/card';
 import { useAxios1 } from "../../hooks/useAxios";
 import { useNavigate } from "react-router-dom";
 import { Toast } from "primereact/toast";
-
+import card from "../../images/card.png"
 
 const header = (
   
-  <img alt="Card" src="https://primefaces.org/cdn/primereact/images/usercard.png" style={{ "width": "98%", "height": "50px" }} />
+  <img alt="Card" src={card} style={{ "width": "98%", "height": "50px" }} />
 );
 const footer = (
   <div className="flex flex-wrap justify-content-end gap-2">
@@ -105,7 +105,7 @@ const showSuccess = (msg) => {
   };
 
   return (
-    <Card title="Log In" footer={footer} header={header} className=" m-auto"  style={{ "margin": "2%", "width": "95%", "height": "98%" ,"position":'fixed',overflowY:"auto"}}>
+    <Card title="Log In" footer={footer} header={header} className=""  style={{ "margin": "2%", "width": "95%", "height": "98%" ,"position":'fixed',overflowY:"auto",width:"60%"}}>
     <p className="m-0">
    
     <Toast ref={toast} />

@@ -154,19 +154,19 @@ class OwnerController {
     //  }
         //loadFile
         let imagePath=""
-        const folder = path.join(__dirname, "..", "public", "images")
+        const folder = process.env.FOLDER
+        //path.join(__dirname, "..", "public", "images")
         const filename = `${uuid()}`
         const fileUrl  =`${folder}\\${filename}`
         console.log("URL",fileUrl);
         // const base64String ='data:image/jpeg;base64,/9j/4AAQSkZJRgABAgEBLAEsAAD/4RbbRXhpZgAASUkqAAgAAAANAAABAwABAAAAGgQAAAEBAwABAAAAWgYAAAIBAwABAAAAAQAAAAMBAwABAAAAAQAAAAYBAwABAAAAAAAAABIBAwABAAAAAQAAABUBAwABAAAAAQAAABoBBQABAAAAqgAAABsBBQABAAAAsgAAACgBAwABAAAAAgAAADEBAgAcAAAAugAAADIBAgAUAAAA1gAAAGmHBAABAAAA7AAAABgBAADAxi0AECcAAMDGLQAQJwAAQWRvYmUgUGhvdG9zaG9wIENTMiBXaW5kb3dzADIwMDc6MDI6MDkgMTE6MjA6MTcAAAADAAGgAwABAAAA//8AAAKgBAABAAAAGgQAAAOgBAABAAAAWgYAAAAAAAAAAAYAAwEDAAEAAAAGAAAAGgEFAAEAAABmAQAAGwEFAAEAAABuAQAAKAEDAAEAAAACAAAAAQIEAAEAAAB2AQAAAgIEAAEAAABdFQAAAAAAAEgAAAABAAAASAAAAAEAAAD/2P/gABBKRklGAAECAABIAEgAAP/tAAxBZG9iZV9DTQAB/+4ADkFkb2JlAGSAAAAAAf/bAIQADAgICAkIDAkJDBELCgsRFQ8MDA8VGBMTFRMTGBEMDAwMDAwRDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAENCwsNDg0QDg4QFA4ODhQUDg4ODhQRDAwMDAwREQwMDAwMDBEMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwM/8AAEQgAoABnAwEiAAIRAQMRAf/dAAQAB//EAT8AAAEFAQEBAQEBAAAAAAAAAAMAAQIEBQYHCAkKCwEAAQUBAQEBAQEAAAAAAAAAAQACAwQFBgcICQoLEAABBAEDAgQCBQcGCAUDDDMBAAIRAwQhEjEFQVFhEyJxgTIGFJGhsUIjJBVSwWIzNHKC0UMHJZJT8OHxY3M1FqKygyZEk1RkRcKjdDYX0lXiZfKzhMPTde';
         const base64String=req.body.Img
-        const allAds=await AdvertismentDB.getAllAds();
-        //const maxId =allAds[allAds.length-1].Id+1
+
         
        try {
        // imagePath = await base64toFile(base64String, { filePath: "./img", fileName: "/ad_"+1+"_"+req.body.AdOwner, types: ['jpeg'], fileMaxSize: 3145728 });
         imagePath = await base64toFile(base64String, { filePath:folder, fileName:filename, types: ['jpeg'], fileMaxSize: 3145728 });
-        //console.log("path"+fileUrl);
+       console.log("path1"+imagePath);
         } catch (error) {
            
          return res.status(400).json({ message: 'error occured while loading image'})
@@ -189,10 +189,10 @@ class OwnerController {
         });
         //email reminder to manager
     const manager=await OwnerDB.getManager();
-    console.log(manager);
     if(!manager)return res.status(400).json({ message: 'error occured when trying upload ad'})
         const to = manager.Email;
-        
+        console.log("***********");
+
         const subject = 'hello '+manager.Name+' a new ad waits to your approvment';
         const body = "click here to app";
     
@@ -206,7 +206,7 @@ class OwnerController {
                 res.status(500).send('Failed to send email');
             });
 
-        // res.status(200).json({ message: 'uploaded sucssfully'}) 
+         res.status(200).json({ message: 'uploaded sucssfully'}) 
 
     }
     getAdByPassword=async(req, res) => {
