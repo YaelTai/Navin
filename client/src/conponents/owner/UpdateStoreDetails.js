@@ -33,21 +33,46 @@ let selectedCategoriesTemplate = (option) => {
 const UpdateStoreDetails = () => {
 
   const [selectedStore, setSelectedStore] = useState(null);
-  const [selectedCategories, setselectedCategories] = useState(null);
+  const [selectedCategories, setselectedCategories] = useState([]);//to add
   const [visible, setVisible] = useState(false); 
-  const [cats4Store, setCats4Store] = useState([]); 
-  const [selectedcats4Store, setselectedsetCats4Store] = useState([]); 
+  const [cats4Store, setCats4Store] = useState([]); //current
+  const [selectedcats4Store, setselectedsetCats4Store] = useState([]); //to remove
   const [unsellescats, setunsellescats] = useState([]); 
 
   
    const toast = useRef(null);
    const accept=async()=>{
+let categoriesToUpdate=[];
+if(selectedCategories.length==0 && selectedcats4Store.length==0) categoriesToUpdate=cats4Store//no changes
+if(selectedCategories.length!=0&&selectedcats4Store.length==0) //only adding
+{categoriesToUpdate=selectedCategories.concat(cats4Store)
 
- console.log("444444444444",base64data);
+}
+if(selectedCategories.length==0 && selectedcats4Store.length!=0)//only removing 
+{
+  //if category not exists in selectedcats4Store
+    for (let i = 0; i < cats4Store.length; i++) {
+    if(selectedcats4Store.filter(e=>e.Name!=cats4Store[i].Name).length!=0)
+      categoriesToUpdate.push(selectedcats4Store[i])
+    }  
+    console.log("only removing",categoriesToUpdate); 
+  }
+//remove and add
+if(selectedCategories.length!=0&&selectedcats4Store.length!=0)
+{
+  for (let i = 0; i < cats4Store.length; i++) {
+    
+    if(selectedcats4Store.filter(e=>e.Name==cats4Store[i].Name).length==0)
+      categoriesToUpdate.push(selectedcats4Store[i])
+    } 
+    categoriesToUpdate.concat(selectedCategories)  
+}
+categoriesToUpdate=categoriesToUpdate.map((c)=>{return c.Name})
+console.log(categoriesToUpdate);
     let res1 = await updateData('owner/store', {
       "Name":selectedStore.Name,
       "OwnerId":localStorage.getItem("user"),
-       "Categories":selectedCategories || selectedcats4Store ? selectedCategories.concat(selectedcats4Store):[],
+       "Categories": categoriesToUpdate,
        "Logo":base64data?base64data:null
     })
 res1.request.status==200?
@@ -87,14 +112,14 @@ toast.current.show({ severity: 'warn', summary: 'Rejected', detail:res1.response
    console.log("------------.",_allCats); 
     
    setCats4Store(_categories4Store.data);
-let a=[];
+  let unselled=[];
    for (let i = 0; i < _allCats.data.length; i++) {
    if(! _categories4Store.data.filter(e=>e.Name==_allCats.data[i].Name).length!=0)
-    a.push(_allCats.data[i])
+   unselled.push(_allCats.data[i])
    }   
     
    
-setunsellescats(a)
+setunsellescats(unselled)
   
     console.log("............",unsellescats); 
     
@@ -262,4 +287,4 @@ setunsellescats(a)
   );
 };
 
-export default UpdateStoreDetails;
+export default UpdateStoreDetails
