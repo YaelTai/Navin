@@ -2,6 +2,7 @@ const CategoryDB=require("../dal/categoryAccess")
 const StoreDB=require("../dal/storesAccess")
 const AdvertismentDB= require("../dal/advertismentAccess")
 const fs = require('fs');
+const { log } = require("console");
 class VisitorController {
 
     
@@ -20,6 +21,44 @@ class VisitorController {
       console.log("stores=",stores);
        res.status(200).json(stores)  
     }
+    getStoresLogo=async(req, res) => {
+              let stores=await StoreDB.getAllStores()
+              console.log("we done!!!!!!!!",stores);
+              
+              stores=stores.map((s)=>{
+                console.log("sssss",s.dataValues.Floor);
+                return {
+                 Name:s.dataValues.Name,
+                    Floor:s.dataValues.Floor,
+                    Logo:s.dataValues.Logo!=null? fs.readFileSync(s.Logo, {encoding: 'base64'}):"",
+                }   
+              })
+              console.log("we done22222222222!!!!!!!!",stores);
+              let final_stores=[]
+              let storesName=[];
+              req.body.stores.forEach(s => {
+                storesName.push(s.Name)  
+              });
+              console.log("######",storesName);
+            //   for (let index = 0; index < stores.length; index++) {
+            //     console.log("stores[index].Name",stores[index].dataValues);
+            //      if(storesName.includes(stores[index]))
+            //      final_stores.push(stores[index])
+                  
+            //   }
+            stores.forEach((s)=>{
+                if(storesName.includes(s.Name))
+                final_stores.push(s)
+            })
+               console.log("finakkkkkk",final_stores);
+              res.status(200).json(final_stores) 
+               
+
+        } 
+        
+
+
+    
     getStoreDetails=async(req, res) => {
         const details=await StoreDB.getStoreDetails(req.body.Name)
         
