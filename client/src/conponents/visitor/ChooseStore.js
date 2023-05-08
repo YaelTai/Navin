@@ -103,7 +103,7 @@ export default function ChooseStores() {
       title="Let's create the best route for you!"
       footer={footer}
       header={header}
-      className=" m-auto" 
+      className="md:w-25rem" 
       style={{
         // margin: "2%",
         width: "95%",
@@ -166,6 +166,7 @@ export default function ChooseStores() {
               optionLabel="Name"
               onChange={(e) => { console.log("e.value*********",storesForCat);
               // console.log(selectedstoresForCat,"selectedstoresForCat");
+              if(e.value.length!=0)
                 setselectedstoresForCat(e.value);
 
               }}

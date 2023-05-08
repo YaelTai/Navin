@@ -5,7 +5,7 @@ const ManagerController= require("../controllers/managerController");
 
 
 const ManagerRouter = express.Router();
-ManagerRouter.post("/ads",ManagerController.getOpenDocumentByURL)
+
 ManagerRouter.post("/categories",ManagerController.addCategories)
 ManagerRouter.post("/store",ManagerController.addStore)
 ManagerRouter.post("/owner",ManagerController.addOwner)

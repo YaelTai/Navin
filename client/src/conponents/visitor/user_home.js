@@ -54,7 +54,7 @@ console.log(stores);
   const navigate = useNavigate();
 
   return (
-    <Card title="Welcome!" footer={footer} header={header} className="m-auto" style={{overflowY:"auto", "margin": "2%", "width": "95%", "height": "95%" }}>
+    <Card title="Welcome!" footer={footer} header={header} className="" style={{overflowY:"auto", "margin": "2%", "width": "95%", "height": "95%",width:"60%" }}>
       <p className="m-0">
         
         

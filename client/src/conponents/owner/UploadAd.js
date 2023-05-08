@@ -222,6 +222,8 @@ const UploadAd = () => {
                         Ads will be displayed after payment.
                     </p>
                 </Dialog>
+                <br/>
+                <br/>
             </p>
 
         </Card>

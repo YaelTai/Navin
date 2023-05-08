@@ -29,7 +29,7 @@ import Map from './conponents/map/Map'
 import DestList from "./conponents/visitor/destList/destList";
 function App() {
   return (
-      <div className=" m-auto" >
+      <div className="" >
        <Router>
         <Routes>
           
