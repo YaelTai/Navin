@@ -83,7 +83,7 @@ export default function ChooseStores() {
     return (
       
       <div className="flex align-items-center">
-        <div>{option.Name}</div>
+        <div>{option.Name?option.Name:""}</div>
       </div>
     );
   };
