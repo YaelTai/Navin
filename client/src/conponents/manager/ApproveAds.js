@@ -136,7 +136,7 @@ console.log(data)
                   aria-label="Cancel"
                   style={{ marginLeft: "10px" }}
                   onClick={() => {
-                    debugger; Ad = ad; confirm2(); }}
+                     Ad = ad; confirm2(); }}
                 /></span>
               <br />
               <br />

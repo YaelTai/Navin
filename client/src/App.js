@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 //import Login from "./conponents/login/login"
 import DeleteSrore from "./conponents/manager/deleteStore"
 import Register from "./conponents/Register/Register";
-import ToolBar from "./conponents/menues/toolBar";
+import ToolBar from "../un used/toolBar";
 import AddStore from "./conponents/manager/addStore";
 import OwnerHome from "./conponents/owner/OwnerHome";
 import ManagerHome from "./conponents/manager/ManagerHome";
@@ -26,7 +26,7 @@ import "primereact/resources/themes/saga-blue/theme.css";
 import "./index.css";
 import Payment from "./conponents/owner/Payment";
 import Map from './conponents/map/Map'
-import DestList from "./conponents/visitor/destList/destList";
+import DestList from "./conponents/visitor/destList";
 function App() {
   return (
       <div  >
