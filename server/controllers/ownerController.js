@@ -79,6 +79,7 @@ class OwnerController {
         //      ]}
         //  "Logo":9j9k
         //update name & owner
+        console.log("333333333333333333");
         if(req.body.Logo){
             let imagePath=""
             const folder = path.join(__dirname, "..", "public", "images")
@@ -110,13 +111,12 @@ class OwnerController {
         oldCategories=oldCategories.map(c=>c["Name.Name"])
         if(! oldCategories) return res.status(400).json({ message: 'error occured while update store details  when trying get oldCategories'})
         let newCategories=req.body.Categories
+
         //delete categories
-        
         oldCategories.forEach(async(element) => {
             if(!(newCategories.includes(element))){
             const categoryId=await CategoryDB.getCategoryIdByName(element)
             if(!categoryId)return res.status(400).json({ message: 'error occured while update store details'})
-            
             if(!await StoreDB.deleteCategoryFromStore(storeId,categoryId))return res.status(400).json({ message: 'error occured when trying get categoryId'})
         }
         });

@@ -105,7 +105,7 @@ const showSuccess = (msg) => {
   };
 
   return (
-    <Card title="Log In" footer={footer} header={header} className=""  style={{ "margin": "2%", "width": "95%", "height": "98%" ,"position":'fixed',overflowY:"auto",width:"60%"}}>
+    <Card title="Log In" footer={footer} header={header} className="md:w-25rem"  style={{ "margin": "2%", "width": "95%", "height": "98%" ,"position":'fixed',overflowY:"auto",width:"60%"}}>
     <p className="m-0">
    
     <Toast ref={toast} />
