@@ -18,8 +18,8 @@ const srv="http://localhost:3001/api/";
         }
 
     }
-    const Post = (url, body={}) => {
-console.log("posyyyyyyyyyyyyyy");
+const Post = (url, body={}) => {
+console.log("posyyyyyyyyyyyyyy",body.stores);
         const [{ data, loading, error }, refetch]= useAxios(
             {
                 url:srv+url,

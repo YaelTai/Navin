@@ -13,6 +13,11 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.INTEGER
             ,allowNull: false
         },
+        Logo :{
+            
+            type: DataTypes.STRING
+            ,allowNull: true
+        },
         // Lat :{
             
         //     type: DataTypes.DOUBLE
