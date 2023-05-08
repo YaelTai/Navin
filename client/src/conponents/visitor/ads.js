@@ -14,7 +14,8 @@ export default function Ads(props) {
 
     const [products, setProducts] = useState([]);
     const [cat, setCat] = useState(props.Cat.Id);
-if(props.Cat.Id!=cat){setCat(props.Cat.Id)}
+    if(props.Cat.Id!=cat)
+        {setCat(props.Cat.Id)}
 
     const { postData } = useAxios1();
     const loadAds = async () => {
