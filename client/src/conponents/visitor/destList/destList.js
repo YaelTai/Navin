@@ -10,8 +10,10 @@ import { useNavigate } from "react-router-dom";
 import 'primeflex/primeflex.css';
 import handm from '../../../images/handm.png'
 import card from '../../../images/card.png'
+import { useAxios1 } from "../../../hooks/useAxios";
  
 const DestList = () => {
+
     const header = (
         <img alt="Card" src={card} style={{ "width": "100%", "height": "50px" }} />
       );
@@ -30,20 +32,35 @@ const DestList = () => {
  
 
 const itemTemplate = (product) => {
+  console.log("data");
     return (
         <div className="col-12">
             <div className="flex flex-column xl:flex-row xl:align-items-start p-4 gap-4">
-                <img  src={handm} alt={product.name} style={{"height":"30%%","width":"30%"}}/>
+                <img   src={`data:image/jpeg;base64,${product.Logo}`}  style={{"height":"200px","width":"30%"}}/>
                 <div className="flex flex-column sm:flex-row justify-content-between align-items-center xl:align-items-start flex-1 gap-4">
                     {/* <div className="flex sm:flex-column align-items-center sm:align-items-end gap-3 sm:gap-2"> */}
-                       
-                        <Button icon="pi pi-times" className="p-button-rounded" disabled={product.inventoryStatus === 'OUTOFSTOCK'}></Button>
+                    
+                        <Button icon="pi pi-times" className="p-button-rounded" 
+                        
+                        
+                        
+                        ></Button>
                     {/* </div> */}
                 </div>
             </div>
         </div>
     );
 };
+const { Post } = useAxios1();
+let { data, loading, error, refetch } = Post(`visitor/storeLogo`,{stores:JSON.parse(localStorage.getItem("chosenStores") || "[]")});
+console.log(data)
+if (loading) {
+  return <p>Loading...</p>;
+}
+if (error) {
+  return <p>Error!</p>;
+}
+console.log("dataaa",data);
 
   return (
     <>
@@ -61,7 +78,7 @@ const itemTemplate = (product) => {
         }}
       >
   <h2>first floor:</h2>
-  <DataView value={stores} itemTemplate={itemTemplate} />
+  <DataView value={data} itemTemplate={itemTemplate} />
   <h2>second floor:</h2>  
       </Card>
     </>

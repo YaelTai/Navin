@@ -129,8 +129,7 @@ export default function ChooseStores() {
               setselectedstoresForCat([...selectedstoresForCat,e.value]);
             
             }
-           }
-       
+           }       
         />
         <br />
         <br />
@@ -172,6 +171,7 @@ export default function ChooseStores() {
               }}
 
               placeholder="Select  store"
+              maxSelectedLabels={0}
               itemTemplate={storeforCatTemplate}
               panelFooterTemplate={panelFooterTemplate}
               className="w-full md:w-20rem"
