@@ -20,11 +20,25 @@ class VisitorController {
       console.log("stores=",stores);
        res.status(200).json(stores)  
     }
+    getStoreDetails=async(req, res) => {
+        const details=await StoreDB.getStoreDetails(req.body.Name)
+        
+        if(!details)
+            res.status(400).json({ message: 'error occured while getting store details'})
+        let categories=await StoreDB.getCategoriesNamesByStore(details.Id)
+        if(!categories)
+            res.status(400).json({ message: 'error occured while getting store details'})
+       
+        res.status(200).json({storeName:details.Name,
+         Logo: fs.readFileSync(details.Logo, {encoding: 'base64'}),
+            categories:categories.map(c=>c["Name.Name"])})
+    }
     getAllCategories=async(req, res) => {
         const Categories=await CategoryDB.getAllCategories()
         if(!Categories)return res.status(400).json({ message: 'error occured when get categories'})
        res.status(200).json(Categories)  
     }
+    
     getAllAdsByCategory=async(req, res) => {
        console.log("hi our cat is:",req.body.CatId);
         const ads=await AdvertismentDB.getAdsByCategory(req.body.CatId)
@@ -34,6 +48,7 @@ console.log("this is our ads befor mapping",ads);
         let ads_=[]
         for (let i = 0; i < ads.length; i++) {
             let store= await  StoreDB.getStoreById(ads[i]["advertisment.StoreId"])
+            console.log("===================",ads[i]['advertisment.Img']);
             const element ={
                 Id:ads[i].Id,
                 Img:fs.readFileSync(ads[i]['advertisment.Img'], {encoding: 'base64'}),
