@@ -8,6 +8,7 @@ const base64toFile = require('node-base64-to-file');
 const path = require("path")
 const {v4:uuid} = require("uuid")
 const fs = require('fs');
+
 class OwnerController {
 
     logIn=async(req, res) => {
@@ -78,25 +79,26 @@ class OwnerController {
         //      ]}
         //  "Logo":9j9k
         //update name & owner
-        let imagePath=""
-        const folder = process.env.FOLDER
-        const filename = `${uuid()}`
-        const fileUrl  =`${folder}\\${filename}`
-       
-        // const base64String ='data:image/jpeg;base64,/9j/4AAQSkZJRgABAgEBLAEsAAD/4RbbRXhpZgAASUkqAAgAAAANAAABAwABAAAAGgQAAAEBAwABAAAAWgYAAAIBAwABAAAAAQAAAAMBAwABAAAAAQAAAAYBAwABAAAAAAAAABIBAwABAAAAAQAAABUBAwABAAAAAQAAABoBBQABAAAAqgAAABsBBQABAAAAsgAAACgBAwABAAAAAgAAADEBAgAcAAAAugAAADIBAgAUAAAA1gAAAGmHBAABAAAA7AAAABgBAADAxi0AECcAAMDGLQAQJwAAQWRvYmUgUGhvdG9zaG9wIENTMiBXaW5kb3dzADIwMDc6MDI6MDkgMTE6MjA6MTcAAAADAAGgAwABAAAA//8AAAKgBAABAAAAGgQAAAOgBAABAAAAWgYAAAAAAAAAAAYAAwEDAAEAAAAGAAAAGgEFAAEAAABmAQAAGwEFAAEAAABuAQAAKAEDAAEAAAACAAAAAQIEAAEAAAB2AQAAAgIEAAEAAABdFQAAAAAAAEgAAAABAAAASAAAAAEAAAD/2P/gABBKRklGAAECAABIAEgAAP/tAAxBZG9iZV9DTQAB/+4ADkFkb2JlAGSAAAAAAf/bAIQADAgICAkIDAkJDBELCgsRFQ8MDA8VGBMTFRMTGBEMDAwMDAwRDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAENCwsNDg0QDg4QFA4ODhQUDg4ODhQRDAwMDAwREQwMDAwMDBEMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwM/8AAEQgAoABnAwEiAAIRAQMRAf/dAAQAB//EAT8AAAEFAQEBAQEBAAAAAAAAAAMAAQIEBQYHCAkKCwEAAQUBAQEBAQEAAAAAAAAAAQACAwQFBgcICQoLEAABBAEDAgQCBQcGCAUDDDMBAAIRAwQhEjEFQVFhEyJxgTIGFJGhsUIjJBVSwWIzNHKC0UMHJZJT8OHxY3M1FqKygyZEk1RkRcKjdDYX0lXiZfKzhMPTde';
-        const base64String=req.body.Logo
-       
+        if(req.body.Logo){
+            let imagePath=""
+            const folder = path.join(__dirname, "..", "public", "images")
+            const filename = `${uuid()}`
+            const fileUrl  =`${folder}\\${filename}`
         
-       try {
-       // imagePath = await base64toFile(base64String, { filePath: "./img", fileName: "/ad_"+1+"_"+req.body.AdOwner, types: ['jpeg'], fileMaxSize: 3145728 });
-        imagePath = await base64toFile(base64String, { filePath:folder, fileName:filename, types: ['jpeg'], fileMaxSize: 3145728 });
-        //console.log("path"+fileUrl);
-        } catch (error) {
-           
-         return res.status(400).json({ message: 'error occured while loading image'})
+            const base64String=req.body.Logo
+            console.log("@@@@@@@@@@@",base64String);
+
+
+            try {
+            // imagePath = await base64toFile(base64String, { filePath: "./img", fileName: "/ad_"+1+"_"+req.body.AdOwner, types: ['jpeg'], fileMaxSize: 3145728 });
+                imagePath = await base64toFile(base64String, { filePath:folder, fileName:filename, types: ['jpeg'], fileMaxSize: 1000000000 });
+                //console.log("path"+fileUrl);
+                } catch (error) {
+                
+            return res.status(400).json({ message: 'error occured while loading image'})
+                }
         }
-
-
+    
         if(! await StoreDB.updateStore(req.body.Name,req.body.OwnerId,req.body.Logo))
             return res.status(400).json({ message: 'error occured while update store details'})
         let storeId=await StoreDB.getStoreByName(req.body.Name)
