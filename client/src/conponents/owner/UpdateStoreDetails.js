@@ -9,6 +9,7 @@ import card from "../../images/card.png";
 import { FileUpload } from "primereact/fileupload";
 import { Toast } from "primereact/toast";
 import { Dialog } from 'primereact/dialog';
+import { useNavigate } from "react-router-dom";
 
 let categoriesTemplate = (option) => {
   return (
@@ -39,9 +40,10 @@ const UpdateStoreDetails = () => {
   const [selectedcats4Store, setselectedsetCats4Store] = useState([]); //to remove
   const [unsellescats, setunsellescats] = useState([]); 
 
-  
+  const navigate = useNavigate();
+
    const toast = useRef(null);
-   const accept=async()=>{
+const accept=async()=>{
 let categoriesToUpdate=[];
 if(selectedCategories.length==0 && selectedcats4Store.length==0) categoriesToUpdate=cats4Store//no changes
 if(selectedCategories.length!=0&&selectedcats4Store.length==0) //only adding
@@ -51,21 +53,21 @@ if(selectedCategories.length!=0&&selectedcats4Store.length==0) //only adding
 if(selectedCategories.length==0 && selectedcats4Store.length!=0)//only removing 
 {
   //if category not exists in selectedcats4Store
-    for (let i = 0; i < cats4Store.length; i++) {
-    if(selectedcats4Store.filter(e=>e.Name!=cats4Store[i].Name).length!=0)
-      categoriesToUpdate.push(selectedcats4Store[i])
-    }  
-    console.log("only removing",categoriesToUpdate); 
+    // for (let i = 0; i < cats4Store.length; i++) {
+    // if(selectedcats4Store.filter(e=>e.Name!=cats4Store[i].Name).length!=0)
+    //   categoriesToUpdate.push(selectedcats4Store[i])
+    // }  
+     categoriesToUpdate = cats4Store.filter(cat => !selectedcats4Store.includes(cat));
+    // console.log("only removing",categoriesToUpdate); 
   }
 //remove and add
 if(selectedCategories.length!=0&&selectedcats4Store.length!=0)
-{
-  for (let i = 0; i < cats4Store.length; i++) {
-    
-    if(selectedcats4Store.filter(e=>e.Name==cats4Store[i].Name).length==0)
-      categoriesToUpdate.push(selectedcats4Store[i])
-    } 
-    categoriesToUpdate.concat(selectedCategories)  
+{console.log("22222222222222222");
+//   categoriesToUpdate = cats4Store.filter(cat => !selectedcats4Store.includes(cat));
+//  console.log("remove",categoriesToUpdate);
+//   categoriesToUpdate.concat(selectedCategories)  
+categoriesToUpdate= cats4Store.concat(selectedcats4Store, selectedCategories).filter(cat => !selectedcats4Store.includes(cat));
+    console.log("remove and add",categoriesToUpdate);
 }
 categoriesToUpdate=categoriesToUpdate.map((c)=>{return c.Name})
 console.log(categoriesToUpdate);
@@ -78,7 +80,11 @@ console.log(categoriesToUpdate);
 res1.request.status==200?
 toast.current.show({ severity: 'info', summary: 'Confirmed', detail: 'Your details have been successfully updated', life: 3000 }):
 toast.current.show({ severity: 'warn', summary: 'Rejected', detail:res1.response.data.message, life: 3000 });
-   }
+     setTimeout(() => {
+      navigate("/owner/")
+    }, 3000);
+
+}
   const footerContent = (
     <div>
         <Button label="No" icon="pi pi-times" onClick={() => setVisible(false)} className="p-button-text" />

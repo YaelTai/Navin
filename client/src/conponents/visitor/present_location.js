@@ -61,9 +61,10 @@ let adress=`${localStorage.getItem("store")} , דרך אגודת ספורט בי
            
 <Card title="You are here!" footer={footer} header={header} className="md:w-25rem" style={{ "margin": "2%", "width": "95%", "height": "95%" ,"position":"fixed",overflowY:"auto"}}>
     <p className="m-0">  
+    <Button label="Go to choose stores" onClick={() => navigate("/visitor/chooseStores" )} />
+
           <Map location={location} width={'400px'} height={'400px'}   />    <br/><br/>
-       <Button label="Go to choose stores" onClick={() => navigate("/visitor/chooseStores" )} 
-/>
+
 
     </p>
 </Card>

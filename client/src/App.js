@@ -2,7 +2,6 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 //import Login from "./conponents/login/login"
 import DeleteSrore from "./conponents/manager/deleteStore"
 import Register from "./conponents/Register/Register";
-import ToolBar from "../un used/toolBar";
 import AddStore from "./conponents/manager/addStore";
 import OwnerHome from "./conponents/owner/OwnerHome";
 import ManagerHome from "./conponents/manager/ManagerHome";

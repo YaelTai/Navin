@@ -9,10 +9,13 @@ import { useNavigate } from "react-router-dom";
 import { OverlayPanel } from 'primereact/overlaypanel';
 
 import 'primeflex/primeflex.css';
+import floor1 from '../../images/floor1.png'
+import floor2 from '../../images/floor2.png'
+import floor3 from '../../images/floor3.png'
 
 import card from '../../images/card.png'
 import { useAxios1 } from "../../hooks/useAxios"
- 
+
 const DestList = () => {
   const op = useRef(null);
 
@@ -38,7 +41,8 @@ const itemTemplate = (product) => {
     return (
         <div className="col-12">
             <div >
-            <br/><img   src={`data:image/jpeg;base64,${product.Logo}`}  style={{"height":"50%","width":"30%"}}/>
+            <br/>
+            <img   src={`data:image/jpeg;base64,${product.Logo}`}  style={{"height":"50%","width":"30%"}}/>
             <Button
                   //no
                   icon="pi pi-times"
@@ -98,18 +102,18 @@ console.log("2222",floor2);
   <h2>first floor:</h2>
    <Button type="button" icon="pi pi-map-marker" label="floor's map" onClick={(e) => op.current.toggle(e)} />
             <OverlayPanel ref={op}>
-                <img src={'https://primefaces.org/cdn/primereact/images/product/bamboo-watch.jpg'} alt="Bamboo Watch"></img>
+                <img src={floor1} alt="floor1"></img>
             </OverlayPanel>
   <DataView value={floor1} itemTemplate={itemTemplate} />
   <h2>second floor:</h2> <Button type="button" icon="pi pi-map-marker" label="floor's map" onClick={(e) => op.current.toggle(e)} />
             <OverlayPanel ref={op}>
-                <img src={'https://primefaces.org/cdn/primereact/images/product/bamboo-watch.jpg'} alt="Bamboo Watch"></img>
+                <img src={floor2} alt="floor2"></img>
             </OverlayPanel>
   <DataView value={floor2} itemTemplate={itemTemplate} />
   <h2>third floor:</h2> 
   <Button type="button" icon="pi pi-map-marker" label="floor's map" onClick={(e) => op.current.toggle(e)} />
             <OverlayPanel ref={op}>
-                <img src={'https://primefaces.org/cdn/primereact/images/product/bamboo-watch.jpg'} alt="Bamboo Watch"></img>
+                <img src={floor3} alt="floor3"></img>
             </OverlayPanel>
   <DataView value={floor3} itemTemplate={itemTemplate} />
       </Card>
