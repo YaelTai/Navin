@@ -36,7 +36,9 @@ body {
   padding: 1rem;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow-y: "auto"
+  overflow-y: "auto";
+ 
+  
 }
 
 .card {

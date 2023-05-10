@@ -6,7 +6,7 @@ const transporter = nodemailer.createTransport({
     port: 587,
     secure: false,
     auth: {
-        user: '36214121865@mby.co.il',
+        user: '36213876832@mby.co.il',
         pass: 'Student@264'
     }
 });
@@ -14,7 +14,7 @@ const transporter = nodemailer.createTransport({
 function sendEmail(to, subject, body) {
     
     const mailOptions = {
-        from: '36214121865@mby.co.il',
+        from: '36213876832@mby.co.il',
         to: to,
         subject: subject,
         text: body

@@ -81,6 +81,7 @@ const UploadAd = () => {
     // const [name, setName] = useState("")
     // const [file, setFile] = useState("")
     let base64data = "";
+    const navigate=useNavigate();
 
     const ImportFee = async () => {
         let fee = await postData(`owner/fee`, { "StartDate": from, "EndDate": to, "numOfCategories": selectedCategories.length });
@@ -102,7 +103,7 @@ const UploadAd = () => {
 
         ImportFee()
     }, [to, from, selectedCategories])
-    let _stores = Post(`owner/allStores`, { "Id": 214121865 });
+    let _stores = Post(`owner/allStores`, { "Id": localStorage.getItem("user") });
     if (_stores.loading) {
         return <p>Loading...</p>;
     }
@@ -185,15 +186,13 @@ const UploadAd = () => {
                                 "Categories": selectedCategories.map((c) => c.Name),
                                 "StoreId": selectedStore.Id
                             });
-                        setLoading(false);
-                        setCategories('')
-                        setSelectedStore('')
-                        setselectedCategories('')
-                        setfrom('')
-                        setto('')
+                       
                         if (res1.request.status == 200) {
                             setVisible(false);
                             setVisible2(true)
+                            setTimeout(() => {
+                                navigate("/owner/")
+                              }, 3000);
                         }
                         else {toast.current.show({ severity: 'warn', summary: 'Rejected', detail: res1.response.data.message, life: 3000 });
                     }
@@ -205,7 +204,7 @@ const UploadAd = () => {
 
                     }
                 }} />
-                <div className="mx-10"><OwnerMenu /></div>
+                <div className="mx-10"><br/><OwnerMenu /></div>
 
 
 

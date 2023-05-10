@@ -39,7 +39,7 @@ const AddStore = () => {
   }
   const { postData } = useAxios1();
   const [storeName, setstoreName] = useState(null);
-  const [ownerId, setownerName] = useState(null);
+  const [ownerId, setownerId] = useState(null);
   const [floor, setFloor] = useState(null);
 
   return (
@@ -72,14 +72,14 @@ const AddStore = () => {
           <span className="p-float-label">
 
           <InputNumber inputId="minmax-buttons" value={floor} 
-          onValueChange={(e) => setFloor(e.value)} mode="decimal" showButtons min={0} max={2} />
+          onValueChange={(e) => setFloor(e.value)} mode="decimal" showButtons min={1} max={3} />
           <label htmlFor="drh">Floor number</label></span>
           <br/><br/>
           <span className="p-float-label">
           <InputText 
             value={ownerId}
          
-            onChange={(e) => setownerName(e.target.value)}
+            onChange={(e) => setownerId(e.target.value)}
           /><label htmlFor="drh">Owner id</label></span>
           <br />
           <br />
@@ -89,13 +89,16 @@ const AddStore = () => {
             icon="pi pi-check"
             onClick={async () => {
               if (!storeName || !ownerId || !floor) {
-                alert("all fields required");
+                console.log(storeName,ownerId,floor);
+                showError("all fields required");
               } else {
                 const obj = { Name: storeName, OwnerId: ownerId ,Floor:floor};
                 const res = await postData("manager/store", obj);
             if(res.status==201){
               showSuccess(res.data.message)
-              
+              setFloor(null)
+              setstoreName("")
+              setownerId("")
             }
                 else showError(res.response.data.message);
               

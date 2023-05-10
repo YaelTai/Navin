@@ -77,13 +77,15 @@ console.log(categoriesToUpdate);
        "Categories": categoriesToUpdate,
        "Logo":base64data?base64data:null
     })
-res1.request.status==200?
-toast.current.show({ severity: 'info', summary: 'Confirmed', detail: 'Your details have been successfully updated', life: 3000 }):
+if(res1.request.status==200){
+toast.current.show({ severity: 'info', summary: 'Confirmed', detail: 'Your details have been successfully updated', life: 3000 })
+setTimeout(() => {
+  navigate("/owner/")
+}, 3000);
+}
+else
 toast.current.show({ severity: 'warn', summary: 'Rejected', detail:res1.response.data.message, life: 3000 });
-     setTimeout(() => {
-      navigate("/owner/")
-    }, 3000);
-
+  
 }
   const footerContent = (
     <div>

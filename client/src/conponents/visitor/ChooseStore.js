@@ -14,6 +14,8 @@ import "primeicons/primeicons.css";
 import "primeflex/primeflex.css";
 import azrieli from "../../images/azrieli.png"
 import { useNavigate } from "react-router-dom";
+
+import VisitorMenu from "../menues/visitorMenu"
 const footer = <div className="flex flex-wrap justify-content-end gap-2"></div>;
 
 export default function ChooseStores() {
@@ -21,7 +23,7 @@ export default function ChooseStores() {
   const [selectedStore, setSelectedStore] = useState(null);
   const [filteredStores, setfilteredStores] = useState(null);
   const [filteredCategories, setfilteredCategories] = useState(null);
-  const [selectedstoresForCat, setselectedstoresForCat] = useState([]);
+  const [selectedstoresForCat, setselectedstoresForCat] = useState(JSON.parse(localStorage.getItem("chosenStores") || "[]"));
   const [storesForCat, setStoresForCat] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState(null);
   const header = selectedCategory? <Ads Cat={{"Id":selectedCategory.Id}} setselectedstoresForCat={setselectedstoresForCat} setSelectedStore={setSelectedStore} selectedstoresForCat={selectedstoresForCat}/>: <img

@@ -33,7 +33,7 @@ const ManagerHome=()=>{
     <Card title="Welcome Manager!" footer={footer} header={header} className="md:w-25rem" style={{ "margin": "2%", "width": "95%", "height": "98%" ,"position":'fixed',overflowY:"auto"}}>
             <p className="m-0 text-overflow-clip">
             <h1>welcome manager!</h1>
-            <Button label="update categories" style={btn} onClick={()=>navigate("/manager/updateCategories")}/><br/>
+            <Button label="Add categories" style={btn} onClick={()=>navigate("/manager/updateCategories")}/><br/>
             <Button label="Add Store Owner" style={btn} onClick={()=>navigate("/manager/AddOwner")}/><br/>
             <Button label="Add new Store" style={btn} onClick={()=>navigate("/manager/addStore")}/><br/>
             <Button label="Remove Store" style={btn} onClick={()=>navigate("/manager/removeStore")}/><br/>

@@ -3,24 +3,31 @@ import { Button } from 'primereact/button';
 import { DataView } from 'primereact/dataview';
 import { Rating } from 'primereact/rating';
 import { Tag } from 'primereact/tag';
-// import { Image } from "primereact/image";
+ import { Image } from "primereact/image";
 import { Card } from "primereact/card";
 import { useNavigate } from "react-router-dom";
 import { OverlayPanel } from 'primereact/overlaypanel';
 
+
 import 'primeflex/primeflex.css';
-import floor1 from '../../images/floor1.png'
-import floor2 from '../../images/floor2.png'
-import floor3 from '../../images/floor3.png'
+import map1 from '../../images/floor1.png'
+import map2 from '../../images/floor2.png'
+import map3 from '../../images/floor3.png'
 
 import card from '../../images/card.png'
 import { useAxios1 } from "../../hooks/useAxios"
 
-const DestList = () => {
-  const op = useRef(null);
+import VisitorMenu from "../menues/visitorMenu"
 
+const DestList = () => {
+  const op1 = useRef(null);
+  const op2 = useRef(null);
+  const op3 = useRef(null);
     const header = (
+      <>
         <img alt="Card" src={card} style={{ "width": "100%", "height": "50px" }} />
+        <VisitorMenu/>
+        </>
       );
       const footer = (
         <div className="flex flex-wrap justify-content-end gap-2">
@@ -30,7 +37,9 @@ const DestList = () => {
   
   const navigate = useNavigate();
   const [stores, setStores] = useState([]);
-
+  const [floor1, setfloor1] = useState([]);
+  const [floor2, setfloor2] = useState([]);
+  const [floor3, setfloor3] = useState([]);
   useEffect(() => {
  setStores(JSON.parse(localStorage.getItem("chosenStores") || "[]"))
   }, []);
@@ -43,45 +52,69 @@ const itemTemplate = (product) => {
             <div >
             <br/>
             <img   src={`data:image/jpeg;base64,${product.Logo}`}  style={{"height":"50%","width":"30%"}}/>
-            <Button
-                  //no
-                  icon="pi pi-times"
-                  rounded
-                  text
-                  raised
-                  severity="danger"
-                  aria-label="Cancel"
-                  style={{ marginLeft: "10px", marginBottom:"25px"}}
-                 />
+            <Button className="w-2rem h-2rem"icon="pi pi-times" rounded severity="warning" aria-label="Notification" style={{ marginLeft: "10px", marginBottom:"25px",}}
+                
+                onClick={(e) => {
+                if(product.Floor==1){
+                    let index =floor1.indexOf(product)
+                     setfloor1((s) => [
+                    ...s.slice(0, index),
+                    ...s.slice(index + 1, s.length),
+                  ]);
+
+                }
+                if(product.Floor==2){
+                  let index =floor2.indexOf(product)
+                  setfloor2((s) => [
+                 ...s.slice(0, index),
+                 ...s.slice(index + 1, s.length),
+               ]);
+                }
+                if(product.Floor==3){
+                  let index =floor3.indexOf(product)
+                  setfloor3((s) => [
+                 ...s.slice(0, index),
+                 ...s.slice(index + 1, s.length),
+               ]);
+                }
+                 
+                }} />
+     
        
             </div>
         </div>
     );
 };
 const { Post } = useAxios1();
+
 let { data, loading, error, refetch } = Post(`visitor/storeLogo`,{stores:JSON.parse(localStorage.getItem("chosenStores") || "[]")});
 console.log(data)
+
+useEffect(() => {
+  if(data){
+  setfloor1(data.floor1)
+  setfloor2(data.floor2)
+  setfloor3(data.floor3)
+}
+   }, [data]);
+
+ useEffect(() => {
+  if(floor1.length!=0 || floor2.length!=0 || floor3.length!=0){
+    console.log("1111111111111",floor1.concat(floor2).concat(floor3));
+     localStorage.setItem("chosenStores",JSON.stringify(floor1.concat(floor2).concat(floor3).map((s)=>{return {"Name":s.Name}})));
+    }
+
+     }, [floor1,floor2,floor3]);
+
+
 if (loading) {
   return <p>Loading...</p>;
 }
 if (error) {
   return <p>Error!</p>;
 }
-console.log("dataaa",data);
-let floor1=[];
-let floor2=[];
-let floor3=[];
-data.forEach(s => {
-  if(s.Floor==1)
-    floor1.push(s)
-  else if(s.Floor==2)
-    floor2.push(s)
-  else
-    floor3.push(s)
 
-});
-console.log("1111",floor1);
-console.log("2222",floor2);
+
 
 
   return (
@@ -100,20 +133,22 @@ console.log("2222",floor2);
         }}
       >
   <h2>first floor:</h2>
-   <Button type="button" icon="pi pi-map-marker" label="floor's map" onClick={(e) => op.current.toggle(e)} />
-            <OverlayPanel ref={op}>
-                <img src={floor1} alt="floor1"></img>
+   <Button type="button" icon="pi pi-map-marker" label="floor's map" onClick={(e) => op1.current.toggle(e)} />
+            <OverlayPanel ref={op1}>
+            <Image src={map1}alt="1" width="250" preview />
+                {/* <img src={map1} alt="1"width="250" ></img> */}
             </OverlayPanel>
   <DataView value={floor1} itemTemplate={itemTemplate} />
-  <h2>second floor:</h2> <Button type="button" icon="pi pi-map-marker" label="floor's map" onClick={(e) => op.current.toggle(e)} />
-            <OverlayPanel ref={op}>
-                <img src={floor2} alt="floor2"></img>
+  <h2>second floor:</h2> 
+  <Button type="button" icon="pi pi-map-marker" label="floor's map" onClick={(e) => op2.current.toggle(e)} />
+            <OverlayPanel ref={op2}>
+            <Image src={map2}alt="2" width="250" preview />
             </OverlayPanel>
   <DataView value={floor2} itemTemplate={itemTemplate} />
   <h2>third floor:</h2> 
-  <Button type="button" icon="pi pi-map-marker" label="floor's map" onClick={(e) => op.current.toggle(e)} />
-            <OverlayPanel ref={op}>
-                <img src={floor3} alt="floor3"></img>
+  <Button type="button" icon="pi pi-map-marker" label="floor's map" onClick={(e) => op3.current.toggle(e)} />
+            <OverlayPanel ref={op3}>
+            <Image src={map3}alt="3" width="250" preview />
             </OverlayPanel>
   <DataView value={floor3} itemTemplate={itemTemplate} />
       </Card>

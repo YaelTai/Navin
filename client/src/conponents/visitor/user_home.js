@@ -24,7 +24,7 @@ console.log(stores);
     setTimeout(() => {
      
       navigate("/visitor/presentLocation")
-    }, 2000);}
+    }, 1000);}
     }, [selectedStore])
   
 

@@ -99,6 +99,9 @@ const DeleteStore = () => {
                 });
                 if(res.status==201){
                     showSuccess(res.data.message)
+                    setownerName("");
+                    setstoreName("")
+          
                     
                   }
                       else showError(res.response.data.message);

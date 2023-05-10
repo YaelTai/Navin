@@ -28,7 +28,7 @@ import Map from './conponents/map/Map'
 import DestList from "./conponents/visitor/destList";
 function App() {
   return (
-      <div  >
+    <div className="flex flex-wrap justify-content-center gap-2">
        <Router>
         <Routes>
           

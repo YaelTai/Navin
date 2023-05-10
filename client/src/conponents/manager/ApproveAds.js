@@ -112,7 +112,7 @@ console.log(data)
               {console.log("ad", ad.Img)}
 
               <Image
-                src={`data:image/jpeg;base64,${ad.Img}`}
+                src={`data:image/png;base64,${ad.Img}`}
                 alt="Image"
                 width="250"
                 preview

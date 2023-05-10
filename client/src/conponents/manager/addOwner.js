@@ -132,11 +132,21 @@ const AddOwner = () => {
               setLoading(false);
               console.log(res);
               if (res.status == 200) {
+                
                 showSuccess(res.data);
-                setTimeout(() => {
-                  navigate(`/manager/`)
-                }, 3000);
-              } else showError(res.response.data.message);
+                setEmail("")
+                setName("")
+                setId("") 
+                setName("")
+                setPhone("")
+                // setTimeout(() => {
+                //   navigate(`/manager/`)
+                // }, 3000);
+              } else {
+                
+               showError(res.response.data.message);
+              
+              }
 
             }
           }} 

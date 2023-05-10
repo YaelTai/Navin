@@ -100,9 +100,11 @@ const { postData } = useAxios1();
             onClick={async () => {
             
              let res= await postData("manager/categories",categories.map((e)=>({"Name":e})))
-           console.log("+++++++++++++"+res.status);
+          
               if(res.status==201){
               showSuccess(res.data.message)
+              setCategories([])
+              setValue("");
            
             }
                 else showError(res.response);

@@ -116,7 +116,7 @@ class OwnerController {
         imagePath = await base64toFile(base64String, {
           filePath: folder,
           fileName: filename,
-          types: ["jpeg"],
+          types: [".png"],
           fileMaxSize: 3145728,
         });
         console.log("path1" + imagePath);
@@ -125,26 +125,9 @@ class OwnerController {
           .status(400)
           .json({ message: "error occured while loading image" });
       }
-
-      // let imagePath=""
-      // const folder = path.join(__dirname, "..", "public", "images")
-      // const filename = `${uuid()}`
-      // const fileUrl  =`${folder}\\${filename}`
-
-      // const base64String=req.body.Logo
-      // console.log("@@@@@@@@@@@",base64String);
-
-      // try {
-      // // imagePath = await base64toFile(base64String, { filePath: "./img", fileName: "/ad_"+1+"_"+req.body.AdOwner, types: ['jpeg'], fileMaxSize: 3145728 });
-      //     imagePath = await base64toFile(base64String, { filePath:folder, fileName:filename, types: ['jpeg'], fileMaxSize: 10000000000 });
-      //     //console.log("path"+fileUrl);
-      //     } catch (error) {
-
-      // return res.status(400).json({ message: 'error occured while loading image'})
-      //     }
     }
     console.log("**********  savvv");
-    if (!(await StoreDB.updateStore(req.body.Name, req.body.OwnerId, fileUrl)))
+    if (!(await StoreDB.updateStore(req.body.Name, req.body.OwnerId, fileUrl+".png")))
       return res
         .status(400)
         .json({ message: "error occured while update store details" });
@@ -240,7 +223,7 @@ res.status(200).json({ message: "updated sucssfully" });
       imagePath = await base64toFile(base64String, {
         filePath: folder,
         fileName: filename,
-        types: ["jpeg"],
+        types: ["png"],
         fileMaxSize: 3145728,
       });
       console.log("path1" + imagePath);
@@ -251,7 +234,9 @@ res.status(200).json({ message: "updated sucssfully" });
     }
 
     const newAd = await AdvertismentDB.createNewAd({
-      Img: fileUrl + ".jpeg",
+      Img: fileUrl + ".png",
+     
+
       StartDate: req.body.StartDate,
       EndDate: req.body.EndDate,
       AdOwner: req.body.AdOwner,
@@ -269,7 +254,7 @@ res.status(200).json({ message: "updated sucssfully" });
         return res
           .status(400)
           .json({ message: "error occured while update ad categories" });
-
+      console.log();
       if (!(await AdvertismentDB.addCategoryToAd(newAd.Id, categoryId)))
         return res
           .status(400)
@@ -282,7 +267,7 @@ res.status(200).json({ message: "updated sucssfully" });
         .status(400)
         .json({ message: "error occured when trying upload ad" });
     const to = manager.Email;
-    console.log("***********");
+   
 
     const subject =
       "hello " + manager.Name + " a new ad waits to your approvment";
@@ -291,13 +276,13 @@ res.status(200).json({ message: "updated sucssfully" });
     Mailer.sendEmail(to, subject, body)
       .then((info) => {
         console.log("Email sent: ", info.response);
-        res.send("Registration successful");
+        // res.send("Registration successful");
       })
       .catch((error) => {
         console.log("Error sending email: ", error);
         res.status(500).send("Failed to send email");
       });
-
+    
     res.status(200).json({ message: "uploaded sucssfully" });
   };
   getAdByPassword = async (req, res) => {

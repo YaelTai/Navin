@@ -34,7 +34,7 @@ class VisitorController {
                 }   
               })
               console.log("we done22222222222!!!!!!!!",stores);
-              let final_stores=[]
+              
               let storesName=[];
               req.body.stores.forEach(s => {
                 storesName.push(s.Name)  
@@ -46,13 +46,22 @@ class VisitorController {
             //      final_stores.push(stores[index])
                   
             //   }
+            let floor1=[];
+            let floor2=[];
+            let floor3=[];
             stores.forEach((s)=>{
-                if(storesName.includes(s.Name))
-                final_stores.push(s)
-            })
-               console.log("finakkkkkk",final_stores);
-              res.status(200).json(final_stores) 
-               
+                
+                if(storesName.includes(s.Name)){
+                if(s.Floor==1)
+                floor1.push(s)
+              else if(s.Floor==2)
+                floor2.push(s)
+              else
+                floor3.push(s)
+           } })
+            
+         
+        res.status(200).json({"floor1":floor1,"floor2":floor2,"floor3":floor3});     
 
         } 
         
@@ -106,14 +115,7 @@ class VisitorController {
         console.log(stores);
         res.status(200).json(stores.map((s)=>{return{"Name":s.Name}})) 
     }
-    // getLocationByStoreName=async(req,res)=>{
-    //     let store=await StoreDB.getStoreByName(req.body.storeName)
-    //     if (!store) return res.status(400).json({ message: 'error occured when get stores'})
-    //     console.log("--------------",store);
-    //     let location={lat:store.Lat, lng:store.Lng}
-    //     res.status(200).json(location) 
 
-    // }
     getFloorByStoreName=async(req,res)=>{
         let store=await StoreDB.getStoreByName(req.body.storeName)
         if (!store) return res.status(400).json({ message: 'error occured when get stores'})
