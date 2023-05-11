@@ -108,7 +108,8 @@ console.log(data)
 
           {data.map((ad, index) => (
 
-            <li>
+            <li  >
+              <Card>
               {console.log("ad", ad.Img)}
 
               <Image
@@ -138,9 +139,10 @@ console.log(data)
                   onClick={() => {
                      Ad = ad; confirm2(); }}
                 /></span>
-              <br />
-              <br />
+              
+              <br /></Card><br/><br/>
             </li>
+            
 
           ))}
         </ul>

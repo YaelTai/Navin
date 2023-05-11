@@ -51,8 +51,7 @@ const itemTemplate = (product) => {
         <div className="col-12">
             <div >
             <br/>
-            <img   src={`data:image/jpeg;base64,${product.Logo}`}  style={{"height":"50%","width":"30%"}}/>
-            <Button className="w-2rem h-2rem"icon="pi pi-times" rounded severity="warning" aria-label="Notification" style={{ marginLeft: "10px", marginBottom:"25px",}}
+            <Button className="w-2rem h-2rem"icon="pi pi-times" rounded severity="warning" aria-label="Notification" style={{ marginRight: "10px"}}
                 
                 onClick={(e) => {
                 if(product.Floor==1){
@@ -78,7 +77,8 @@ const itemTemplate = (product) => {
                ]);
                 }
                  
-                }} />
+                }} /><br/>
+            <img   src={`data:image/png;base64,${product.Logo}`}  style={{"height":"50%","width":"30%"}}/>
      
        
             </div>
@@ -132,26 +132,31 @@ if (error) {
           overflowY: "auto",
         }}
       >
-  <h2>first floor:</h2>
-   <Button type="button" icon="pi pi-map-marker" label="floor's map" onClick={(e) => op1.current.toggle(e)} />
+         
+  <h2>first floor:</h2><Button type="button" icon="pi pi-map-marker" label="floor's map" onClick={(e) => op1.current.toggle(e)} />
+  <Card className='border-solid border-blue-500 '>
+   
             <OverlayPanel ref={op1}>
             <Image src={map1}alt="1" width="250" preview />
                 {/* <img src={map1} alt="1"width="250" ></img> */}
             </OverlayPanel>
-  <DataView value={floor1} itemTemplate={itemTemplate} />
+  <DataView value={floor1} itemTemplate={itemTemplate} /></Card>
   <h2>second floor:</h2> 
   <Button type="button" icon="pi pi-map-marker" label="floor's map" onClick={(e) => op2.current.toggle(e)} />
+  <Card className='border-solid border-blue-500 '>
             <OverlayPanel ref={op2}>
             <Image src={map2}alt="2" width="250" preview />
             </OverlayPanel>
-  <DataView value={floor2} itemTemplate={itemTemplate} />
+  <DataView value={floor2} itemTemplate={itemTemplate} /></Card>
   <h2>third floor:</h2> 
   <Button type="button" icon="pi pi-map-marker" label="floor's map" onClick={(e) => op3.current.toggle(e)} />
+  <Card className='border-solid border-blue-500 '>
             <OverlayPanel ref={op3}>
             <Image src={map3}alt="3" width="250" preview />
             </OverlayPanel>
   <DataView value={floor3} itemTemplate={itemTemplate} />
-      </Card>
+      </Card></Card>
+
     
 
       

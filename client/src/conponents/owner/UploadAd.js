@@ -10,7 +10,6 @@ import { Accordion, AccordionTab } from 'primereact/accordion';
 import { useAxios1 } from "../../hooks/useAxios";
 import { Toast } from 'primereact/toast';
 import PriceList from './priceList'
-import { set } from 'react-hook-form';
 import { Dialog } from 'primereact/dialog';
 import OwnerMenu from '../menues/ownerMenu';
 import card from '../../images/card.png'
@@ -19,8 +18,8 @@ import card from '../../images/card.png'
 
 const header = (
 
-    <img alt="Card"         src={card}
-    style={{ "width": "100%", "height": "50px" }} />
+    <img alt="Card" src={card}
+        style={{ "width": "100%", "height": "50px" }} />
 );
 const footer = (
     <></>
@@ -81,7 +80,7 @@ const UploadAd = () => {
     // const [name, setName] = useState("")
     // const [file, setFile] = useState("")
     let base64data = "";
-    const navigate=useNavigate();
+    const navigate = useNavigate();
 
     const ImportFee = async () => {
         let fee = await postData(`owner/fee`, { "StartDate": from, "EndDate": to, "numOfCategories": selectedCategories.length });
@@ -145,10 +144,9 @@ const UploadAd = () => {
                         </AccordionTab>
                     </Accordion>
                 </div>
+<Card>
 
-                <lable>1. Load file</lable><br /><br />
-                <FileUpload name="demo[]" url={'/api/upload'} multiple accept="image/*" customUpload uploadHandler={customBase64Uploader} maxFileSize={'10000000000000'} emptyTemplate={<p className="m-0">Drag and drop files to here to upload.</p>} /><br></br>
-                <label style={{ "marginRight": '1%' }} >2. choose store for the ad </label><br /><br />
+                <b style={{ "marginRight": '1%' }} >1. choose store for the ad </b><br /><br />
                 <Dropdown value={selectedStore} onChange={(e) => {
 
                     setSelectedStore(e.value)
@@ -156,15 +154,22 @@ const UploadAd = () => {
                 }
                 } options={stores} optionLabel="Name"
                     placeholder="your stores" className="w-full md:w-14rem" style={{ "width": "15%" }} /><br /><br />
-                <lable>3. Choose in which categories the ad will be displayed</lable><br></br><br></br>
+               </Card><br/>
+               <Card> <b>2. Load file</b><br /><br />
+                <FileUpload name="demo[]" url={'/api/upload'} multiple accept="image/*" customUpload uploadHandler={customBase64Uploader} maxFileSize={'10000000000000'} emptyTemplate={<p className="m-0">Drag and drop files to here to upload.</p>} /><br></br>
+                </Card> <br/> <Card> 
+                <b>3. Choose in which categories the ad will be displayed</b><br></br><br></br>
                 <MultiSelect value={selectedCategories} options={categories} onChange={(e) => setselectedCategories(e.value)} optionLabel="Name" placeholder="Select Categories" filter className="multiselect-custom"
-                    itemTemplate={categoryTemplate} selectedItemTemplate={selectedCategoriesTemplate} /><br></br><br></br>
-                <lable>4. Start and end date for your ad:</lable><br></br><br></br>
+                   itemTemplate={categoryTemplate} selectedItemTemplate={selectedCategoriesTemplate} /><br></br><br></br>
+                </Card><br/><Card> 
+                <b>4. Start and end date for your ad:</b><br></br><br></br>
+               
                 <lable style={{ "marginRight": "10px" }}>from:</lable><Calendar value={from} onChange={(e) => { setfrom(new Date(e.target.value)) }} /><br></br><br></br>
                 <lable style={{ "marginRight": "10px" }}>to:</lable><Calendar value={to} onChange={(e) => setto(new Date(e.target.value))} /> <br></br><br></br>
-                <lable>5. Estimated cost</lable>
+                </Card><br/><Card> 
+                <b>5. Estimated cost</b>
                 <h1>{fee} nis</h1>
-                <Button className="mt-50rem" label="Send Request To Manager" icon="pi pi-check" loading={loading} onClick={async () => {
+               </Card>  <br></br><Button className="mt-10rem" label="Send Request To Manager" icon="pi pi-check" loading={loading} onClick={async () => {
                     if (!base64data || !selectedCategories | !selectedStore) {
                         if (!base64data) {
                             setVisible2(false)
@@ -182,20 +187,21 @@ const UploadAd = () => {
                                 "Img": base64data,
                                 "StartDate": from,
                                 "EndDate": to,
-                                "AdOwner" :localStorage.getItem("user"),
+                                "AdOwner": localStorage.getItem("user"),
                                 "Categories": selectedCategories.map((c) => c.Name),
                                 "StoreId": selectedStore.Id
                             });
-                       
+
                         if (res1.request.status == 200) {
                             setVisible(false);
                             setVisible2(true)
                             setTimeout(() => {
                                 navigate("/owner/")
-                              }, 3000);
+                            }, 3000);
                         }
-                        else {toast.current.show({ severity: 'warn', summary: 'Rejected', detail: res1.response.data.message, life: 3000 });
-                    }
+                        else {
+                            toast.current.show({ severity: 'warn', summary: 'Rejected', detail: res1.response.data.message, life: 3000 });
+                        }
                         // res1.request.status == 200 ?
                         //     toast.current.show({ severity: 'info', summary: 'Confirmed', detail: 'Your advertisment have been successfully uploaded', life: 3000 }) :
                         //     toast.current.show({ severity: 'warn', summary: 'Rejected', detail: res1.response.data.message, life: 3000 });
@@ -204,14 +210,14 @@ const UploadAd = () => {
 
                     }
                 }} />
-                <div className="mx-10"><br/><OwnerMenu /></div>
+                <div className="mx-10"><br /><OwnerMenu /></div>
 
 
 
 
                 <Dialog header="Ooops!" visible={visible} modal={false} style={{ width: '50vw' }} onHide={() => setVisible(false)}>
                     <p className="m-0">
-                        You forget to press on "Upload!"
+                        You forget to press on Upload!
                     </p>
                 </Dialog>
                 <Dialog header="'Your advertisment have been successfully uploaded !" visible={visible2} modal={false} style={{ width: '50vw' }} onHide={() => setVisible2(false)}>
@@ -221,8 +227,8 @@ const UploadAd = () => {
                         Ads will be displayed after payment.
                     </p>
                 </Dialog>
-                <br/>
-                <br/>
+                <br />
+                <br />
             </p>
 
         </Card>

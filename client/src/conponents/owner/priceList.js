@@ -19,8 +19,8 @@ export default function PriceList() {
   return (
     
       <>
-        <h3>Price per day: {data.DayFee}</h3>
-        <h3>Price per category: {data.CategoryFee}</h3>
+        <lable>Price per day: {data.DayFee}</lable><br/>
+        <lable>Price per category: {data.CategoryFee}</lable>
       
    </>
   );
