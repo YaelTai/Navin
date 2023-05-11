@@ -49,7 +49,7 @@ class ManagerController {
     }
     deleteStore=async(req, res) => {
 
-           console.log("srvvvvvvvvvvv "+req.body);
+          
         if (!req.body.Name|| !req.body.OwnerName)  return res.status(400).json({ message: 'All fields are required'}) 
             
             const store=await StoreDB.getStoreByName(req.body.Name)
@@ -135,26 +135,7 @@ class ManagerController {
         else  res.status(201).json({ message: 'deleted  owner succesfully' })
 
     }
-//     getOpenDocumentByURL = (req, res, next) => {
-// //   let index=req.body.URL.lastIndexOf("\\");
-// // console.log("**************************",req.body.URL.substring(index+1,req.body.URL.length));
-// // console.log("**************************",req.body.URL.substring(0,index+1));
-// //         const options = { 
-// //           root: req.body.URL.substring(0,index+1)
-// //       }; 
-      
-// //         const fileName =  req.body.URL.substring(index+1,req.body.URL.length);
-//         // res.sendFile(fileName, options, function (err) {
-//         //     if (err) {
-//         //       console.log(err);
-//         //         next(err);
-//         //     } else { 
-//         //         console.log('Sent:', fileName); 
-//         //     }
-//         // });
-//         const contents = fs.readFileSync(req.body.URL, {encoding: 'base64'});
-//         res.send(contents)
-//       }
+
     getAllPendingAds=async(req, res) => {
       
        let ads=await AdvertismentDB.getAllWaitingAds()
@@ -217,33 +198,33 @@ class ManagerController {
          
 
     refuseAd=async(req, res) => {
-     console.log("hiiii    refuseAd   ",req.body.Id);
+   
         if(!AdvertismentDB.deleteAd(req.body.Id))
         return res.status(400).json({ message: 'error occured while trying to refuse ad'})
 
         res.status(201).json('approved successfully')
 
 
-        // //email refusment
-        // let owner = await OwnerDB.getOwnerById(req.body.AdOwner)
-        // if(!owner) res.status(400).json({ message: 'error getting owner email' })
-        // let to=owner.Email
-        // console.log(to)
-        // const subject = 'hi '+owner.Name;
-        // const body = "Your ad has been rejected for system reasons";
+        //email refusment
+        let owner = await OwnerDB.getOwnerById(req.body.AdOwner)
+        if(!owner) res.status(400).json({ message: 'error getting owner email' })
+        let to=owner.Email
+        console.log(to)
+        const subject = 'hi '+owner.Name;
+        const body = "Your ad has been rejected for system reasons";
     
-        // Mailer.sendEmail(to, subject, body)
-        //     .then(info => {
-        //         console.log('Email sent: ', info.response);
-        //         res.status(201).json('approved successfully')
-        //     })
-        //     .catch(error => {
-        //         console.log('Error sending email: ', error);
-        //         res.status(500).send('Failed to send email');
-        //     });
+        Mailer.sendEmail(to, subject, body)
+            .then(info => {
+                console.log('Email sent: ', info.response);
+                res.status(201).json('approved successfully')
+            })
+            .catch(error => {
+                console.log('Error sending email: ', error);
+                res.status(500).send('Failed to send email');
+            });
  
  
-    // }
+    
     }
     logIn=async(req, res) => {
         

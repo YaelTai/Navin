@@ -42,7 +42,7 @@ class OwnerController {
       return res
         .status(400)
         .json({ message: "error occured while getting fee" });
-    console.log("pricw", priceList.dataValues);
+
     res
       .status(201)
       .json(
@@ -119,7 +119,7 @@ class OwnerController {
           types: [".png"],
           fileMaxSize: 3145728,
         });
-        console.log("path1" + imagePath);
+
       } catch (error) {
         return res
           .status(400)
@@ -214,7 +214,7 @@ res.status(200).json({ message: "updated sucssfully" });
     //path.join(__dirname, "..", "public", "images")
     const filename = `${uuid()}`;
     const fileUrl = `${folder}\\${filename}`;
-    console.log("URL", fileUrl);
+   
     // const base64String ='data:image/jpeg;base64,/9j/4AAQSkZJRgABAgEBLAEsAAD/4RbbRXhpZgAASUkqAAgAAAANAAABAwABAAAAGgQAAAEBAwABAAAAWgYAAAIBAwABAAAAAQAAAAMBAwABAAAAAQAAAAYBAwABAAAAAAAAABIBAwABAAAAAQAAABUBAwABAAAAAQAAABoBBQABAAAAqgAAABsBBQABAAAAsgAAACgBAwABAAAAAgAAADEBAgAcAAAAugAAADIBAgAUAAAA1gAAAGmHBAABAAAA7AAAABgBAADAxi0AECcAAMDGLQAQJwAAQWRvYmUgUGhvdG9zaG9wIENTMiBXaW5kb3dzADIwMDc6MDI6MDkgMTE6MjA6MTcAAAADAAGgAwABAAAA//8AAAKgBAABAAAAGgQAAAOgBAABAAAAWgYAAAAAAAAAAAYAAwEDAAEAAAAGAAAAGgEFAAEAAABmAQAAGwEFAAEAAABuAQAAKAEDAAEAAAACAAAAAQIEAAEAAAB2AQAAAgIEAAEAAABdFQAAAAAAAEgAAAABAAAASAAAAAEAAAD/2P/gABBKRklGAAECAABIAEgAAP/tAAxBZG9iZV9DTQAB/+4ADkFkb2JlAGSAAAAAAf/bAIQADAgICAkIDAkJDBELCgsRFQ8MDA8VGBMTFRMTGBEMDAwMDAwRDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAENCwsNDg0QDg4QFA4ODhQUDg4ODhQRDAwMDAwREQwMDAwMDBEMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwM/8AAEQgAoABnAwEiAAIRAQMRAf/dAAQAB//EAT8AAAEFAQEBAQEBAAAAAAAAAAMAAQIEBQYHCAkKCwEAAQUBAQEBAQEAAAAAAAAAAQACAwQFBgcICQoLEAABBAEDAgQCBQcGCAUDDDMBAAIRAwQhEjEFQVFhEyJxgTIGFJGhsUIjJBVSwWIzNHKC0UMHJZJT8OHxY3M1FqKygyZEk1RkRcKjdDYX0lXiZfKzhMPTde';
     const base64String = req.body.Img;
 
@@ -254,7 +254,7 @@ res.status(200).json({ message: "updated sucssfully" });
         return res
           .status(400)
           .json({ message: "error occured while update ad categories" });
-      console.log();
+ 
       if (!(await AdvertismentDB.addCategoryToAd(newAd.Id, categoryId)))
         return res
           .status(400)

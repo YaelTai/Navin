@@ -23,7 +23,7 @@ class VisitorController {
     }
     getStoresLogo=async(req, res) => {
               let stores=await StoreDB.getAllStores()
-              console.log("we done!!!!!!!!",stores);
+            
               
               stores=stores.map((s)=>{
                 console.log("sssss",s.dataValues.Floor);
@@ -33,13 +33,13 @@ class VisitorController {
                     Logo:s.dataValues.Logo!=null? fs.readFileSync(s.Logo, {encoding: 'base64'}):"",
                 }   
               })
-              console.log("we done22222222222!!!!!!!!",stores);
+             
               
               let storesName=[];
               req.body.stores.forEach(s => {
                 storesName.push(s.Name)  
               });
-              console.log("######",storesName);
+
             //   for (let index = 0; index < stores.length; index++) {
             //     console.log("stores[index].Name",stores[index].dataValues);
             //      if(storesName.includes(stores[index]))
@@ -88,14 +88,14 @@ class VisitorController {
     }
     
     getAllAdsByCategory=async(req, res) => {
-       console.log("hi our cat is:",req.body.CatId);
+
         const ads=await AdvertismentDB.getAdsByCategory(req.body.CatId)
 
         if(!ads) return res.status(400).json({ message: 'error occured when get ads to categories'});
         let ads_=[]
         for (let i = 0; i < ads.length; i++) {
             let store= await  StoreDB.getStoreById(ads[i]["advertisment.StoreId"])
-            console.log("===================",ads[i]['advertisment.Img']);
+           
             const element ={
                 Id:ads[i].Id,
                 Img:fs.readFileSync(ads[i]['advertisment.Img'], {encoding: 'base64'}),
@@ -112,7 +112,7 @@ class VisitorController {
     getAllStores=async(req, res) => {
         let stores=await StoreDB.getAllStores()
         if(!stores)return res.status(400).json({ message: 'error occured when get stores'})
-        console.log(stores);
+    
         res.status(200).json(stores.map((s)=>{return{"Name":s.Name}})) 
     }
 
