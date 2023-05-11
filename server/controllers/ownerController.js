@@ -226,7 +226,7 @@ res.status(200).json({ message: "updated sucssfully" });
         types: ["png"],
         fileMaxSize: 3145728,
       });
-      console.log("path1" + imagePath);
+    
     } catch (error) {
       return res
         .status(400)
