@@ -116,6 +116,9 @@ console.log(data)
                 src={`data:image/png;base64,${ad.Img}`}
                 alt="Image"
                 width="250"
+
+
+
                 preview
                 p-button-text
                 style={{ marginLeft: "10px" }}
