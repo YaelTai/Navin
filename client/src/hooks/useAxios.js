@@ -47,6 +47,17 @@ console.log("posyyyyyyyyyyyyyy",body.stores);
         return { data, loading, error, refetch };
       
       };
+      const GetFromPython = (url) => {
+
+        const [{ data, loading, error }, refetch]= useAxios(url);
+
+       
+        
+        if(error)
+            console.log(error);
+        return { data, loading, error, refetch };
+      
+      };
       
       
     const GetData = async (url) => {
@@ -110,6 +121,6 @@ console.log("posyyyyyyyyyyyyyy",body.stores);
         }
     };
 
-    return { GetData, postData, updateData, deleteData,Get,Post }
+    return { GetData, postData, updateData, deleteData,Get,Post,GetFromPython }
 }
 // export default {useAxios1 ,getData}

@@ -8,6 +8,7 @@ import { Button } from 'primereact/button';
 
 const Welcome = () => {
     localStorage.clear();
+    
   const header = (
     <>
       <img

@@ -9,14 +9,15 @@ import { useNavigate } from "react-router-dom";
 import 'primeicons/primeicons.css';
 const UserHome = () => {
   const camera = useRef(null);
-  const [image, setImage] = useState(null);
+  const [  , setImage] = useState(null);
   const [selectedStore, setSelectedStore] = useState(null);
   const [filteredStores, setfilteredStores] = useState(null);
-  const { Get } = useAxios1();
+  const { Get, GetFromPython } = useAxios1();
   let stores_ = Get(`visitor/stores`);
   let stores = stores_.data;
 console.log(stores);
-
+let storeName=GetFromPython(`http://localhost:3002/stadivarious`);
+console.log("99995999995999999959999959999959999",storeName);
   useEffect(() => {
     if(selectedStore){
       console.log("222222",selectedStore);
