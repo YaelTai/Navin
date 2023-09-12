@@ -18,16 +18,6 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING
             ,allowNull: true
         },
-        // Lat :{
-            
-        //     type: DataTypes.DOUBLE
-        //     ,allowNull: false
-        // },
-        // Lng :{
-            
-        //     type: DataTypes.DOUBLE
-        //     ,allowNull: false
-        // },
         
             
     OwnerId :{   
