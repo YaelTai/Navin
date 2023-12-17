@@ -6,14 +6,8 @@ const { log } = require("console");
 class VisitorController {
 
     
-    //addDestination=async(req, res) => {}
-    //IdentifyLocation=async(req, res) => {}
-    //removeDestination=async(req, res) => {}
-    //takePicture=async(req, res) => {}
-    //presentLocation=async(req, res) => {}
-    //assembleRoute=async(req, res) => {}
+
     getStoresByCategory=async (req, res) => {
-        //get CatId
        
        let stores=await  CategoryDB.getStoreNamesByCategory(req.body.CatId)
        if(!stores)return res.status(400).json({ message: 'error occured when get stores to categories'})
@@ -26,11 +20,12 @@ class VisitorController {
             
               
               stores=stores.map((s)=>{
-                console.log("sssss",s.dataValues.Floor);
+            
                 return {
                  Name:s.dataValues.Name,
                     Floor:s.dataValues.Floor,
-                    Logo:s.dataValues.Logo!=null? fs.readFileSync(s.Logo, {encoding: 'base64'}):"",
+                    
+                    Logo:s.dataValues.Logo!=null? fs.readFileSync(`${process.env.FOLDER}\\${s.Logo}`, {encoding: 'base64'}):"",
                 }   
               })
              
@@ -40,12 +35,7 @@ class VisitorController {
                 storesName.push(s.Name)  
               });
 
-            //   for (let index = 0; index < stores.length; index++) {
-            //     console.log("stores[index].Name",stores[index].dataValues);
-            //      if(storesName.includes(stores[index]))
-            //      final_stores.push(stores[index])
-                  
-            //   }
+
             let floor1=[];
             let floor2=[];
             let floor3=[];
@@ -98,7 +88,7 @@ class VisitorController {
            
             const element ={
                 Id:ads[i].Id,
-                Img:fs.readFileSync(ads[i]['advertisment.Img'], {encoding: 'base64'}),
+                Img:fs.readFileSync(`${process.env.FOLDER}\\${ads[i]['advertisment.Img']}`, {encoding: 'base64'}),
                 StoreName:store.Name    
                     
                 

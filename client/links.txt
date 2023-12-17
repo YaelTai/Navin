@@ -1,7 +1,6 @@
 
 
-npm install --legacy-peer-deps
-
+https://github.com/YaelTai/Navin.git
 
 
 

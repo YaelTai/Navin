@@ -10,7 +10,7 @@ import { useAxios1 } from '../../hooks/useAxios';
 
 
 export default function Ads(props) {
-    console.log("hiiiii++++++++++", props.Cat);
+    
 
     const [products, setProducts] = useState([]);
     const [cat, setCat] = useState(props.Cat.Id);
@@ -19,23 +19,17 @@ export default function Ads(props) {
 
     const { postData } = useAxios1();
     const loadAds = async () => {
-        //console.log("ADS LOADED");
-        //console.log("hiiiii", props.Cat);
-
+        console.log("loaddddddddddddddddddddddddddddddddd", props.Cat.Id);
         let res = await postData('visitor/ads', { CatId: props.Cat.Id })
-        console.log("ads got from sever:", res.data);
+        console.log("ads got from sever:", res);
         setProducts([...res.data])
-        console.log("Productd", products);
+       
 
-        // x = await postData(`manager/ads`,
-        //     { "URL": res.data[3]["advertisment.Img"] });
-        // console.log("x", x.data);
-        // //setProducts(x.data)
 
     }
 
     useEffect(() => {
-        console.log("useeeeeeeeeeeeeeeeeeeeee");
+        
         if (props.Cat) loadAds()
 
     }, [cat])
@@ -66,8 +60,8 @@ export default function Ads(props) {
 
             <div >
                 <div className="mb-3">
-
-                    <img src={`data:image/jpeg;base64,${prod.Img}`} alt={prod.name} style={{ "height": "140px" }} />
+               
+                    <img src={`data:image/png;base64,${prod.Img}`} alt={prod.name} style={{ "height": "140px" }} />
                 </div>
                 <Button icon="pi pi-plus" className="p-button p-button-rounded" onClick={
                     () => {

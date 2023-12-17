@@ -7,7 +7,6 @@ import OwnerHome from "./conponents/owner/OwnerHome";
 import ManagerHome from "./conponents/manager/ManagerHome";
 import UploadAd from "./conponents/owner/UploadAd";
 import UpdatePriceList from "./conponents/manager/UpdatePriceList";
-//import PriceList from "./conponents/priceList";
 import VisitorHome from "./conponents/visitor/user_home";
 import ChooseStores from "./conponents/visitor/ChooseStore";
 import PresentLocation from "./conponents/visitor/present_location";
@@ -46,7 +45,6 @@ function App() {
           <Route path="/owner" element={<OwnerHome />} />
           <Route path="/owner/logIn" element={<Register />} />
           <Route path="/owner/uploadAd" element={<UploadAd />} />
-          {/* <Route path="/owner/priceList" element={<PriceList />} /> */}
           <Route path="payment" element={<Payment />} />
 
           <Route path="/owner/updateStoreDetails" element={<UpdateStoreDetails />} />

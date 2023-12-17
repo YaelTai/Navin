@@ -47,17 +47,24 @@ console.log("posyyyyyyyyyyyyyy",body.stores);
         return { data, loading, error, refetch };
       
       };
-      const GetFromPython = (url) => {
+      const GetFromPython = (img) => {
+        const url="http://localhost:5000/extract_text"
 
-        const [{ data, loading, error }, refetch]= useAxios(url);
-
-       
         
+        const [{ data, loading, error }, refetch]= useAxios(
+            {
+                url:url,
+                method:'post',
+                data:img
+            }
+        );
         if(error)
             console.log(error);
+
+       
         return { data, loading, error, refetch };
       
-      };
+    };
       
       
     const GetData = async (url) => {

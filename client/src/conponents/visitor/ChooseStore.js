@@ -37,17 +37,17 @@ export default function ChooseStores() {
   let categories_ = Get(`visitor/categories`);
   let stores = stores_.data;
   let categories = categories_.data;
-  console.log(categories);
+
 
 
 
   const ImportStoresForCategory = async () => {
-    console.log("ImportStoresForCategory",selectedCategory);
+    
     let stores4cat = await postData(`visitor/storesForCategory`, {CatId: selectedCategory.Id });
    
-    console.log("stores4catttttttttttttttttttttttt",stores4cat.data);  
+    
     setStoresForCat([...stores4cat.data]);
-    console.log("----------",stores4cat);
+  
     
   };
 
