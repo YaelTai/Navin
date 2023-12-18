@@ -88,20 +88,7 @@ class OwnerController {
     else res.status(200).json(details);
   };
   updateStoreDetails = async (req, res) => {
-    //get:
-    // {
-    //     "Name":"mely",
-    //
-
-    //  "OwnerId":214121865,
-    //      "Categories": [
-    //          "shoes",
-    //          "clothing",
-    //          "coats"
-    //      ]}
-    //  "Logo":9j9k
-    //update name & owner
-    console.log("updateStoreDetails");
+   
     let imagePath = "";
     const folder = process.env.FOLDER;
     //path.join(__dirname, "..", "public", "images")
@@ -127,7 +114,7 @@ class OwnerController {
       }
     }
     console.log("**********  savvv");
-    if (!(await StoreDB.updateStore(req.body.Name, req.body.OwnerId, fileUrl+".png")))
+    if (!(await StoreDB.updateStore(req.body.Name, req.body.OwnerId, filename+".png")))
       return res
         .status(400)
         .json({ message: "error occured while update store details" });
@@ -234,7 +221,7 @@ res.status(200).json({ message: "updated sucssfully" });
     }
 
     const newAd = await AdvertismentDB.createNewAd({
-      Img: fileUrl + ".png",
+      Img: filename + ".png",
      
 
       StartDate: req.body.StartDate,
