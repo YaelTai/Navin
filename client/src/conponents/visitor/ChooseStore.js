@@ -115,7 +115,7 @@ export default function ChooseStores() {
       }}
     >
       <p className="m-0">
-        <lable>select by store name</lable>
+        <label>select by store name</label>
         <br />
         <AutoComplete
           value={selectedStore}
@@ -135,7 +135,7 @@ export default function ChooseStores() {
         />
         <br />
         <br />
-        <lable>select by category</lable>
+        <label>select by category</label>
         <br/>
         <AutoComplete
           value={selectedCategory}
@@ -159,7 +159,7 @@ export default function ChooseStores() {
         {selectedCategory ? (
           <>
           
-            <lable>You can find {selectedCategory.Name} in:</lable>
+            <label>You can find {selectedCategory.Name} in:</label>
             <br />
             <MultiSelect
              value={selectedstoresForCat}

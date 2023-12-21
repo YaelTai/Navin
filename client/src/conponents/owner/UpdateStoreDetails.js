@@ -210,7 +210,7 @@ setunsellescats(unselled)
               <br />
               <br />
               <label>Update categories which the store provides:</label><br/><br/>
-              <lable>add categories:</lable><br/>
+              <label>add categories:</label><br/>
               <MultiSelect
                 value={selectedCategories}
                 defaultValue={unsellescats}
@@ -228,7 +228,7 @@ setunsellescats(unselled)
                 selectedItemTemplate={selectedCategoriesTemplate}
               />
 
-<br/> <br/><lable>remove categories:</lable><br/>
+<br/> <br/><label>remove categories:</label><br/>
              <MultiSelect
                 value={selectedcats4Store}
                 defaultValue={null}
@@ -247,7 +247,7 @@ setunsellescats(unselled)
               <br />
               <br />
 
-              <lable>Load logo:</lable>
+              <label>Load logo:</label>
               
               <FileUpload
                 mode="basic"
@@ -268,16 +268,16 @@ setunsellescats(unselled)
               <p className="m-0">changes for: {selectedStore.Name} </p>
                 <p className="m-0">
                    
-                    categories to add:{selectedCategories?selectedCategories.map((c)=><li>{c.Name}</li>):<lable>none</lable> }
+                    categories to add:{selectedCategories?selectedCategories.map((c)=><li>{c.Name}</li>):<label>none</label> }
                 </p>
                 <p className="m-0">
                    
-                   categories to remove:{selectedcats4Store?selectedcats4Store.map((c)=><li>{c.Name}</li>):<lable>none</lable> } 
+                   categories to remove:{selectedcats4Store?selectedcats4Store.map((c)=><li>{c.Name}</li>):<label>none</label> } 
                   
                </p>
                <p className="m-0">
                    
-                   {base64data?<lable>logo added</lable>:<lable></lable>  }
+                   {base64data?<label>logo added</label>:<label></label>  }
                </p>
                 
             </Dialog>

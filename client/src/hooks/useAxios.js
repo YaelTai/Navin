@@ -48,23 +48,21 @@ console.log("posyyyyyyyyyyyyyy",body.stores);
       
       };
       const GetFromPython = (img) => {
-        const url="http://localhost:5000/extract_text"
-
-        
-        const [{ data, loading, error }, refetch]= useAxios(
-            {
-                url:url,
-                method:'post',
-                data:img
-            }
-        );
-        if(error)
-            console.log(error);
-
-       
-        return { data, loading, error, refetch };
+        console.log("get python");
+        const url = "http://localhost:5000/extract_text";
       
-    };
+        const [{ data, loading, error }, refetch] = useAxios({
+          url: url,
+          method: 'post',
+          data: img,
+        });
+      
+        if (error) {
+          console.error('Error:', error);
+        }
+      console.log("data",data);
+        return { data, loading, error, refetch };
+      };
       
       
     const GetData = async (url) => {

@@ -164,8 +164,8 @@ const UploadAd = () => {
                 </Card><br/><Card> 
                 <b>4. Start and end date for your ad:</b><br></br><br></br>
                
-                <lable style={{ "marginRight": "10px" }}>from:</lable><Calendar value={from} onChange={(e) => { setfrom(new Date(e.target.value)) }} /><br></br><br></br>
-                <lable style={{ "marginRight": "10px" }}>to:</lable><Calendar value={to} onChange={(e) => setto(new Date(e.target.value))} /> <br></br><br></br>
+                <label style={{ "marginRight": "10px" }}>from:</label><Calendar value={from} onChange={(e) => { setfrom(new Date(e.target.value)) }} /><br></br><br></br>
+                <label style={{ "marginRight": "10px" }}>to:</label><Calendar value={to} onChange={(e) => setto(new Date(e.target.value))} /> <br></br><br></br>
                 </Card><br/><Card> 
                 <b>5. Estimated cost</b>
                 <h1>{fee} nis</h1>

@@ -71,15 +71,15 @@ const footer = (
     return <>
     <Card  title="Update Your Personals Details" footer={footer} header={header} className="md:w-25rem" style={{ "margin": "2%", "width": "95%", "height": "98%" ,"position":'fixed',overflowY:"auto"}}>
             <p className="m-0 ">
-        <lable  style={{"marginRight":'1%'}}> password : </lable><br></br>
+        <label  style={{"marginRight":'1%'}}> password : </label><br></br>
         <Password p-password-strong value={password} onChange={(e) => setPassword(e.target.value)} toggleMask /><br/>
       
         <br></br>
-        <lable  style={{"marginRight":'1%'}}>phone :</lable><br></br>
+        <label  style={{"marginRight":'1%'}}>phone :</label><br></br>
         <InputNumber value={phone} onValueChange={(e) => setPhone(e.value)} useGrouping={false} /><br></br>
         <label>*current phone: {data.Phone}   </label>
         <br></br><br/>
-        <lable style={{"marginRight":'1%'}}> email:</lable><br></br>
+        <label style={{"marginRight":'1%'}}> email:</label><br></br>
         <InputText value={email} onChange={(e) => setEmail(e.target.value)} /><br></br>
         <label>*current email: {data.Email}   </label>
         <br></br><br/>

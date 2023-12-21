@@ -87,9 +87,9 @@ const UpdatePriceList = () => {
             <p className="m-0">
 
                 <InputText value={DayFee} placeholder="Day Fee" onChange={(e) => setDayFee(e.target.value)} /><br />
-                <lable>*current fee: {data.DayFee} </lable><br /><br />
+                <label>*current fee: {data.DayFee} </label><br /><br />
                 <InputText value={CategoryFee} placeholder="Category Fee" onChange={(e) => setCategoryFee(e.target.value)} /><br />
-                <lable>*current fee: {data.CategoryFee} </lable><br /><br />
+                <label>*current fee: {data.CategoryFee} </label><br /><br />
                 <Toast ref={toast} />
                 <Dialog header="Please make sure the details you entered are correct" visible={visible} style={{ width: '50vw' }} onHide={() => setVisible(false)} footer={footerContent}>
              

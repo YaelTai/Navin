@@ -80,21 +80,21 @@ const Payment = () => {
 
                 {price ? <>
                     <h2>Price to pay {price}</h2>
-                    <lable> card Number</lable><br/>
+                    <label> card Number</label><br/>
                     <InputText value={Number} placeholder="" onChange={(e) => setNumber(e.target.value)} /><br /><br />
-                    <lable>expirty</lable><br/>
+                    <label>expirty</label><br/>
                     <InputText value={Date} placeholder="" onChange={(e) => setDate(e.target.value)} /><br /><br />
-                    <lable>cvc</lable><br/>
+                    <label>cvc</label><br/>
                     <InputText value={cvc} placeholder="" onChange={(e) => setcvc(e.target.value)} /><br /><br />
-                    <lable>Card holder</lable><br/>
+                    <label>Card holder</label><br/>
                     <InputText value={Name} placeholder="" onChange={(e) => setName(e.target.value)} /><br /><br />
                     <Button label="Submit" icon="pi pi-check" onClick={()=>{pay()}}/>
                 </> :
                 
                 
-                <> <lable>Ad code:</lable><br /><br/>
+                <> <label>Ad code:</label><br /><br/>
                     <InputText value={adId} placeholder="" onChange={(e) => setadId(e.target.value)} /> <br /><br />
-                    <lable>Approvement code:</lable> <br />
+                    <label>Approvement code:</label> <br />
                     <InputText value={Password} placeholder="" onChange={(e) => setPassword(e.target.value)} /><br /><br />
                     <Button
                         label="validate"

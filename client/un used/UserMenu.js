@@ -12,10 +12,10 @@
 //       label: "Finder",
 //       icon: () => (
 //         <>
-//         <lable>
+//         <label>
 //           <FcRotateCamera className="zoom" onClick={()=>{navigate("/visitor/")}}/>
-//         </lable>
-//         <lable onClick={()=>{navigate("/visitor/")}}>Where am I?</lable>
+//         </label>
+//         <label onClick={()=>{navigate("/visitor/")}}>Where am I?</label>
 //         </>
 //       ),
 //     },
@@ -25,9 +25,9 @@
 //       label: "App Store",
 //       icon: () => (
 //       <>
-//         <lable >
+//         <label >
 //           <FcWorkflow className="zoom" onClick={()=>{navigate("/visitor/chooseStores")}}/>
-//         </lable>
+//         </label>
 //         <small onClick={()=>{navigate("/visitor/chooseStores")}}>Rebuild route</small>
 //         </>
 //       ),
